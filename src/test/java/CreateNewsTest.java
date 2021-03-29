@@ -24,24 +24,33 @@ public class CreateNewsTest {
     }
 
     @Test
-    public void verifyCreateNewsUaControllers() {
+    public void verifyCreateNewsENControllers() {
         CreateNewsPO createNewsPage = new EcoNewsPO(webDriver)
                 .clickEcoNews()
                 .clickCreateNewsBtn();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        Assert.assertEquals(createNewsPage.isCancelButtonDisplayed(), true);
-        Assert.assertEquals(createNewsPage.isPreviewButtonDisplayed(), true);
-        Assert.assertEquals(createNewsPage.isBrowseButtonDisplayed(), true);
-
+        //Assert.assertEquals(createNewsPage.isCancelButtonDisplayed(), true);
+       // Assert.assertEquals(createNewsPage.isPreviewButtonDisplayed(), true);
+        //Assert.assertEquals(createNewsPage.isBrowseButtonDisplayed(), true);
         createNewsPage
                 .clickLanguageDropdown()
-                .clickEnButton()
-                .setTitle("This is title")
-                .chooseNewsTag()
-                .chooseAdsTag()
-                .setSource("This is Source")
-                .setContent("This is content");
+                .clickUaButton();
 
-        Assert.assertEquals(createNewsPage.isPublishButtonEnabled(),true);
+        String textLabelUa = createNewsPage
+                .getTitleLabel()
+                .getText();
+
+                //.setTitle("This is title")
+                //.chooseNewsTag()
+                //.chooseAdsTag()
+                //.setSource("This is Source")
+                //.setContent("This is content");
+
+        Assert.assertEquals(textLabelUa,"Створити новину");
     }
 }
