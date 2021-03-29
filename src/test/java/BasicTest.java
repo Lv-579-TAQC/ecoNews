@@ -13,10 +13,17 @@ public class BasicTest {
     private static WebDriver webDriver;
 
     @BeforeClass
-    public void setUpClass(){
+    public void setUpClass() {
         String WebDriverPath = System.getenv("WebDrivers");
+        String os = System.getProperty("os.name");
+        if (os.startsWith("Windows")) {
+            WebDriverPath += "\\chromedriver.exe";
+        } else {
+            WebDriverPath += "/chromedriver";
+        }
 
-        System.setProperty("webdriver.chrome.driver", WebDriverPath + "\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", WebDriverPath);
+
         webDriver = new ChromeDriver();
         webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
     }
@@ -26,7 +33,7 @@ public class BasicTest {
 //        webDriver.quit();
 //    }
 
-//    @Test
+    //    @Test
 //    public void loginToGreenCity(){
 //        webDriver.findElement(By.xpath("//a[@role='sign in']")).click();
 //        webDriver.findElement(By.id("email")).sendKeys("amelyanovich11@gmail.com");
@@ -40,11 +47,11 @@ public class BasicTest {
 //        webDriver.findElement(By.id("create-button")).click();
 //  }
     @Test
-    public void goToCreateNews(){
+    public void goToCreateNews() {
         webDriver.findElement(By.xpath("//a[@role='sign in']")).click();
         webDriver.findElement(By.id("email")).sendKeys("amelyanovich11@gmail.com");
         webDriver.findElement(By.id("password")).sendKeys("Qwerty123_");
         webDriver.findElement(By.xpath("//button[contains(@class, 'primary-global-button') and @type='submit']")).click();
         CreateNewsPO createNewsPO = new EcoNewsPO(webDriver).clickEcoNews().clickCreateNewsBtn();
-}
+    }
 }
