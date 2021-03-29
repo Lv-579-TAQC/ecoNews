@@ -7,21 +7,23 @@ import com.locators.EcoNewsPageLocators;
 
 public class BasePage {
     protected WebDriver driver;
-    private ButtonElement createNewsMenuButton;
+    private ButtonElement ecoNewsButton;
 
     public BasePage(WebDriver driver){
         this.driver = driver;
     }
 
     public EcoNewsPO clickEcoNews(){
-        if (createNewsMenuButton == null){
+        if (ecoNewsButton == null){
             try {
-                Thread.sleep(5000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            createNewsMenuButton = new ButtonElement(this.driver, EcoNewsPageLocators.ECONEWSMENUBUTTON);
+            ecoNewsButton = new ButtonElement(this.driver, EcoNewsPageLocators.ECONEWSMENUBUTTON);
         }
+        ecoNewsButton.click();
+
         return new EcoNewsPO(driver);
     }
 }
