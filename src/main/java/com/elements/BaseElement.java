@@ -16,7 +16,6 @@ public class BaseElement {
         webElement = driver.findElement(path);
     }
 
-
     public boolean isDisplayed() {
         return this.webElement.isDisplayed();
     }
