@@ -1,6 +1,7 @@
 import com.pageObject.CreateNewsPO;
 import com.pageObject.EcoNewsPO;
 import com.pageObject.LogInPO;
+import com.pageObject.PreviewPO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -35,7 +36,7 @@ public class OpenPreviewPageTest {
 
     @Test
     public void verifyButtonTextInPreviewPage() {
-        CreateNewsPO createNewsPage = new EcoNewsPO(webDriver)
+        PreviewPO createNewsPage = new EcoNewsPO(webDriver)
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .clickPreviewButton();

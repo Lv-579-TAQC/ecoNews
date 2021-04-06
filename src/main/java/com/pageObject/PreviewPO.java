@@ -11,6 +11,7 @@ public class PreviewPO extends BasePage{
     ButtonElement publishNewsButton;
     LabelElement newsTitleLabel;
     LabelElement newsContentLabel;
+    LabelElement titleBackLabel;
 
 
     public PreviewPO(WebDriver driver) {
@@ -24,6 +25,13 @@ public class PreviewPO extends BasePage{
         backToEditingButton.click();
 
         return new CreateNewsPO(driver);
+    }
+
+    public LabelElement getBackToEditingButton() {
+        if (titleBackLabel == null) {
+            titleBackLabel = new LabelElement(this.driver, PreviewPageLocators.BACK_TO_EDITING_BUTTON);
+        }
+        return titleBackLabel;
     }
 
     public LabelElement getTitleLabel(){
