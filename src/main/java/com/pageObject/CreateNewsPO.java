@@ -6,6 +6,8 @@ import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class CreateNewsPO extends BasePage {
 
     ButtonElement languageDropdown;
@@ -95,6 +97,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public CreateNewsPO chooseNewsTag() {
+        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
         if (newsTagButton == null) {
             newsTagButton = new ButtonElement(this.driver, CreateNewsPageLocators.NEWS_TAGBUTTON);
         }
