@@ -6,6 +6,8 @@ import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class CreateNewsPO extends BasePage {
 
     ButtonElement languageDropdown;
@@ -21,9 +23,11 @@ public class CreateNewsPO extends BasePage {
     ButtonElement browseButton;
     LabelElement titleLabel;
 
+    ButtonElement previewButton;
+    FieldElement contentField;
+
 //    ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON);
 //
-//    FieldElement contentField; =new
 //
 //    FieldElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD);
 //
@@ -31,9 +35,6 @@ public class CreateNewsPO extends BasePage {
 //
 //    ButtonElement(this.driver, CreateNewsPageLocators.CANCEL_BUTTON);
 //
-//    ButtonElement previewButton; =new
-//
-//    ButtonElement(this.driver, CreateNewsPageLocators.PREVIEW_BUTTON);
 //
 //    ButtonElement publishButton; =new
 //
@@ -80,6 +81,13 @@ public class CreateNewsPO extends BasePage {
         return this;
     }
 
+    public FieldElement getTitle(){
+        if(titleField == null){
+            titleField = new FieldElement(this.driver, CreateNewsPageLocators.TITLE_FIELD);
+        }
+        return titleField;
+    }
+
     public LabelElement getTitleLabel() {
         if (titleLabel == null) {
             titleLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_LABEL);
@@ -89,6 +97,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public CreateNewsPO chooseNewsTag() {
+        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
         if (newsTagButton == null) {
             newsTagButton = new ButtonElement(this.driver, CreateNewsPageLocators.NEWS_TAGBUTTON);
         }
@@ -156,14 +165,14 @@ public class CreateNewsPO extends BasePage {
         return titleLabel;
     }
 
-//    public CreateNewsPO setContent(String content) {
-//        if (contentField == null) {
-//            contentField = new FieldElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD);
-//        }
-//        contentField.sendKeys(content);
-//
-//        return this;
-//    }
+    public CreateNewsPO setContent(String content) {
+        if (contentField == null) {
+            contentField = new FieldElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD);
+        }
+        contentField.sendKeys(content);
+
+        return this;
+    }
 //
 //
 //    public EcoNewsPO clickCancelButton() {
@@ -172,11 +181,14 @@ public class CreateNewsPO extends BasePage {
 //        return new EcoNewsPO(driver);
 //    }
 //
-//    public CreateNewsPO clickPreviewButton() {
-//        previewButton.click();
-//
-//        return new CreateNewsPO(driver);
-//    }
+    public PreviewPO clickPreviewButton() {
+        if(previewButton == null){
+            previewButton = new ButtonElement(this.driver, CreateNewsPageLocators.PREVIEW_BUTTON);
+        }
+        previewButton.click();
+
+        return new PreviewPO(driver);
+    }
 //
 //    public CreateNewsPO clickPublishButton() {
 //        publishButton.click();

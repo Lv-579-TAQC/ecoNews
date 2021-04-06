@@ -5,8 +5,8 @@ import org.openqa.selenium.By;
 public enum CreateNewsPageLocators implements BaseLocator{
 
     TITLE_FIELD(By.xpath("//h3[text()='Title']/following-sibling::textarea")),
-    NEWS_TAGBUTTON(By.xpath("//button[contains(text(),'News')]")),
-    ADS_TAGBUTTON(By.xpath("//button[contains(text(),'Ads')]")),
+    NEWS_TAGBUTTON(By.xpath("//button[contains(text(),' News')]")),
+    ADS_TAGBUTTON(By.xpath("//button[contains(text(),' Ads')]")),
     EVENTS_TAGBUTTON(By.xpath("//button[contains(text(),'Events')]")),
     INITIATIVES_TAGBUTTON(By.xpath("//button[contains(text(),'Initiatives')]")),
     EDUCATION_TAGBUTTON(By.xpath("//button[contains(text(),'Education')]")),
