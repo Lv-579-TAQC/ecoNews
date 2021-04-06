@@ -141,6 +141,20 @@ public class CreateNewsPO extends BasePage {
 
         return this;
     }
+    public CreateNewsPO clickPreviewButton() {
+        if (enButton == null) {
+            enButton = new ButtonElement(this.driver, CreateNewsPageLocators.PREVIEWPAGEBUTTON);
+        }
+        enButton.click();
+
+        return new CreateNewsPO(driver);
+    }
+    public LabelElement getBackToEditingButton() {
+        if (titleLabel == null) {
+            titleLabel = new LabelElement(this.driver, CreateNewsPageLocators.BACKTOEDITINGBUTTON);
+        }
+        return titleLabel;
+    }
 
 //    public CreateNewsPO setContent(String content) {
 //        if (contentField == null) {
