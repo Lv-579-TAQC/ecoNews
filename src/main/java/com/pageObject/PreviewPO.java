@@ -54,4 +54,12 @@ public class PreviewPO extends BasePage{
         }
         return publishNewsButton.isDisplayed();
     }
+
+    public PreviewPO clickPublishButton(){
+        if(publishNewsButton == null){
+            publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
+        }
+        publishNewsButton.click();
+        return new PreviewPO(driver);
+    }
 }

@@ -13,7 +13,6 @@ public class CreateNewsPO extends BasePage {
     ButtonElement languageDropdown;
     ButtonElement uaButton;
     ButtonElement enButton;
-
     FieldElement titleField;
     ButtonElement newsTagButton;
     ButtonElement adsTagButton;
@@ -21,6 +20,10 @@ public class CreateNewsPO extends BasePage {
     ButtonElement initiativesTagButton;
     ButtonElement educationTagButton;
     FieldElement sourceField;
+    ButtonElement browseButton;
+    LabelElement titleLabel;
+
+    ButtonElement previewButton;
     FieldElement contentField;
 
     LabelElement titlePageLabel;
@@ -32,8 +35,6 @@ public class CreateNewsPO extends BasePage {
     LabelElement authorLabel;
 
     TagComponent tags;
-
-    ButtonElement previewButton;
 
 //    ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON);
 //
@@ -131,7 +132,6 @@ public class CreateNewsPO extends BasePage {
             sourceFieldLabel = new LabelElement(this.driver, CreateNewsPageLocators.SOURCE_FIELD_LABEL);
         }
         return sourceFieldLabel;
-
     }
 
     public LabelElement getContentFieldLabel() {
@@ -171,8 +171,8 @@ public class CreateNewsPO extends BasePage {
             dateLabel = new LabelElement(this.driver, CreateNewsPageLocators.DATE_LABEL);
         }
         return dateLabel;
-
     }
+
 
     public LabelElement getAuthorLabel() {
         try {
@@ -184,17 +184,14 @@ public class CreateNewsPO extends BasePage {
             authorLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_LABEL);
         }
         return authorLabel;
-
     }
 
-
-    public TagComponent getTags(){
-        if (tags == null) {
-            tags = new TagComponent(this.driver);
-        }
-        return tags;
+    public TagComponent getTags() {
+            if (tags == null) {
+                tags = new TagComponent(this.driver);
+            }
+            return tags;
     }
-
 
     public CreateNewsPO setSource(String source) {
         if (sourceField == null) {
@@ -213,7 +210,6 @@ public class CreateNewsPO extends BasePage {
 
         return this;
     }
-
 //
 //
 //    public EcoNewsPO clickCancelButton() {
