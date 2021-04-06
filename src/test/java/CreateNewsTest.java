@@ -16,8 +16,8 @@ public class CreateNewsTest {
     public void setUpClass() {
 
         String WebDriverPath = System.getenv("WebDrivers");
-//        System.setProperty("webdriver.chrome.driver", WebDriverPath + "\\chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver", "D://ChromeDriver//chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", WebDriverPath + "\\chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "D://ChromeDriver//chromedriver.exe");
         webDriver = new ChromeDriver();
         webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
         webDriver.findElement(By.xpath("//a[@role='sign in']")).click();
@@ -68,7 +68,12 @@ public class CreateNewsTest {
 
 
         TagComponent tagComponent = new TagComponent(webDriver);
+
         tagComponent.clickNewsTag();
+        String newsTagLabelUa = tagComponent
+                .getNewsTagLabel()
+                .getText();
+        Assert.assertEquals(newsTagLabelUa, "Події");
 
 
         String sourceFieldLabelUa = createNewsPage
