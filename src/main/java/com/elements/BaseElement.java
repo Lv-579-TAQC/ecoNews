@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class BaseElement {
+
+
     protected WebDriver driver;
     public WebElement webElement;
     protected By path;
@@ -14,6 +16,10 @@ public class BaseElement {
         this.driver = driver;
         this.path = locator.getPath();
         webElement = driver.findElement(path);
+    }
+    public BaseElement(WebElement webElement, BaseLocator locator) {
+        this.path = locator.getPath();
+        this.webElement = webElement.findElement(path);
     }
 
     public boolean isDisplayed() {
