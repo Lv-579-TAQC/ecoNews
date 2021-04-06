@@ -6,6 +6,8 @@ import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class CreateNewsPO extends BasePage {
 
     ButtonElement languageDropdown;
@@ -13,6 +15,11 @@ public class CreateNewsPO extends BasePage {
     ButtonElement enButton;
 
     FieldElement titleField;
+    ButtonElement newsTagButton;
+    ButtonElement adsTagButton;
+    ButtonElement eventsTagButton;
+    ButtonElement initiativesTagButton;
+    ButtonElement educationTagButton;
     FieldElement sourceField;
     FieldElement contentField;
 
@@ -26,6 +33,21 @@ public class CreateNewsPO extends BasePage {
 
     TagComponent tags;
 
+    ButtonElement previewButton;
+
+//    ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON);
+//
+//
+//    FieldElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD);
+//
+//    ButtonElement cancelButton; =new
+//
+//    ButtonElement(this.driver, CreateNewsPageLocators.CANCEL_BUTTON);
+//
+//
+//    ButtonElement publishButton; =new
+//
+//    ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
 
     public CreateNewsPO(WebDriver driver) {
         super(driver);
@@ -200,11 +222,14 @@ public class CreateNewsPO extends BasePage {
 //        return new EcoNewsPO(driver);
 //    }
 //
-//    public CreateNewsPO clickPreviewButton() {
-//        previewButton.click();
-//
-//        return new CreateNewsPO(driver);
-//    }
+    public PreviewPO clickPreviewButton() {
+        if(previewButton == null){
+            previewButton = new ButtonElement(this.driver, CreateNewsPageLocators.PREVIEW_BUTTON);
+        }
+        previewButton.click();
+
+        return new PreviewPO(driver);
+    }
 //
 //    public CreateNewsPO clickPublishButton() {
 //        publishButton.click();
