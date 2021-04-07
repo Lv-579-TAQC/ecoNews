@@ -28,6 +28,7 @@ public class PreviewPageTest extends BasicTest{
 
         webDriver = new ChromeDriver();
         webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
+        webDriver.manage().window().maximize();
         LogInPO logInPO = new LogInPO(webDriver)
                 .clickSignInMenuButton()
                 .setEmail(EMAIL)
@@ -55,48 +56,36 @@ public class PreviewPageTest extends BasicTest{
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(title)
-//                .chooseNewsTag()
+                .clickTagNews()
                 .setContent(content)
                 .clickPreviewButton();
         LabelElement textTitle = previewPO.getTitleLabel();
         LabelElement textContent = previewPO.getContentLabel();
 
 
-        Assert.assertEquals(textTitle.getText(),"This is title", "Input and viewed titles should be the same");
-        Assert.assertEquals(textContent.getText().trim(), "This is new test content for this page!\nThis is new test content for this page!".trim());
+        Assert.assertEquals(textTitle.getText(), title, "Input and viewed titles should be the same");
+        Assert.assertEquals(textContent.getText().trim(), content.trim());
         Assert.assertTrue(previewPO.isPublishButtonExists());
     }
 
-//    @Test(dataProvider = "correctDataForNews")
-//    public void verifyEditingNewsAfterClickBack(String title, String content){
-//        PreviewPO previewPO = new EcoNewsPO(webDriver)
-//                .clickEcoNews()
-//                .clickCreateNewsBtn()
-//                .clickPreviewButton();
-//
-//        Assert.assertFalse(previewPO.isPublishButtonExists());
-//
-//        previewPO.clickBackToEditingButton()
-//                .setTitle(title)
-//                .chooseNewsTag()
-//                .setContent(content)
-//                .clickPreviewButton();
-//
-//        Assert.assertEquals(previewPO.getTitleLabel().getText(),"This is title", "Input and viewed titles should be the same");
-//        Assert.assertEquals(previewPO.getContentLabel().getText().trim(), "This is new test content for this page!\nThis is new test content for this page!".trim());
-//        Assert.assertTrue(previewPO.isPublishButtonExists());
-//    }
-
     @Test(dataProvider = "correctDataForNews")
-    public void verifyPublishButton(String title, String content){
+    public void verifyEditingNewsAfterClickBack(String title, String content){
         PreviewPO previewPO = new EcoNewsPO(webDriver)
                 .clickEcoNews()
                 .clickCreateNewsBtn()
+                .clickPreviewButton();
+
+        Assert.assertTrue(previewPO.isPublishButtonExists());
+
+        previewPO.clickBackToEditingButton()
                 .setTitle(title)
-//                .chooseNewsTag()
+                .clickTagNews()
                 .setContent(content)
-                .clickPreviewButton()
-                .clickPublishButton();
+                .clickPreviewButton();
+
+        Assert.assertEquals(previewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same");
+        Assert.assertEquals(previewPO.getContentLabel().getText().trim(), content.trim());
+        Assert.assertTrue(previewPO.isPublishButtonExists());
     }
 
 }

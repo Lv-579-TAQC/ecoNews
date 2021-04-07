@@ -14,14 +14,13 @@ public class TagComponent extends BasePage{
     private ButtonElement eventsTag;
     private ButtonElement initiativesTag;
     private ButtonElement educationTag;
-    LabelElement newsTagLabel;
-
-
+    private LabelElement newsTagLabel;
 
     public TagComponent(WebDriver driver) {
         super(driver);
         root = driver.findElement(TagComponentLocators.TAG_LIST.getPath());
     }
+
     public TagComponent clickNewsTag(){
         if (newsTag == null) {
             newsTag = new ButtonElement(this.root, TagComponentLocators.NEWS_TAGBUTTON);
@@ -67,6 +66,5 @@ public class TagComponent extends BasePage{
             newsTagLabel = new LabelElement(this.driver, TagComponentLocators.NEWS_TAGBUTTON);
         }
         return newsTagLabel;
-
     }
 }

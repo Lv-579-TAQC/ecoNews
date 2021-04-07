@@ -210,6 +210,51 @@ public class CreateNewsPO extends BasePage {
 
         return this;
     }
+
+    public CreateNewsPO clickTagNews(){
+        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickNewsTag();
+        return this;
+    }
+
+    public CreateNewsPO clickTagAds(){
+        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickAdsTag();
+        return this;
+    }
+
+    public CreateNewsPO clickEventsTag(){
+        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickEventsTag();
+        return this;
+    }
+
+    public CreateNewsPO clickInitiativesTag(){
+        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickInitiativesTag();
+        return this;
+    }
+
+    public CreateNewsPO clickEducationTag(){
+        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickEducationTag();
+        return this;
+    }
 //
 //
 //    public EcoNewsPO clickCancelButton() {
