@@ -14,4 +14,8 @@ public class ButtonElement extends BaseElement {
     public String getText(){
         return webElement.getText();
     }
+
+    public void sendKeys(String keys) {
+        this.webElement.sendKeys(keys);
+    }
 }

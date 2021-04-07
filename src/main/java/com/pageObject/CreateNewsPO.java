@@ -1,9 +1,199 @@
 package com.pageObject;
 
+import com.elements.ButtonElement;
+import com.elements.FieldElement;
+import com.elements.LabelElement;
+import com.locators.CreateNewsPageLocators;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class CreateNewsPO extends BasePage {
+    FieldElement titleField;
+    ButtonElement newsTagButton;
+    ButtonElement adsTagButton;
+    ButtonElement eventsTagButton;
+    ButtonElement initiativesTagButton;
+    ButtonElement educationTagButton;
+    FieldElement sourceField;
+    ButtonElement browseButton;
+    LabelElement titleLabel;
+    FieldElement contentField;
+    ButtonElement cancelButton;
+    ButtonElement previewButton;
+    ButtonElement publishButton;
+    ButtonElement submitButton;
+
     public CreateNewsPO(WebDriver driver) {
         super(driver);
+    }
+
+    public CreateNewsPO setTitle(String title) {
+        if (titleField == null) {
+            titleField = new FieldElement(this.driver, CreateNewsPageLocators.TITLE_FIELD);
+        }
+        titleField.sendKeys(title);
+
+        return this;
+    }
+    public CreateNewsPO browseImage(String img){
+        if (browseButton == null) {
+            browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON);
+        }
+        browseButton.sendKeys(img);
+        return this;
+    }
+
+    public LabelElement getTitleLabel() {
+        if (titleLabel == null) {
+            titleLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_LABEL);
+        }
+        return titleLabel;
+    }
+    public LabelElement getTitleOfNewsOnPreview() {
+        if (titleLabel == null) {
+            titleLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_OF_NEWS_ON_PREVIEW);
+        }
+        return titleLabel;
+    }
+
+    public CreateNewsPO chooseNewsTag() {
+        if (newsTagButton == null) {
+            newsTagButton = new ButtonElement(this.driver, CreateNewsPageLocators.NEWS_TAGBUTTON);
+        }
+        newsTagButton.click();
+        return this;
+    }
+
+    public CreateNewsPO chooseAdsTag() {
+        if (adsTagButton == null) {
+            adsTagButton = new ButtonElement(this.driver, CreateNewsPageLocators.ADS_TAGBUTTON);
+        }
+        adsTagButton.click();
+        return this;
+    }
+
+    public CreateNewsPO chooseEventsTag() {
+        if (eventsTagButton == null) {
+            eventsTagButton = new ButtonElement(this.driver, CreateNewsPageLocators.EVENTS_TAGBUTTON);
+        }
+        eventsTagButton.click();
+
+        return this;
+    }
+
+    public CreateNewsPO chooseInitiativesTag() {
+        if (initiativesTagButton == null) {
+            initiativesTagButton = new ButtonElement(this.driver, CreateNewsPageLocators.INITIATIVES_TAGBUTTON);
+        }
+        initiativesTagButton.click();
+
+        return this;
+    }
+
+    public CreateNewsPO chooseEducationTag() {
+        if (educationTagButton == null) {
+            educationTagButton = new ButtonElement(this.driver, CreateNewsPageLocators.EDUCATION_TAGBUTTON);
+        }
+        educationTagButton.click();
+
+        return this;
+    }
+
+    public CreateNewsPO setSource(String source) {
+        if (sourceField == null) {
+            sourceField = new FieldElement(this.driver, CreateNewsPageLocators.SOURCE_FIELD);
+        }
+        sourceField.sendKeys(source);
+
+        return this;
+    }
+
+    public CreateNewsPO setContent(String content) {
+        if (contentField == null) {
+            contentField = new FieldElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD);
+        }
+        contentField.sendKeys(content);
+
+        return this;
+    }
+
+    public CreateNewsPO clickPreviewButton() {
+        if ( previewButton == null) {
+            previewButton = new ButtonElement(this.driver, CreateNewsPageLocators.PREVIEW_BUTTON);
+        }
+        previewButton.click();
+
+        return new CreateNewsPO(driver);
+    }
+    public CreateNewsPO clickSubmitButton() {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        if ( submitButton == null) {
+            submitButton = new ButtonElement(this.driver, CreateNewsPageLocators.SUBMIT_BUTTON);
+        }
+        submitButton.click();
+
+        return new CreateNewsPO(driver);
+    }
+
+    public CreateNewsPO clickPublishButton() {
+        if ( publishButton == null) {
+            publishButton = new ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
+        }
+        publishButton.click();
+
+        return this;
+    }
+
+    public boolean isTitleFieldDisplayed() {
+        return titleField.isDisplayed();
+    }
+
+    public boolean isNewsTagButtonDisplayed() {
+        return newsTagButton.isDisplayed();
+    }
+
+    public boolean isAdsTagDisplayed() {
+        return adsTagButton.isDisplayed();
+    }
+
+    public boolean isEventsTagDisplayed() {
+        return eventsTagButton.isDisplayed();
+    }
+
+    public boolean isInitiativesTagButtonDisplayed() {
+        return initiativesTagButton.isDisplayed();
+    }
+
+    public boolean isEducationTagButtonDisplayed() {
+        return educationTagButton.isDisplayed();
+    }
+
+    public boolean isSourceFieldDisplayed() {
+        return sourceField.isDisplayed();
+    }
+
+    public boolean isBrowseButtonDisplayed() {
+        return browseButton.isDisplayed();
+    }
+
+    public boolean isContentFieldDisplayed() {
+        return contentField.isDisplayed();
+    }
+
+    public boolean isCancelButtonDisplayed() {
+        return cancelButton.isDisplayed();
+    }
+
+    public boolean isPreviewButtonDisplayed() {
+        return previewButton.isDisplayed();
+    }
+
+    public boolean isPublishButtonDisplayed() {
+        return publishButton.isDisplayed();
+    }
+
+    public boolean isPublishButtonEnabled() {
+        return publishButton.webElement.isEnabled();
     }
 }

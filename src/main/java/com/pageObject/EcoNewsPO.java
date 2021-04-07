@@ -10,13 +10,13 @@ public class EcoNewsPO extends BasePage{
         super(driver);
     }
     public CreateNewsPO clickCreateNewsBtn(){
+        createNews = new ButtonElement(this.driver,EcoNewsPageLocators.CREATENEWS);
         if (createNews == null){
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            createNews = new ButtonElement(this.driver,EcoNewsPageLocators.CREATENEWS);
         }
         createNews.click();
         return new CreateNewsPO(driver);
