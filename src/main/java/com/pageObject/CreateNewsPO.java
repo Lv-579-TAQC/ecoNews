@@ -4,37 +4,42 @@ import com.elements.ButtonElement;
 import com.elements.FieldElement;
 import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
+import com.locators.TagComponentLocators;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
 public class CreateNewsPO extends BasePage {
 
-    ButtonElement languageDropdown;
-    ButtonElement uaButton;
-    ButtonElement enButton;
-    FieldElement titleField;
-    ButtonElement newsTagButton;
-    ButtonElement adsTagButton;
-    ButtonElement eventsTagButton;
-    ButtonElement initiativesTagButton;
-    ButtonElement educationTagButton;
-    FieldElement sourceField;
-    ButtonElement browseButton;
-    LabelElement titleLabel;
+    private ButtonElement languageDropdown;
+    private ButtonElement uaButton;
+    private ButtonElement enButton;
+    private FieldElement titleField;
+    private ButtonElement newsTagButton;
+    private ButtonElement adsTagButton;
+    private ButtonElement eventsTagButton;
+    private ButtonElement initiativesTagButton;
+    private ButtonElement educationTagButton;
+    private FieldElement sourceField;
+    private ButtonElement browseButton;
+    private LabelElement titleLabel;
 
-    ButtonElement previewButton;
-    FieldElement contentField;
+    private ButtonElement previewButton;
+    private FieldElement contentField;
 
-    LabelElement titlePageLabel;
-    LabelElement additionalLabel;
-    LabelElement titleNewsLabel;
-    LabelElement sourceFieldLabel;
-    LabelElement contentFieldLabel;
-    LabelElement dateLabel;
-    LabelElement authorLabel;
+    private LabelElement titlePageLabel;
+    private LabelElement additionalLabel;
+    private LabelElement titleNewsLabel;
+    private LabelElement sourceFieldLabel;
+    private LabelElement contentFieldLabel;
+    private LabelElement dateLabel;
+    private LabelElement authorLabel;
 
-    TagComponent tags;
+    private TagComponent tags;
 
 //    ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON);
 //
@@ -212,7 +217,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public CreateNewsPO clickTagNews(){
-        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(80000, TimeUnit.SECONDS);
         if(tags == null){
             tags = new TagComponent(driver);
         }
