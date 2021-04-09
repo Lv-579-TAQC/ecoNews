@@ -16,7 +16,7 @@ public class BasePage {
     public EcoNewsPO clickEcoNews(){
         if (ecoNewsButton == null){
             try {
-                Thread.sleep(10000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

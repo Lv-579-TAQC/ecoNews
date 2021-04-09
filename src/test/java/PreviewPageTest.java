@@ -40,7 +40,7 @@ public class PreviewPageTest {
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle("This is title")
-                .chooseNewsTag()
+                //.chooseNewsTag()
                 .setContent("This is new test content for this page!\nThis is new test content for this page!")
                 .clickPreviewButton();
         LabelElement textTitle = previewPO.getTitleLabel();
