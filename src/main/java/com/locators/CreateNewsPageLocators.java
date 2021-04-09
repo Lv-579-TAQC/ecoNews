@@ -24,7 +24,12 @@ public enum CreateNewsPageLocators implements BaseLocator{
     AUTHOR_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[3]/p[2]/span[1]")),
 
     PREVIEWPAGEBUTTON(By.xpath("//*[@id='main-content']/div/div[2]/form/div[4]/button[2]")),
-    BACKTOEDITINGBUTTON(By.xpath("/html/body/app-root/div[3]/app-eco-news/div/app-news-preview-page/div/div[1]/div/a/div/div[2]"));
+    BACKTOEDITINGBUTTON(By.xpath("/html/body/app-root/div[3]/app-eco-news/div/app-news-preview-page/div/div[1]/div/a/div/div[2]")),
+    //
+    //
+    CONTENTFIELD_MASSEGA_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[2]/p"));
+
+
 
 
     private By path;

@@ -9,7 +9,15 @@ public class ButtonElement extends BaseElement {
     public ButtonElement(WebDriver driver, BaseLocator locator) {
         super(driver, locator);
     }
-    public ButtonElement(WebElement webElement, BaseLocator locator){super(webElement, locator);}
+
+    public ButtonElement(WebElement webElement, BaseLocator locator) {
+        super(webElement, locator);
+    }
+
+    public ButtonElement(WebElement webElement){
+        super(webElement);
+    }
+
     public void click(){
         this.webElement.click();
     }

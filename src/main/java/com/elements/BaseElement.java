@@ -17,12 +17,18 @@ public class BaseElement {
         this.path = locator.getPath();
         webElement = driver.findElement(path);
     }
+
     public BaseElement(WebElement webElement, BaseLocator locator) {
         this.path = locator.getPath();
         this.webElement = webElement.findElement(path);
     }
 
+    public BaseElement(WebElement webElement){
+        this.webElement = webElement;
+    }
+
     public boolean isDisplayed() {
         return this.webElement.isDisplayed();
     }
+
 }

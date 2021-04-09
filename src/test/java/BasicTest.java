@@ -1,5 +1,6 @@
 import com.pageObject.CreateNewsPO;
 import com.pageObject.EcoNewsPO;
+import com.pageObject.LogInPO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +11,8 @@ import javax.swing.*;
 
 public class BasicTest {
 
+    final String email = "amelyanovich11@gmail.com";
+    final String password = "Qwerty123_";
     private static WebDriver webDriver;
 
     @BeforeClass
@@ -26,12 +29,17 @@ public class BasicTest {
 
         webDriver = new ChromeDriver();
         webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
+        LogInPO logInPO = new LogInPO(webDriver)
+                .clickSignInMenuButton()
+                .setEmail(email)
+                .setPassword(password)
+                .clickSignInButton();
     }
-//    @AfterClass
-//    public void tearDownClass(){
-//        webDriver.close();
-//        webDriver.quit();
-//    }
+
+    @AfterClass
+    public void tearDownClass(){
+        webDriver.quit();
+    }
 
     //    @Test
 //    public void loginToGreenCity(){
@@ -46,12 +54,12 @@ public class BasicTest {
 //        Assert.assertEquals(webDriver.findElement(By.className("main-header")).getText(),"Eco news");
 //        webDriver.findElement(By.id("create-button")).click();
 //  }
-    @Test
-    public void goToCreateNews() {
-        webDriver.findElement(By.xpath("//a[@role='sign in']")).click();
-        webDriver.findElement(By.id("email")).sendKeys("amelyanovich11@gmail.com");
-        webDriver.findElement(By.id("password")).sendKeys("Qwerty123_");
-        webDriver.findElement(By.xpath("//button[contains(@class, 'primary-global-button') and @type='submit']")).click();
-        CreateNewsPO createNewsPO = new EcoNewsPO(webDriver).clickEcoNews().clickCreateNewsBtn();
-    }
+//    @Test
+//    public void goToCreateNews() {
+//        webDriver.findElement(By.xpath("//a[@role='sign in']")).click();
+//        webDriver.findElement(By.id("email")).sendKeys("amelyanovich11@gmail.com");
+//        webDriver.findElement(By.id("password")).sendKeys("Qwerty123_");
+//        webDriver.findElement(By.xpath("//button[contains(@class, 'primary-global-button') and @type='submit']")).click();
+//        CreateNewsPO createNewsPO = new EcoNewsPO(webDriver).clickEcoNews().clickCreateNewsBtn();
+//    }
 }

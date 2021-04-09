@@ -16,27 +16,26 @@ import java.util.concurrent.TimeUnit;
 
 public class CreateNewsPO extends BasePage {
 
-    ButtonElement languageDropdown;
-    ButtonElement uaButton;
-    ButtonElement enButton;
-    ButtonElement ruButton;
+    private ButtonElement languageDropdown;
+    private ButtonElement uaButton;
+    private ButtonElement enButton;
+    private ButtonElement ruButton;
 
-    FieldElement titleField;
-    FieldElement sourceField;
-    FieldElement contentField;
+    private FieldElement titleField;
+    private FieldElement sourceField;
+    private FieldElement contentField;
 
-    LabelElement titlePageLabel;
-    LabelElement additionalLabel;
-    LabelElement titleNewsLabel;
-    LabelElement newsTagLabel;
-    LabelElement sourceFieldLabel;
-    LabelElement contentFieldLabel;
-    LabelElement dateLabel;
-    LabelElement authorLabel;
+    private LabelElement titlePageLabel;
+    private LabelElement additionalLabel;
+    private LabelElement titleNewsLabel;
+    private LabelElement newsTagLabel;
+    private LabelElement sourceFieldLabel;
+    private LabelElement contentFieldLabel;
+    private LabelElement dateLabel;
+    private LabelElement authorLabel;
 
-    TagComponent tags;
-
-    ButtonElement previewButton;
+    private TagComponent tags;
+    private ButtonElement previewButton;
 
 
     public CreateNewsPO(WebDriver driver) {
@@ -78,14 +77,13 @@ public class CreateNewsPO extends BasePage {
     }
 
     public CreateNewsPO clickUaButton() {
-        //driver.manage().timeouts().implicitlyWait(10000, TimeUnit.SECONDS);
         if (uaButton == null) {
             uaButton = new ButtonElement(this.driver, CreateNewsPageLocators.UA_BUTTON);
         }
         uaButton.click();
         clear();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -98,6 +96,12 @@ public class CreateNewsPO extends BasePage {
             enButton = new ButtonElement(this.driver, CreateNewsPageLocators.EN_BUTTON);
         }
         enButton.click();
+        clear();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return new CreateNewsPO(driver);
     }
@@ -107,6 +111,12 @@ public class CreateNewsPO extends BasePage {
             ruButton = new ButtonElement(this.driver, CreateNewsPageLocators.RU_BUTTON);
         }
         ruButton.click();
+        clear();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return new CreateNewsPO(driver);
     }
@@ -122,29 +132,15 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getTitlePageLabel() {
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         if (titlePageLabel == null) {
             titlePageLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_PAGE_LABEL);
         }
-
-
-//        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.SECONDS);
-
-//        WebDriverWait wait = new WebDriverWait(driver,10);
-//        WebElement explicitWait = wait
-//                .until(ExpectedConditions.visibilityOfElementLocated(CreateNewsPageLocators.TITLE_PAGE_LABEL.getPath());
-//        if (titlePageLabel == null) {
-//            titlePageLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_PAGE_LABEL);
-//        }
-//       titlePageLabel = new LabelElement(explicitWait);
         return titlePageLabel;
+
     }
 
     public LabelElement getAdditionalLabel() {
+
         if (additionalLabel == null) {
             additionalLabel = new LabelElement(this.driver, CreateNewsPageLocators.ADDITIONAL_LABEL);
         }
@@ -169,11 +165,11 @@ public class CreateNewsPO extends BasePage {
 
 
     public LabelElement getSourceFieldLabel() {
+
         if (sourceFieldLabel == null) {
             sourceFieldLabel = new LabelElement(this.driver, CreateNewsPageLocators.SOURCE_FIELD_LABEL);
         }
         return sourceFieldLabel;
-
     }
 
     public LabelElement getContentFieldLabel() {
@@ -209,7 +205,6 @@ public class CreateNewsPO extends BasePage {
 
     }
 
-
     public CreateNewsPO setSource(String source) {
         if (sourceField == null) {
             sourceField = new FieldElement(this.driver, CreateNewsPageLocators.SOURCE_FIELD);
@@ -228,14 +223,6 @@ public class CreateNewsPO extends BasePage {
         return this;
     }
 
-    //
-//
-//    public EcoNewsPO clickCancelButton() {
-//        cancelButton.click();
-//
-//        return new EcoNewsPO(driver);
-//    }
-//
     public PreviewPO clickPreviewButton() {
         if (previewButton == null) {
             previewButton = new ButtonElement(this.driver, CreateNewsPageLocators.PREVIEW_BUTTON);
