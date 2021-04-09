@@ -36,10 +36,10 @@ public class PreviewPageTest extends BasicTest{
                 .clickSignInButton();
     }
 
-    @AfterClass
-    public void tearDownClass(){
-        webDriver.quit();
-    }
+//    @AfterClass
+//    public void tearDownClass(){
+//        webDriver.quit();
+//    }
 
     @DataProvider()
     public Object[][] correctDataForNews(){
@@ -51,7 +51,6 @@ public class PreviewPageTest extends BasicTest{
 
     @Test(dataProvider = "correctDataForNews")
     public void verifyPreviewTitleAndContent(String title, String content) {
-        TagComponent tagComponent = new TagComponent(webDriver);
         PreviewPO previewPO = new EcoNewsPO(webDriver)
                 .clickEcoNews()
                 .clickCreateNewsBtn()
@@ -75,17 +74,35 @@ public class PreviewPageTest extends BasicTest{
                 .clickCreateNewsBtn()
                 .clickPreviewButton();
 
-        Assert.assertTrue(previewPO.isPublishButtonExists());
+        Assert.assertFalse(previewPO.isPublishButtonExists());
 
-        previewPO.clickBackToEditingButton()
+        CreateNewsPO po = previewPO.clickBackToEditingButton()
+                .setTitle(title)
+                .setContent(content)
+                .clickTagNews();
+
+        PreviewPO preview = po.clickPreviewButton();
+
+        Assert.assertEquals(preview.getTitleLabel().getText(), title, "Input and viewed titles should be the same");
+        Assert.assertEquals(preview.getContentLabel().getText().trim(), content.trim());
+        Assert.assertTrue(preview.isPublishButtonExists());
+    }
+
+    @Test(dataProvider = "correctDataForNews")
+    public void verifyPublishButton(String title, String content){
+        EcoNewsPO ecoNewsPO = new EcoNewsPO(webDriver)
+                .clickEcoNews()
+                .clickCreateNewsBtn()
                 .setTitle(title)
                 .clickTagNews()
                 .setContent(content)
-                .clickPreviewButton();
+                .clickPreviewButton()
+                .clickPublishButton();
 
-        Assert.assertEquals(previewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same");
-        Assert.assertEquals(previewPO.getContentLabel().getText().trim(), content.trim());
-        Assert.assertTrue(previewPO.isPublishButtonExists());
+//        EcoNewsPO ecoNewsPO = new EcoNewsPO(webDriver).clickEcoNews();
+//        LabelElement publishedNewsTitle = ecoNewsPO.getFirstNewsTitle();
+
+//        Assert.assertEquals(publishedNewsTitle.getText(), " yyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+
     }
-
 }

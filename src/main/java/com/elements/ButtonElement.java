@@ -13,6 +13,10 @@ public class ButtonElement extends BaseElement {
         super(webElement, locator);
     }
 
+    public ButtonElement(WebElement webElement){
+        super(webElement);
+    }
+
     public void click(){
         this.webElement.click();
     }

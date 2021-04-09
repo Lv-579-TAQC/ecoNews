@@ -4,8 +4,13 @@ import com.elements.ButtonElement;
 import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
 import com.locators.TagComponentLocators;
+import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class TagComponent extends BasePage{
     public WebElement root;
@@ -16,15 +21,23 @@ public class TagComponent extends BasePage{
     private ButtonElement educationTag;
     private LabelElement newsTagLabel;
 
+    private WaitsSwitcher waitsSwitcher;
+
     public TagComponent(WebDriver driver) {
         super(driver);
         root = driver.findElement(TagComponentLocators.TAG_LIST.getPath());
+        waitsSwitcher = new WaitsSwitcher(driver);
     }
 
     public TagComponent clickNewsTag(){
+//        WebDriverWait wait = new WebDriverWait(driver, 10);
+//        WebElement explicitWait = wait
+//                .until(ExpectedConditions.elementToBeClickable(root.findElement(TagComponentLocators.NEWS_TAGBUTTON.getPath())));
+        waitsSwitcher.setImplicitWaits(80000);
         if (newsTag == null) {
             newsTag = new ButtonElement(this.root, TagComponentLocators.NEWS_TAGBUTTON);
         }
+//        newsTag = new ButtonElement(explicitWait);
         newsTag.click();
         return this;
     }
