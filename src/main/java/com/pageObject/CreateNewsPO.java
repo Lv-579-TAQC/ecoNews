@@ -4,7 +4,11 @@ import com.elements.ButtonElement;
 import com.elements.FieldElement;
 import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+//
+import org.openqa.selenium.support.Color;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,6 +37,11 @@ public class CreateNewsPO extends BasePage {
     LabelElement contentFieldLabel;
     LabelElement dateLabel;
     LabelElement authorLabel;
+    //
+    //
+    LabelElement contentFieldMessageLabel;
+    //
+    //
 
     TagComponent tags;
 
@@ -49,10 +58,15 @@ public class CreateNewsPO extends BasePage {
 //    ButtonElement publishButton; =new
 //
 //    ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
+    //
+    //
 
     public CreateNewsPO(WebDriver driver) {
         super(driver);
+       // contentFieldMessageLabelColor = driver.findElement(By.xpath("//*[@id='main-content']/div/div[2]/form/div[2]/p"));
     }
+    //
+    //
 
     public CreateNewsPO clickLanguageDropdown() {
         if (languageDropdown == null) {
@@ -186,6 +200,7 @@ public class CreateNewsPO extends BasePage {
         return authorLabel;
     }
 
+
     public TagComponent getTags() {
             if (tags == null) {
                 tags = new TagComponent(this.driver);
@@ -195,12 +210,18 @@ public class CreateNewsPO extends BasePage {
 
     public CreateNewsPO setSource(String source) {
         if (sourceField == null) {
-            sourceField = new FieldElement(this.driver, CreateNewsPageLocators.SOURCE_FIELD);
+
         }
         sourceField.sendKeys(source);
 
         return this;
     }
+    // ------
+    public LabelElement getContentFieldMessageLabel() {
+        contentFieldMessageLabel = new LabelElement(driver, CreateNewsPageLocators.CONTENTFIELD_MASSEGA_LABEL);
+        return contentFieldMessageLabel;
+    }
+    // -----
 
     public CreateNewsPO setContent(String content) {
         if (contentField == null) {
