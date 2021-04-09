@@ -4,7 +4,8 @@ import org.openqa.selenium.By;
 
 public enum EcoNewsPageLocators implements BaseLocator {
     CREATENEWS(By.id("create-button")),
-    ECONEWSMENUBUTTON(By.xpath("//li[@role='eco-news']"));
+    ECO_NEWS_MENU_BUTTON(By.xpath("//li[@role='eco-news']")),
+    LIST_VIEW_XP(By.xpath("//li[contains(@class, 'list-view')]"));
 
     private By path;
     EcoNewsPageLocators (By path){

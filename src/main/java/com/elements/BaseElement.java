@@ -16,6 +16,10 @@ public class BaseElement {
         webElement = driver.findElement(path);
     }
 
+    public BaseElement(WebElement webElement, BaseLocator locator) {
+        this.path = locator.getPath();
+        this.webElement = webElement.findElement(path);
+    }
 
     public boolean isDisplayed() {
         return this.webElement.isDisplayed();
