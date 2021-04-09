@@ -4,6 +4,7 @@ import com.elements.ButtonElement;
 import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
 import com.locators.PreviewPageLocators;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class PreviewPO extends BasePage{
@@ -50,16 +51,27 @@ public class PreviewPO extends BasePage{
 
     public boolean isPublishButtonExists(){
         if(publishNewsButton == null){
-            publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
+            try {
+                publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
+            } catch (NoSuchElementException e){
+                return false;
+            }
         }
-        return publishNewsButton.isDisplayed();
+        return true;
     }
 
-    public PreviewPO clickPublishButton(){
+    public EcoNewsPO clickPublishButton(){
         if(publishNewsButton == null){
             publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
         }
         publishNewsButton.click();
-        return new PreviewPO(driver);
+        return new EcoNewsPO(driver);
+    }
+
+    public boolean isDisplayed(){
+        if(publishNewsButton == null){
+            publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
+        }
+        return publishNewsButton.isDisplayed();
     }
 }

@@ -3,7 +3,6 @@ package com.pageObject;
 import com.elements.ButtonElement;
 import com.locators.EcoNewsPageLocators;
 import org.openqa.selenium.WebDriver;
-import com.locators.EcoNewsPageLocators;
 
 public class BasePage {
     protected WebDriver driver;
@@ -20,7 +19,7 @@ public class BasePage {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            ecoNewsButton = new ButtonElement(this.driver, EcoNewsPageLocators.ECONEWSMENUBUTTON);
+            ecoNewsButton = new ButtonElement(this.driver, EcoNewsPageLocators.ECO_NEWS_MENU_BUTTON);
         }
         ecoNewsButton.click();
 
