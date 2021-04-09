@@ -155,13 +155,13 @@ public class CreateNewsPO extends BasePage {
         return tags;
     }
 
-    public LabelElement getNewsTagLabel() {
-        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.SECONDS);
-        if (newsTagLabel == null) {
-            newsTagLabel = new LabelElement(this.driver, TagComponentLocators.NEWS_TAGBUTTON);
-        }
-        return newsTagLabel;
-    }
+//    public LabelElement getNewsTagLabel() {
+//        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.SECONDS);
+//        if (newsTagLabel == null) {
+//            newsTagLabel = new LabelElement(this.driver, TagComponentLocators.NEWS_TAGBUTTON);
+//        }
+//        return newsTagLabel;
+//    }
 
 
     public LabelElement getSourceFieldLabel() {

@@ -19,7 +19,7 @@ public class TagComponent extends BasePage{
     private ButtonElement eventsTag;
     private ButtonElement initiativesTag;
     private ButtonElement educationTag;
-    LabelElement newsTagLabel;
+
 
     private WaitsSwitcher waitsSwitcher;
 
@@ -75,10 +75,25 @@ public class TagComponent extends BasePage{
     }
 
     public ButtonElement getNewsTagButton() {
-        if ( newsTag == null) {
+        if (newsTag == null) {
             newsTag = new ButtonElement(this.driver, TagComponentLocators.NEWS_TAGBUTTON);
         }
         return newsTag;
+
+    }
+    public ButtonElement getAdsTagButton() {
+        if (adsTag == null) {
+            adsTag = new ButtonElement(this.driver, TagComponentLocators.ADS_TAGBUTTON);
+        }
+        return adsTag;
+
+    }
+
+    public ButtonElement geteEventsTagButton() {
+        if (eventsTag == null) {
+            eventsTag = new ButtonElement(this.driver, TagComponentLocators.EVENTS_TAGBUTTON);
+        }
+        return eventsTag;
 
     }
 }
