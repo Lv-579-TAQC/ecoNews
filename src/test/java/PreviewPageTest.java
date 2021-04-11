@@ -57,7 +57,7 @@ public class PreviewPageTest extends BasicTest{
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(title)
-                .clickTagNews()
+                //.clickTagNews()
                 .setContent(content)
                 .clickPreviewButton();
         LabelElement textTitle = previewPO.getTitleLabel();
@@ -80,8 +80,8 @@ public class PreviewPageTest extends BasicTest{
 
         CreateNewsPO po = previewPO.clickBackToEditingButton()
                 .setTitle(title)
-                .setContent(content)
-                .clickTagNews();
+                .setContent(content);
+                //.clickTagNews();
 
         PreviewPO preview = po.clickPreviewButton();
 
@@ -96,7 +96,7 @@ public class PreviewPageTest extends BasicTest{
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(title)
-                .clickTagNews()
+                //.clickTagNews()
                 .setContent(content)
                 .clickPreviewButton()
                 .clickPublishButton();

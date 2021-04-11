@@ -2,6 +2,7 @@ package com.elements;
 
 import com.locators.BaseLocator;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.WebElement;
 
 public class LabelElement extends BaseElement {
@@ -15,5 +16,11 @@ public class LabelElement extends BaseElement {
 
     public String getText(){
         return webElement.getText();
+    }
+    public String getColorRGB(){
+        return webElement.getCssValue("color");
+    }
+    public String getColorHex(){
+        return Color.fromString(getColorRGB()).asHex();
     }
 }

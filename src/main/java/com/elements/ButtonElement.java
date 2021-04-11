@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class ButtonElement extends BaseElement {
+
     public ButtonElement(WebDriver driver, BaseLocator locator) {
         super(driver, locator);
     }
