@@ -1,6 +1,8 @@
 import com.elements.LabelElement;
 import com.pageObject.*;
+import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -36,10 +38,10 @@ public class PreviewPageTest extends BasicTest{
                 .clickSignInButton();
     }
 
-//    @AfterClass
-//    public void tearDownClass(){
-//        webDriver.quit();
-//    }
+    @AfterClass
+    public void tearDownClass(){
+        webDriver.quit();
+    }
 
     @DataProvider()
     public Object[][] correctDataForNews(){
@@ -99,10 +101,20 @@ public class PreviewPageTest extends BasicTest{
                 .clickPreviewButton()
                 .clickPublishButton();
 
-//        EcoNewsPO ecoNewsPO = new EcoNewsPO(webDriver).clickEcoNews();
-//        LabelElement publishedNewsTitle = ecoNewsPO.getFirstNewsTitle();
+        WaitsSwitcher wait = new WaitsSwitcher(webDriver);
+        wait.setImplicitWaits(100);
+        NewsComponentContainer news = new NewsComponentContainer(webDriver);
+        NewsComponent firstNews = news.chooseNewsByNumber(0);
+        Assert.assertEquals(firstNews.getNewsTitle().getText().trim(), title.trim());
 
-//        Assert.assertEquals(publishedNewsTitle.getText(), " yyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+    }
 
+    @Test
+    public void verifyNewsCreated(){
+        EcoNewsPO ecoNewsPO = new EcoNewsPO(webDriver)
+                .clickEcoNews();
+        NewsComponentContainer news = new NewsComponentContainer(webDriver);
+        NewsComponent firstNews = news.chooseNewsByNumber(0);
+        Assert.assertEquals(firstNews.getNewsTitle().getText().trim(), "test news 2".trim());
     }
 }

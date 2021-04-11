@@ -217,7 +217,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public CreateNewsPO clickTagNews(){
-        driver.manage().timeouts().implicitlyWait(80000, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(100000, TimeUnit.SECONDS);
         if(tags == null){
             tags = new TagComponent(driver);
         }
