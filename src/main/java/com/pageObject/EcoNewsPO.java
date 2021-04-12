@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class EcoNewsPO extends BasePage{
     private ButtonElement createNews;
+    private NewsComponentContainer newsComponentContainer;
 
     public EcoNewsPO(WebDriver driver) {
         super(driver);
@@ -24,5 +25,10 @@ public class EcoNewsPO extends BasePage{
         }
         createNews.click();
         return new CreateNewsPO(driver);
+    }
+
+    public NewsComponentContainer getNewsComponentContainer(boolean isVertical){
+        newsComponentContainer = new NewsComponentContainer(driver, isVertical);
+        return newsComponentContainer;
     }
 }

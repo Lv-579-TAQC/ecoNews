@@ -60,12 +60,9 @@ public class PreviewPageTest extends BasicTest{
                 .clickTagNews()
                 .setContent(content)
                 .clickPreviewButton();
-        LabelElement textTitle = previewPO.getTitleLabel();
-        LabelElement textContent = previewPO.getContentLabel();
 
-
-        Assert.assertEquals(textTitle.getText(), title, "Input and viewed titles should be the same");
-        Assert.assertEquals(textContent.getText().trim(), content.trim());
+        Assert.assertEquals(previewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same");
+        Assert.assertEquals(previewPO.getContentLabel().getText().trim(), content.trim());
         Assert.assertTrue(previewPO.isPublishButtonExists());
     }
 
@@ -78,16 +75,15 @@ public class PreviewPageTest extends BasicTest{
 
         Assert.assertFalse(previewPO.isPublishButtonExists());
 
-        CreateNewsPO po = previewPO.clickBackToEditingButton()
+        PreviewPO newPreviewPO = previewPO.clickBackToEditingButton()
                 .setTitle(title)
-                .setContent(content);
-                //.clickTagNews();
+                .setContent(content)
+                .clickTagNews()
+                .clickPreviewButton();
 
-        PreviewPO preview = po.clickPreviewButton();
-
-        Assert.assertEquals(preview.getTitleLabel().getText(), title, "Input and viewed titles should be the same");
-        Assert.assertEquals(preview.getContentLabel().getText().trim(), content.trim());
-        Assert.assertTrue(preview.isPublishButtonExists());
+        Assert.assertEquals(newPreviewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same");
+        Assert.assertEquals(newPreviewPO.getContentLabel().getText().trim(), content.trim());
+        Assert.assertTrue(newPreviewPO.isPublishButtonExists());
     }
 
     @Test(dataProvider = "correctDataForNews")
@@ -97,24 +93,26 @@ public class PreviewPageTest extends BasicTest{
                 .clickCreateNewsBtn()
                 .setTitle(title)
                 .setContent(content)
-                .clickTagAds()
+                .clickTagNews()
                 .clickPreviewButton()
                 .clickPublishButton();
 
         WaitsSwitcher wait = new WaitsSwitcher(webDriver);
         wait.setImplicitWaits(100);
-        NewsComponentContainer news = new NewsComponentContainer(webDriver);
-        NewsComponent firstNews = news.chooseNewsByNumber(0);
+
+        NewsComponent firstNews = ecoNewsPO.getNewsComponentContainer(false)
+                .chooseNewsByNumber(0);
         Assert.assertEquals(firstNews.getNewsTitle().getText().trim(), title.trim());
 
     }
 
-    @Test
-    public void verifyNewsCreated(){
-        EcoNewsPO ecoNewsPO = new EcoNewsPO(webDriver)
-                .clickEcoNews();
-        NewsComponentContainer news = new NewsComponentContainer(webDriver);
-        NewsComponent firstNews = news.chooseNewsByNumber(0);
-        Assert.assertEquals(firstNews.getNewsTitle().getText().trim(), "test news 2".trim());
+    @Test(dataProvider = "correctDataForNews")
+    public void verifyNewsCreated(String title, String content){
+        NewsComponent firstNews = new EcoNewsPO(webDriver)
+                .clickEcoNews()
+                .getNewsComponentContainer(false)
+                .chooseNewsByNumber(0);
+
+        Assert.assertEquals(firstNews.getNewsTitle().getText().trim(), title.trim());
     }
 }

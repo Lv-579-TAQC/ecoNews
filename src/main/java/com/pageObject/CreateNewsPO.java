@@ -4,14 +4,8 @@ import com.elements.ButtonElement;
 import com.elements.FieldElement;
 import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
-import com.locators.TagComponentLocators;
 import com.tools.WaitsSwitcher;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -39,7 +33,7 @@ public class CreateNewsPO extends BasePage {
     private ButtonElement previewButton;
 
     private WaitsSwitcher waitsSwitcher;
-    private static final int SECONDS_FOR_WAITING_TAGS = 20;
+    private static final int SECONDS_FOR_WAITING_TAGS = 50;
 
 
     public CreateNewsPO(WebDriver driver) {
@@ -182,7 +176,6 @@ public class CreateNewsPO extends BasePage {
             contentFieldLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD_LABEL);
         }
         return contentFieldLabel;
-
     }
 
     public LabelElement getTitleNewsLabel() {
@@ -190,7 +183,6 @@ public class CreateNewsPO extends BasePage {
             titleNewsLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_NEWS_LABEL);
         }
         return titleNewsLabel;
-
     }
 
 
@@ -199,7 +191,6 @@ public class CreateNewsPO extends BasePage {
             dateLabel = new LabelElement(this.driver, CreateNewsPageLocators.DATE_LABEL);
         }
         return dateLabel;
-
     }
 
     public LabelElement getAuthorLabel() {
@@ -207,7 +198,6 @@ public class CreateNewsPO extends BasePage {
             authorLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_LABEL);
         }
         return authorLabel;
-
     }
 
     public CreateNewsPO setSource(String source) {
@@ -245,6 +235,7 @@ public class CreateNewsPO extends BasePage {
         tags.clickNewsTag();
         return this;
     }
+
     public CreateNewsPO clickTagAds(){
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if(tags == null){
@@ -253,6 +244,7 @@ public class CreateNewsPO extends BasePage {
         tags.clickAdsTag();
         return this;
     }
+
     public CreateNewsPO clickEventsTag(){
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if(tags == null){
@@ -261,6 +253,7 @@ public class CreateNewsPO extends BasePage {
         tags.clickEventsTag();
         return this;
     }
+
     public CreateNewsPO clickInitiativesTag(){
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if(tags == null){
@@ -269,6 +262,7 @@ public class CreateNewsPO extends BasePage {
         tags.clickInitiativesTag();
         return this;
     }
+
     public CreateNewsPO clickEducationTag(){
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if(tags == null){

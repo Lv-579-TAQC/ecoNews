@@ -6,6 +6,7 @@ import com.locators.CreateNewsPageLocators;
 import com.locators.TagComponentLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,24 +31,18 @@ public class TagComponent extends BasePage{
     }
 
     public TagComponent clickNewsTag(){
-//        WebDriverWait wait = new WebDriverWait(driver, 10);
-//        WebElement explicitWait = wait
-//                .until(ExpectedConditions.elementToBeClickable(root.findElement(TagComponentLocators.NEWS_TAGBUTTON.getPath())));
-        waitsSwitcher.setImplicitWaits(80000);
         if (newsTag == null) {
             newsTag = new ButtonElement(this.root, TagComponentLocators.NEWS_TAGBUTTON);
         }
-//        newsTag = new ButtonElement(explicitWait);
-        newsTag.click();
+        newsTag.waitClick(3000);
         return this;
     }
 
     public TagComponent clickAdsTag(){
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         if (adsTag == null) {
             adsTag = new ButtonElement(this.root, TagComponentLocators.ADS_TAGBUTTON);
         }
-        adsTag.click();
+        adsTag.waitClick(3000);
         return this;
     }
 
@@ -55,7 +50,7 @@ public class TagComponent extends BasePage{
         if (eventsTag == null) {
             eventsTag = new ButtonElement(this.root, TagComponentLocators.EVENTS_TAGBUTTON);
         }
-        eventsTag.click();
+        eventsTag.waitClick(3000);
         return this;
     }
 
@@ -63,7 +58,7 @@ public class TagComponent extends BasePage{
         if (initiativesTag == null) {
             initiativesTag = new ButtonElement(this.root, TagComponentLocators.INITIATIVES_TAGBUTTON);
         }
-        initiativesTag.click();
+        initiativesTag.waitClick(3000);
         return this;
     }
 
@@ -71,7 +66,7 @@ public class TagComponent extends BasePage{
         if (educationTag == null) {
             educationTag = new ButtonElement(this.root, TagComponentLocators.EDUCATION_TAGBUTTON);
         }
-        educationTag.click();
+        educationTag.waitClick(3000);
         return this;
     }
 
