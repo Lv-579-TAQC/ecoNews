@@ -4,15 +4,18 @@ import org.openqa.selenium.By;
 
 public enum CreateNewsPageLocators implements BaseLocator{
 
-    TITLE_PAGE_LABEL(By.xpath("//div[@class='title']/descendant::h2")),//перероблений х-пас
-    ADDITIONAL_LABEL(By.xpath("//div[@class='title']/descendant::p")),//перероблений х-пас
-    TITLE_NEWS_LABEL(By.xpath("//div[@class='item-block']//descendant::h3")),//перероблений х-пас
-    TITLE_FIELD(By.xpath("//div[@class='item-block']/descendant::textarea")),//перероблений х-пас
+    TITLE_PAGE_LABEL(By.xpath("//div[@class='title']/descendant::h2")),
+    ADDITIONAL_LABEL(By.xpath("//div[@class='title']/descendant::p")),
+    TITLE_NEWS_LABEL(By.xpath("//div[@class='item-block']//descendant::h3")),
+    TITLE_FIELD(By.xpath("//div[@class='item-block']/descendant::textarea")),
+    CHOOSE_TAGS_LABEL(By.xpath("//div[@class = 'tags item-block ng-untouched ng-pristine ng-valid']/descendant::h3")),
+    PICTURE_LABEL(By.xpath("//div[@class = 'right-form-column']/descendant::h3")),
+    CHOOSE_PICTURE_LABEL(By.xpath("//div[@class = 'centered']")),
+    SOURCE_LABEL(By.xpath("//input[@formcontrolname='source']/preceding-sibling::h3")),//перероблений х-пас
     SOURCE_FIELD(By.xpath("//input[@formcontrolname='source']")),//перероблений х-пас
-    SOURCE_FIELD_LABEL(By.xpath("//input[@formcontrolname='source']/preceding-sibling::h3")),//перероблений х-пас
     BROWSE_PICTURE_BUTTON(By.xpath("//span[text()='browse']")),
+    CONTENT_LABEL(By.xpath("//div[@class='textarea-wrapper']/child::h3")),
     CONTENT_FIELD(By.xpath("//textarea[@name='main-area']")),
-    CONTENT_FIELD_LABEL(By.xpath("//div[@class='textarea-wrapper']/child::h3")),
     CANCEL_BUTTON(By.xpath("//button[@class='cancel']")),
     PREVIEW_BUTTON(By.xpath("//button[text()=' Preview ']")),
     PUBLISH_BUTTON(By.xpath("//button[@type='submit']")),

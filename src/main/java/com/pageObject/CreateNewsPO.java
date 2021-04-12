@@ -4,13 +4,7 @@ import com.elements.ButtonElement;
 import com.elements.FieldElement;
 import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
-import com.locators.TagComponentLocators;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -29,14 +23,17 @@ public class CreateNewsPO extends BasePage {
     private LabelElement additionalLabel;
     private LabelElement titleNewsLabel;
     private LabelElement newsTagLabel;
-    private LabelElement sourceFieldLabel;
-    private LabelElement contentFieldLabel;
-    private LabelElement dateLabel;
+
+    private LabelElement chooseTagsLabel;
+    private LabelElement pictureLabel;
+    private LabelElement choosePictureLabel;
+    private LabelElement sourceLabel;
+    private LabelElement contentLabel;
+    private LabelElement dateLabel ;
     private LabelElement authorLabel;
 
     private TagComponent tags;
     private ButtonElement previewButton;
-
 
     public CreateNewsPO(WebDriver driver) {
         super(driver);
@@ -66,13 +63,12 @@ public class CreateNewsPO extends BasePage {
         additionalLabel = null;
         titleNewsLabel = null;
         newsTagLabel = null;
-        sourceFieldLabel = null;
-        contentFieldLabel = null;
+        sourceLabel = null;
+        contentLabel = null;
         dateLabel = null;
         authorLabel = null;
 
         tags = null;
-
         previewButton = null;
     }
 
@@ -163,20 +159,43 @@ public class CreateNewsPO extends BasePage {
 //        return newsTagLabel;
 //    }
 
+    public LabelElement getChooseTagsLabel() {
 
-    public LabelElement getSourceFieldLabel() {
-
-        if (sourceFieldLabel == null) {
-            sourceFieldLabel = new LabelElement(this.driver, CreateNewsPageLocators.SOURCE_FIELD_LABEL);
+        if (chooseTagsLabel == null) {
+            chooseTagsLabel = new LabelElement(this.driver, CreateNewsPageLocators.CHOOSE_TAGS_LABEL);
         }
-        return sourceFieldLabel;
+        return chooseTagsLabel;
     }
 
-    public LabelElement getContentFieldLabel() {
-        if (contentFieldLabel == null) {
-            contentFieldLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD_LABEL);
+    public LabelElement getPictureLabel() {
+
+        if (pictureLabel == null) {
+            pictureLabel = new LabelElement(this.driver, CreateNewsPageLocators.PICTURE_LABEL);
         }
-        return contentFieldLabel;
+        return pictureLabel;
+    }
+
+    public LabelElement getChoosePictureLabel() {
+
+        if (choosePictureLabel == null) {
+            choosePictureLabel = new LabelElement(this.driver, CreateNewsPageLocators.CHOOSE_PICTURE_LABEL);
+        }
+        return choosePictureLabel;
+    }
+
+    public LabelElement getSourceLabel() {
+
+        if (sourceLabel == null) {
+            sourceLabel = new LabelElement(this.driver, CreateNewsPageLocators.SOURCE_LABEL);
+        }
+        return sourceLabel;
+    }
+
+    public LabelElement getContentLabel() {
+        if (contentLabel == null) {
+            contentLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_LABEL);
+        }
+        return contentLabel;
 
     }
 
@@ -233,4 +252,38 @@ public class CreateNewsPO extends BasePage {
     }
 
 
+//    public CreateNewsPO getDatePosition() {
+//        //driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+//        WebElement date = driver.findElement(By.xpath("//*[@id='main-content']/div/div[2]/form/div[3]/p[1]/span[1]"));
+//        Point point = date.getLocation();
+//        //int xcord = point.getX();
+//        //System.out.println("Element's Position from left side Is " + xcord + " pixels.");
+//        int ycord = point.getY();
+//        //System.out.println("Element's Position from top side Is " + ycord + " pixels.");
+//
+//        return this;
+//    }
+//
+//    public CreateNewsPO getAuthorPosition() {
+//        //driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+//        WebElement author = driver.findElement(By.xpath("//*[@id='main-content']/div/div[2]/form/div[3]/p[2]/span[1]"));
+//        Point point = author.getLocation();
+//        //int xcord = point.getX();
+//        //System.out.println("Element's Position from left side Is " + xcord + " pixels.");
+//        int ycord = point.getY();
+//        //System.out.println("Element's Position from top side Is " + ycord + " pixels.");
+//
+//        return this;
+//    }
+//
+//    public CreateNewsPO getSoursePosition() {
+//        //driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+//        ;
+//        WebElement source = driver.findElement(By.xpath("//input[@formcontrolname='source']/preceding-sibling::h3"));
+//        Point point = source.getLocation();
+//        //int xcord = point.getX();
+//        int ycord = point.getY();
+//
+//        return this;
+//    }
 }

@@ -89,11 +89,26 @@ public class TagComponent extends BasePage{
 
     }
 
-    public ButtonElement geteEventsTagButton() {
+    public ButtonElement getEventsTagButton() {
         if (eventsTag == null) {
             eventsTag = new ButtonElement(this.driver, TagComponentLocators.EVENTS_TAGBUTTON);
         }
         return eventsTag;
+
+    }
+    public ButtonElement getInitiativesTagButton() {
+        if (initiativesTag == null) {
+            initiativesTag = new ButtonElement(this.driver, TagComponentLocators.INITIATIVES_TAGBUTTON);
+        }
+        return initiativesTag;
+
+    }
+
+    public ButtonElement getEducationsTagButton() {
+        if (educationTag == null) {
+            educationTag = new ButtonElement(this.driver, TagComponentLocators.EDUCATION_TAGBUTTON);
+        }
+        return educationTag;
 
     }
 }
