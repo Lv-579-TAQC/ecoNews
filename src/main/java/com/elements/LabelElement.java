@@ -1,6 +1,7 @@
 package com.elements;
 
 import com.locators.BaseLocator;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,11 @@ public class LabelElement extends BaseElement {
     public String getText(){
         return webElement.getText();
     }
+
+    public Point getLocation(){
+        return webElement.getLocation();
+    }
+
     public String getColorRGB(){
         return webElement.getCssValue("color");
     }

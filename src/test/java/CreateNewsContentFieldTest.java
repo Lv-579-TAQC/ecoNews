@@ -74,7 +74,7 @@ public class CreateNewsContentFieldTest{
                 .clickCreateNewsBtn()
                 .setContent(mainText)
                 .clickLanguageDropdown()
-                .getContentFieldLabel();
+                .getContentLabel();
         Assert.assertEquals(l.getColorHex(), ExpectedText);
     }
 //    @Test

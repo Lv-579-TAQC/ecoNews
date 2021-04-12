@@ -24,9 +24,13 @@ public class CreateNewsPO extends BasePage {
     private LabelElement additionalLabel;
     private LabelElement titleNewsLabel;
     private LabelElement newsTagLabel;
-    private LabelElement sourceFieldLabel;
-    private LabelElement contentFieldLabel;
-    private LabelElement dateLabel;
+
+    private LabelElement chooseTagsLabel;
+    private LabelElement pictureLabel;
+    private LabelElement choosePictureLabel;
+    private LabelElement sourceLabel;
+    private LabelElement contentLabel;
+    private LabelElement dateLabel ;
     private LabelElement authorLabel;
 
     private TagComponent tags;
@@ -65,13 +69,13 @@ public class CreateNewsPO extends BasePage {
         additionalLabel = null;
         titleNewsLabel = null;
         newsTagLabel = null;
-        sourceFieldLabel = null;
-        contentFieldLabel = null;
+
+        sourceLabel = null;
+        contentLabel = null;
         dateLabel = null;
         authorLabel = null;
 
         tags = null;
-
         previewButton = null;
     }
 
@@ -82,7 +86,7 @@ public class CreateNewsPO extends BasePage {
         uaButton.click();
         clear();
         try {
-            Thread.sleep(5000);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -97,7 +101,7 @@ public class CreateNewsPO extends BasePage {
         enButton.click();
         clear();
         try {
-            Thread.sleep(5000);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -112,7 +116,7 @@ public class CreateNewsPO extends BasePage {
         ruButton.click();
         clear();
         try {
-            Thread.sleep(5000);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -154,28 +158,44 @@ public class CreateNewsPO extends BasePage {
         return tags;
     }
 
-//    public LabelElement getNewsTagLabel() {
-//        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.SECONDS);
-//        if (newsTagLabel == null) {
-//            newsTagLabel = new LabelElement(this.driver, TagComponentLocators.NEWS_TAGBUTTON);
-//        }
-//        return newsTagLabel;
-//    }
+    public LabelElement getChooseTagsLabel() {
 
-
-    public LabelElement getSourceFieldLabel() {
-
-        if (sourceFieldLabel == null) {
-            sourceFieldLabel = new LabelElement(this.driver, CreateNewsPageLocators.SOURCE_FIELD_LABEL);
+        if (chooseTagsLabel == null) {
+            chooseTagsLabel = new LabelElement(this.driver, CreateNewsPageLocators.CHOOSE_TAGS_LABEL);
         }
-        return sourceFieldLabel;
+        return chooseTagsLabel;
     }
 
-    public LabelElement getContentFieldLabel() {
-        if (contentFieldLabel == null) {
-            contentFieldLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD_LABEL);
+    public LabelElement getPictureLabel() {
+
+        if (pictureLabel == null) {
+            pictureLabel = new LabelElement(this.driver, CreateNewsPageLocators.PICTURE_LABEL);
         }
-        return contentFieldLabel;
+        return pictureLabel;
+    }
+
+    public LabelElement getChoosePictureLabel() {
+
+        if (choosePictureLabel == null) {
+            choosePictureLabel = new LabelElement(this.driver, CreateNewsPageLocators.CHOOSE_PICTURE_LABEL);
+        }
+        return choosePictureLabel;
+    }
+
+    public LabelElement getSourceLabel() {
+
+        if (sourceLabel == null) {
+            sourceLabel = new LabelElement(this.driver, CreateNewsPageLocators.SOURCE_LABEL);
+        }
+        return sourceLabel;
+    }
+
+    public LabelElement getContentLabel() {
+        if (contentLabel == null) {
+            contentLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_LABEL);
+        }
+        return contentLabel;
+
     }
 
     public LabelElement getTitleNewsLabel() {
