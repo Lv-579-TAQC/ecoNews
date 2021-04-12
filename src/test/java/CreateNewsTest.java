@@ -28,8 +28,8 @@ public class CreateNewsTest {
     final String NEWS_TAG = "Події";
     final String ADS_TAG = "Ініціативи";
     final String EVENTS_TAG = "Освіта";
-    final String INITIATIVES_TAG = "Ініціативи";
-    final String EDUCATION_TAG = "";
+    final String INITIATIVES_TAG = "Новини";
+    final String EDUCATION_TAG = "Реклама";
 
 
     @BeforeClass
@@ -77,8 +77,8 @@ public class CreateNewsTest {
         softAssertCreateNews.assertEquals(createNewsPage.getTags().getNewsTagButton().getText(), NEWS_TAG);
         softAssertCreateNews.assertEquals(createNewsPage.getTags().getAdsTagButton().getText(), ADS_TAG);
         softAssertCreateNews.assertEquals(createNewsPage.getTags().getEventsTagButton().getText(), EVENTS_TAG);
-        softAssertCreateNews.assertEquals(createNewsPage.getTags().getInitiativesTagButton().getText(), EVENTS_TAG);
-        softAssertCreateNews.assertEquals(createNewsPage.getTags().getEducationsTagButton().getText(), EVENTS_TAG);
+        softAssertCreateNews.assertEquals(createNewsPage.getTags().getInitiativesTagButton().getText(), INITIATIVES_TAG);
+        softAssertCreateNews.assertEquals(createNewsPage.getTags().getEducationsTagButton().getText(), EDUCATION_TAG);
         softAssertCreateNews.assertEquals(createNewsPage.getPictureLabel().getText(), PICTURE);
         softAssertCreateNews.assertEquals(createNewsPage.getChoosePictureLabel().getText(), CHOOSE_PICTURE);
         softAssertCreateNews.assertEquals(createNewsPage.getSourceLabel().getText(), SOURCE);

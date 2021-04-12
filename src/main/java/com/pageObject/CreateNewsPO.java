@@ -4,6 +4,7 @@ import com.elements.ButtonElement;
 import com.elements.FieldElement;
 import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
+import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -35,8 +36,13 @@ public class CreateNewsPO extends BasePage {
     private TagComponent tags;
     private ButtonElement previewButton;
 
+    private WaitsSwitcher waitsSwitcher;
+    private static final int SECONDS_FOR_WAITING_TAGS = 50;
+
+
     public CreateNewsPO(WebDriver driver) {
         super(driver);
+        waitsSwitcher = new WaitsSwitcher(driver);
     }
 
     public CreateNewsPO clickLanguageDropdown() {
@@ -63,6 +69,7 @@ public class CreateNewsPO extends BasePage {
         additionalLabel = null;
         titleNewsLabel = null;
         newsTagLabel = null;
+
         sourceLabel = null;
         contentLabel = null;
         dateLabel = null;
@@ -79,7 +86,7 @@ public class CreateNewsPO extends BasePage {
         uaButton.click();
         clear();
         try {
-            Thread.sleep(5000);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -94,7 +101,7 @@ public class CreateNewsPO extends BasePage {
         enButton.click();
         clear();
         try {
-            Thread.sleep(5000);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -109,7 +116,7 @@ public class CreateNewsPO extends BasePage {
         ruButton.click();
         clear();
         try {
-            Thread.sleep(5000);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -150,14 +157,6 @@ public class CreateNewsPO extends BasePage {
         }
         return tags;
     }
-
-//    public LabelElement getNewsTagLabel() {
-//        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.SECONDS);
-//        if (newsTagLabel == null) {
-//            newsTagLabel = new LabelElement(this.driver, TagComponentLocators.NEWS_TAGBUTTON);
-//        }
-//        return newsTagLabel;
-//    }
 
     public LabelElement getChooseTagsLabel() {
 
@@ -204,7 +203,6 @@ public class CreateNewsPO extends BasePage {
             titleNewsLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_NEWS_LABEL);
         }
         return titleNewsLabel;
-
     }
 
 
@@ -213,7 +211,6 @@ public class CreateNewsPO extends BasePage {
             dateLabel = new LabelElement(this.driver, CreateNewsPageLocators.DATE_LABEL);
         }
         return dateLabel;
-
     }
 
     public LabelElement getAuthorLabel() {
@@ -221,7 +218,6 @@ public class CreateNewsPO extends BasePage {
             authorLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_LABEL);
         }
         return authorLabel;
-
     }
 
     public CreateNewsPO setSource(String source) {
@@ -251,39 +247,48 @@ public class CreateNewsPO extends BasePage {
         return new PreviewPO(driver);
     }
 
+    public CreateNewsPO clickTagNews(){
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickNewsTag();
+        return this;
+    }
 
-//    public CreateNewsPO getDatePosition() {
-//        //driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
-//        WebElement date = driver.findElement(By.xpath("//*[@id='main-content']/div/div[2]/form/div[3]/p[1]/span[1]"));
-//        Point point = date.getLocation();
-//        //int xcord = point.getX();
-//        //System.out.println("Element's Position from left side Is " + xcord + " pixels.");
-//        int ycord = point.getY();
-//        //System.out.println("Element's Position from top side Is " + ycord + " pixels.");
-//
-//        return this;
-//    }
-//
-//    public CreateNewsPO getAuthorPosition() {
-//        //driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
-//        WebElement author = driver.findElement(By.xpath("//*[@id='main-content']/div/div[2]/form/div[3]/p[2]/span[1]"));
-//        Point point = author.getLocation();
-//        //int xcord = point.getX();
-//        //System.out.println("Element's Position from left side Is " + xcord + " pixels.");
-//        int ycord = point.getY();
-//        //System.out.println("Element's Position from top side Is " + ycord + " pixels.");
-//
-//        return this;
-//    }
-//
-//    public CreateNewsPO getSoursePosition() {
-//        //driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
-//        ;
-//        WebElement source = driver.findElement(By.xpath("//input[@formcontrolname='source']/preceding-sibling::h3"));
-//        Point point = source.getLocation();
-//        //int xcord = point.getX();
-//        int ycord = point.getY();
-//
-//        return this;
-//    }
+    public CreateNewsPO clickTagAds(){
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickAdsTag();
+        return this;
+    }
+
+    public CreateNewsPO clickEventsTag(){
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickEventsTag();
+        return this;
+    }
+
+    public CreateNewsPO clickInitiativesTag(){
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickInitiativesTag();
+        return this;
+    }
+
+    public CreateNewsPO clickEducationTag(){
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickEducationTag();
+        return this;
+    }
 }
