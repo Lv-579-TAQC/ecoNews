@@ -5,6 +5,7 @@ import com.elements.FieldElement;
 import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
 import com.locators.TagComponentLocators;
+import com.tools.WaitsSwitcher;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,9 +38,13 @@ public class CreateNewsPO extends BasePage {
     private TagComponent tags;
     private ButtonElement previewButton;
 
+    private WaitsSwitcher waitsSwitcher;
+    private static final int SECONDS_FOR_WAITING_TAGS = 20;
+
 
     public CreateNewsPO(WebDriver driver) {
         super(driver);
+        waitsSwitcher = new WaitsSwitcher(driver);
     }
 
     public CreateNewsPO clickLanguageDropdown() {
@@ -232,5 +237,44 @@ public class CreateNewsPO extends BasePage {
         return new PreviewPO(driver);
     }
 
-
+    public CreateNewsPO clickTagNews(){
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickNewsTag();
+        return this;
+    }
+    public CreateNewsPO clickTagAds(){
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickAdsTag();
+        return this;
+    }
+    public CreateNewsPO clickEventsTag(){
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickEventsTag();
+        return this;
+    }
+    public CreateNewsPO clickInitiativesTag(){
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickInitiativesTag();
+        return this;
+    }
+    public CreateNewsPO clickEducationTag(){
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
+        if(tags == null){
+            tags = new TagComponent(driver);
+        }
+        tags.clickEducationTag();
+        return this;
+    }
 }

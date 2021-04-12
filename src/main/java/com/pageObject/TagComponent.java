@@ -43,6 +43,7 @@ public class TagComponent extends BasePage{
     }
 
     public TagComponent clickAdsTag(){
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         if (adsTag == null) {
             adsTag = new ButtonElement(this.root, TagComponentLocators.ADS_TAGBUTTON);
         }
