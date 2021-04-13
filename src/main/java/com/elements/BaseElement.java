@@ -21,6 +21,10 @@ public class BaseElement {
         this.webElement = webElement.findElement(path);
     }
 
+    public BaseElement(WebElement webElement){
+        this.webElement = webElement;
+    }
+
     public boolean isDisplayed() {
         return this.webElement.isDisplayed();
     }

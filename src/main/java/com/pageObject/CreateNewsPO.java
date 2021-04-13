@@ -4,60 +4,57 @@ import com.elements.ButtonElement;
 import com.elements.FieldElement;
 import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
+import com.locators.EcoNewsPageLocators;
+import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.concurrent.TimeUnit;
 
 public class CreateNewsPO extends BasePage {
+    private WaitsSwitcher waitsSwitcher;
 
-    ButtonElement languageDropdown;
-    ButtonElement uaButton;
-    ButtonElement enButton;
-    FieldElement titleField;
-    ButtonElement newsTagButton;
-    ButtonElement adsTagButton;
-    ButtonElement eventsTagButton;
-    ButtonElement initiativesTagButton;
-    ButtonElement educationTagButton;
-    FieldElement sourceField;
-    ButtonElement browseButton;
-    LabelElement titleLabel;
+    private ButtonElement languageDropdown;
+    private ButtonElement uaButton;
+    private ButtonElement enButton;
+    private ButtonElement ruButton;
 
-    ButtonElement previewButton;
-    FieldElement contentField;
+    private FieldElement titleField;
+    private FieldElement sourceField;
+    private FieldElement contentField;
 
-    LabelElement titlePageLabel;
-    LabelElement additionalLabel;
-    LabelElement titleNewsLabel;
-    LabelElement sourceFieldLabel;
-    LabelElement contentFieldLabel;
-    LabelElement dateLabel;
-    LabelElement authorLabel;
+    private LabelElement titlePageLabel;
+    private LabelElement additionalLabel;
+    private LabelElement titleNewsLabel;
+    private LabelElement newsTagLabel;
+
+    private LabelElement chooseTagsLabel;
+    private LabelElement pictureLabel;
+    private LabelElement choosePictureLabel;
+    private LabelElement sourceLabel;
+    private LabelElement contentLabel;
+    private LabelElement dateLabel ;
+    private LabelElement authorLabel;
+
+    private TagComponent tags;
+    private ButtonElement previewButton;
+
+    private static final int SECONDS_FOR_WAITING_TAGS = 50;
 
     ButtonElement submitButton;
     ButtonElement publishButton;
+    ButtonElement browseButton;
 
-    TagComponent tags;
 
-//    ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON);
-//
-//
-//    FieldElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD);
-//
-//    ButtonElement cancelButton; =new
-//
-//    ButtonElement(this.driver, CreateNewsPageLocators.CANCEL_BUTTON);
-//
-//
-//    ButtonElement publishButton; =new
-//
-//    ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
+
 
     public CreateNewsPO(WebDriver driver) {
         super(driver);
+        waitsSwitcher = new WaitsSwitcher(driver);
     }
 
     public CreateNewsPO clickLanguageDropdown() {
+        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.SECONDS);
         if (languageDropdown == null) {
             languageDropdown = new ButtonElement(this.driver, CreateNewsPageLocators.LANGUAGE_DROPDOWN);
         }
@@ -65,17 +62,41 @@ public class CreateNewsPO extends BasePage {
 
         return this;
     }
+    private void clear() {
+        languageDropdown = null;
+        uaButton = null;
+        enButton = null;
+        ruButton = null;
+
+        titleField = null;
+        sourceField = null;
+        contentField = null;
+
+        titlePageLabel = null;
+        additionalLabel = null;
+        titleNewsLabel = null;
+        newsTagLabel = null;
+
+        sourceLabel = null;
+        contentLabel = null;
+        dateLabel = null;
+        authorLabel = null;
+
+        tags = null;
+        previewButton = null;
+    }
 
     public CreateNewsPO clickUaButton() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         if (uaButton == null) {
             uaButton = new ButtonElement(this.driver, CreateNewsPageLocators.UA_BUTTON);
         }
         uaButton.click();
+        clear();
+        try {
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return new CreateNewsPO(driver);
     }
@@ -85,6 +106,27 @@ public class CreateNewsPO extends BasePage {
             enButton = new ButtonElement(this.driver, CreateNewsPageLocators.EN_BUTTON);
         }
         enButton.click();
+        clear();
+        try {
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return new CreateNewsPO(driver);
+    }
+
+    public CreateNewsPO clickRuButton() {
+        if (ruButton == null) {
+            ruButton = new ButtonElement(this.driver, CreateNewsPageLocators.RU_BUTTON);
+        }
+        ruButton.click();
+        clear();
+        try {
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return new CreateNewsPO(driver);
     }
@@ -113,11 +155,6 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getAdditionalLabel() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         if (additionalLabel == null) {
             additionalLabel = new LabelElement(this.driver, CreateNewsPageLocators.ADDITIONAL_LABEL);
         }
@@ -125,75 +162,72 @@ public class CreateNewsPO extends BasePage {
 
     }
 
-    public LabelElement getSourceFieldLabel() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public TagComponent getTags() {
+        if (tags == null) {
+            tags = new TagComponent(this.driver);
         }
-        if (sourceFieldLabel == null) {
-            sourceFieldLabel = new LabelElement(this.driver, CreateNewsPageLocators.SOURCE_FIELD_LABEL);
-        }
-        return sourceFieldLabel;
+        return tags;
     }
 
-    public LabelElement getContentFieldLabel() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public LabelElement getChooseTagsLabel() {
+
+        if (chooseTagsLabel == null) {
+            chooseTagsLabel = new LabelElement(this.driver, CreateNewsPageLocators.CHOOSE_TAGS_LABEL);
         }
-        if (contentFieldLabel == null) {
-            contentFieldLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD_LABEL);
+        return chooseTagsLabel;
+    }
+
+    public LabelElement getPictureLabel() {
+
+        if (pictureLabel == null) {
+            pictureLabel = new LabelElement(this.driver, CreateNewsPageLocators.PICTURE_LABEL);
         }
-        return contentFieldLabel;
+        return pictureLabel;
+    }
+
+    public LabelElement getChoosePictureLabel() {
+
+        if (choosePictureLabel == null) {
+            choosePictureLabel = new LabelElement(this.driver, CreateNewsPageLocators.CHOOSE_PICTURE_LABEL);
+        }
+        return choosePictureLabel;
+    }
+
+    public LabelElement getSourceLabel() {
+
+        if (sourceLabel == null) {
+            sourceLabel = new LabelElement(this.driver, CreateNewsPageLocators.SOURCE_LABEL);
+        }
+        return sourceLabel;
+    }
+
+    public LabelElement getContentLabel() {
+        if (contentLabel == null) {
+            contentLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_LABEL);
+        }
+        return contentLabel;
 
     }
 
     public LabelElement getTitleNewsLabel() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         if (titleNewsLabel == null) {
             titleNewsLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_NEWS_LABEL);
         }
         return titleNewsLabel;
-
     }
 
-
     public LabelElement getDateLabel() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         if (dateLabel == null) {
             dateLabel = new LabelElement(this.driver, CreateNewsPageLocators.DATE_LABEL);
         }
         return dateLabel;
     }
 
-
     public LabelElement getAuthorLabel() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         if (authorLabel == null) {
             authorLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_LABEL);
         }
         return authorLabel;
-    }
-
-    public TagComponent getTags() {
-        if (tags == null) {
-            tags = new TagComponent(this.driver);
-        }
-        return tags;
     }
 
     public CreateNewsPO setSource(String source) {
@@ -214,8 +248,17 @@ public class CreateNewsPO extends BasePage {
         return this;
     }
 
+    public PreviewPO clickPreviewButton() {
+        if (previewButton == null) {
+            previewButton = new ButtonElement(this.driver, CreateNewsPageLocators.PREVIEW_BUTTON);
+        }
+        previewButton.click();
+
+        return new PreviewPO(driver);
+    }
+
     public CreateNewsPO clickTagNews(){
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if(tags == null){
             tags = new TagComponent(driver);
         }
@@ -224,7 +267,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public CreateNewsPO clickTagAds(){
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if(tags == null){
             tags = new TagComponent(driver);
         }
@@ -233,7 +276,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public CreateNewsPO clickEventsTag(){
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if(tags == null){
             tags = new TagComponent(driver);
         }
@@ -242,7 +285,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public CreateNewsPO clickInitiativesTag(){
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if(tags == null){
             tags = new TagComponent(driver);
         }
@@ -251,32 +294,16 @@ public class CreateNewsPO extends BasePage {
     }
 
     public CreateNewsPO clickEducationTag(){
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if(tags == null){
             tags = new TagComponent(driver);
         }
         tags.clickEducationTag();
         return this;
     }
-    //
-//
-//    public EcoNewsPO clickCancelButton() {
-//        cancelButton.click();
-//
-//        return new EcoNewsPO(driver);
-//    }
-//
-    public PreviewPO clickPreviewButton() {
-        if(previewButton == null){
-            previewButton = new ButtonElement(this.driver, CreateNewsPageLocators.PREVIEW_BUTTON);
-        }
-        previewButton.click();
-
-        return new PreviewPO(driver);
-    }
 
     public CreateNewsPO browseImage(String img){
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        waitsSwitcher.setImplicitWaits(100);
         if (browseButton == null) {
             browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON);
         }
@@ -284,7 +311,7 @@ public class CreateNewsPO extends BasePage {
         return this;
     }
     public CreateNewsPO clickSubmitButton() {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        waitsSwitcher.setImplicitWaits(100);
         if ( submitButton == null) {
             submitButton = new ButtonElement(this.driver, CreateNewsPageLocators.SUBMIT_BUTTON);
         }
@@ -293,6 +320,7 @@ public class CreateNewsPO extends BasePage {
         return new CreateNewsPO(driver);
     }
     public CreateNewsPO clickPublishButton() {
+        waitsSwitcher.setImplicitWaits(100);
         if ( publishButton == null) {
             publishButton = new ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
         }
@@ -300,75 +328,5 @@ public class CreateNewsPO extends BasePage {
 
         return this;
     }
-//
-//    public CreateNewsPO clickPublishButton() {
-//        publishButton.click();
-//
-//        return this;
-//    }
-
-//    public boolean isLanguageDropdownDisplayed() {
-//        return languageDropdown.isDisplayed();
-//    }
-//
-//    public boolean isUaButtonDisplayed() {
-//        return uaButton.isDisplayed();
-//    }
-//
-//    public boolean isEnButtonDisplayed() {
-//        return enButton.isDisplayed();
-//    }
-//
-//    public boolean isTitleFieldDisplayed() {
-//        return titleField.isDisplayed();
-//    }
-//
-//    public boolean isNewsTagButtonDisplayed() {
-//        return newsTagButton.isDisplayed();
-//    }
-//
-//    public boolean isAdsTagDisplayed() {
-//        return adsTagButton.isDisplayed();
-//    }
-//
-//    public boolean isEventsTagDisplayed() {
-//        return eventsTagButton.isDisplayed();
-//    }
-//
-//    public boolean isInitiativesTagButtonDisplayed() {
-//        return initiativesTagButton.isDisplayed();
-//    }
-//
-//    public boolean isEducationTagButtonDisplayed() {
-//        return educationTagButton.isDisplayed();
-//    }
-//
-//    public boolean isSourceFieldDisplayed() {
-//        return sourceField.isDisplayed();
-//    }
-//
-//    public boolean isBrowseButtonDisplayed() {
-//        return browseButton.isDisplayed();
-//    }
-
-//    public boolean isContentFieldDisplayed() {
-//        return contentField.isDisplayed();
-//    }
-//
-//    public boolean isCancelButtonDisplayed() {
-//        return cancelButton.isDisplayed();
-//    }
-//
-//    public boolean isPreviewButtonDisplayed() {
-//        return previewButton.isDisplayed();
-//    }
-//
-//    public boolean isPublishButtonDisplayed() {
-//        return publishButton.isDisplayed();
-//    }
-//
-//    public boolean isPublishButtonEnabled() {
-//        return publishButton.webElement.isEnabled();
-//    }
 
 }

@@ -4,28 +4,34 @@ import org.openqa.selenium.By;
 
 public enum CreateNewsPageLocators implements BaseLocator {
 
-    TITLE_PAGE_LABEL(By.xpath("//div[@class='title']/descendant::h2")),//перероблений х-пас
-    ADDITIONAL_LABEL(By.xpath("//div[@class='title']/descendant::p")),//перероблений х-пас
-    TITLE_NEWS_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[1]/div[1]/div[1]/label/h3")),
+    TITLE_PAGE_LABEL(By.xpath("//div[@class='title']/descendant::h2")),
+    ADDITIONAL_LABEL(By.xpath("//div[@class='title']/descendant::p")),
+    TITLE_NEWS_LABEL(By.xpath("//div[@class='item-block']//descendant::h3")),
     TITLE_FIELD(By.xpath("//div[@class='item-block']/descendant::textarea")),
-
-
+    CHOOSE_TAGS_LABEL(By.xpath("//div[@class = 'tags item-block ng-untouched ng-pristine ng-valid']/descendant::h3")),
+    PICTURE_LABEL(By.xpath("//div[@class = 'right-form-column']/descendant::h3")),
+    CHOOSE_PICTURE_LABEL(By.xpath("//div[@class = 'centered']")),
+    SOURCE_LABEL(By.xpath("//input[@formcontrolname='source']/preceding-sibling::h3")),//перероблений х-пас
     SOURCE_FIELD(By.xpath("//input[@formcontrolname='source']")),//перероблений х-пас
-    SOURCE_FIELD_LABEL(By.xpath("//input[@formcontrolname='source']/preceding-sibling::h3")),//перероблений х-пас
-    BROWSE_PICTURE_BUTTON(By.xpath("//*[@id=\'upload\']")),
+    BROWSE_PICTURE_BUTTON(By.xpath("//*[contains(@id,'upload')]")),
+    CONTENT_LABEL(By.xpath("//div[@class='textarea-wrapper']/child::h3")),
     CONTENT_FIELD(By.xpath("//textarea[@name='main-area']")),
-    CONTENT_FIELD_LABEL(By.xpath("//div[@class='textarea-wrapper']/child::h3")),
     CANCEL_BUTTON(By.xpath("//button[@class='cancel']")),
     PREVIEW_BUTTON(By.xpath("//button[text()=' Preview ']")),
     PUBLISH_BUTTON(By.xpath("//button[@type='submit']")),
     LANGUAGE_DROPDOWN(By.xpath("//ul[@class='header_lang-switcher-wrp header_navigation-menu-right-list']")),
     EN_BUTTON(By.xpath("//li[text()=' En ']")),
     UA_BUTTON(By.xpath("//li[text()=' Ua ']")),
+    RU_BUTTON(By.xpath("//li[text()=' Ru ']")),
     DATE_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[3]/p[1]/span[1]")),
     AUTHOR_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[3]/p[2]/span[1]")),
+
     PREVIEWPAGEBUTTON(By.xpath("//*[@id='main-content']/div/div[2]/form/div[4]/button[2]")),
     BACKTOEDITINGBUTTON(By.xpath("/html/body/app-root/div[3]/app-eco-news/div/app-news-preview-page/div/div[1]/div/a/div/div[2]")),
-    SUBMIT_BUTTON(By.xpath("//*[@id=\'main-content\']/div/div[2]/form/div[1]/div[2]/app-drag-and-drop/div/div/div/div/button[1]"));
+    //
+    //
+    CONTENTFIELD_MASSEGA_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[2]/p")),
+    SUBMIT_BUTTON(By.xpath("//button[text() = 'Submit']"));
 
 
     private By path;
