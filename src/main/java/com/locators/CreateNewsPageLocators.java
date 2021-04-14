@@ -23,8 +23,8 @@ public enum CreateNewsPageLocators implements BaseLocator{
     EN_BUTTON(By.xpath("//li[text()=' En ']")),
     UA_BUTTON(By.xpath("//li[text()=' Ua ']")),
     RU_BUTTON(By.xpath("//li[text()=' Ru ']")),
-    DATE_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[3]/p[1]/span[1]")),
-    AUTHOR_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[3]/p[2]/span[1]")),
+    DATE_LABEL(By.xpath("//div[@class='date']//descendant::span[1]")),
+    AUTHOR_LABEL(By.xpath("//div[@class='date']//descendant::span[3]")),
 
     PREVIEWPAGEBUTTON(By.xpath("//*[@id='main-content']/div/div[2]/form/div[4]/button[2]")),
     BACKTOEDITINGBUTTON(By.xpath("/html/body/app-root/div[3]/app-eco-news/div/app-news-preview-page/div/div[1]/div/a/div/div[2]")),

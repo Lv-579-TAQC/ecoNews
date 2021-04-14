@@ -72,7 +72,7 @@ public class CreateNewsTest {
     }
 
     @Test(dataProvider = "languages")
-    public void verifyCreateNewsUA_RU_En_Translation(String language) throws IOException {
+    public void verifyCreateNewsUaEnRuTranslation(String language) throws IOException {
 
         createNewsPage.setLanguage(language);
 
@@ -99,7 +99,7 @@ public class CreateNewsTest {
     }
 
     @Test(dataProvider = "languages")
-    public void verifyDateAndAuthorUa_RU_En_PositionUnderForm(String language) {
+    public void verifyDateAndAuthorUaRUEnPositionUnderForm(String language) {
         createNewsPage.setLanguage(language);
 
         Assert.assertTrue(createNewsPage.getDateLabel().getLocation().getY() > createNewsPage.getContentLabel().getLocation().getY());
