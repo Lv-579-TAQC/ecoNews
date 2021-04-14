@@ -17,7 +17,6 @@ public class EcoNewsPO extends BasePage{
     public EcoNewsPO(WebDriver driver) {
         super(driver);
     }
-
     public CreateNewsPO clickCreateNewsBtn(){
         if(createNews == null) {
             createNews = new ButtonElement(this.driver, EcoNewsPageLocators.CREATE_NEWS);

@@ -13,6 +13,7 @@ public enum CreateNewsPageLocators implements BaseLocator{
     CHOOSE_PICTURE_LABEL(By.xpath("//div[@class = 'centered']")),
     SOURCE_LABEL(By.xpath("//input[@formcontrolname='source']/preceding-sibling::h3")),//перероблений х-пас
     SOURCE_FIELD(By.xpath("//input[@formcontrolname='source']")),//перероблений х-пас
+    BROWSE_PICTURE_BUTTON_UPLOAD(By.xpath("//*[contains(@id,'upload')]")),
     BROWSE_PICTURE_BUTTON(By.xpath("//span[text()='browse']")),
     CONTENT_LABEL(By.xpath("//div[@class='textarea-wrapper']/child::h3")),
     CONTENT_FIELD(By.xpath("//textarea[@name='main-area']")),
@@ -28,15 +29,14 @@ public enum CreateNewsPageLocators implements BaseLocator{
 
     PREVIEWPAGEBUTTON(By.xpath("//*[@id='main-content']/div/div[2]/form/div[4]/button[2]")),
     BACKTOEDITINGBUTTON(By.xpath("/html/body/app-root/div[3]/app-eco-news/div/app-news-preview-page/div/div[1]/div/a/div/div[2]")),
-    //
-    //
-    CONTENTFIELD_MASSEGA_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[2]/p"));
 
-
+    CONTENTFIELD_MASSEGA_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[2]/p")),
+    SUBMIT_BUTTON(By.xpath("//button[text() = 'Submit']"));
 
 
     private By path;
-    CreateNewsPageLocators (By path){
+
+    CreateNewsPageLocators(By path) {
         this.path = path;
     }
     @Override
@@ -44,3 +44,5 @@ public enum CreateNewsPageLocators implements BaseLocator{
         return path;
     }
 }
+
+

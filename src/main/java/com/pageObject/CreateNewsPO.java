@@ -7,7 +7,6 @@ import com.locators.CreateNewsPageLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 
-
 public class CreateNewsPO extends BasePage {
 
 
@@ -242,6 +241,32 @@ public class CreateNewsPO extends BasePage {
             tags = new TagComponent(driver);
         }
         tags.clickEducationTag();
+        return this;
+    }
+    public CreateNewsPO browseImage(String img){
+        waitsSwitcher.setImplicitWaits(100);
+        if (browseButton == null) {
+            browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON);
+        }
+        browseButton.sendKeys(img);
+        return this;
+    }
+    public CreateNewsPO clickSubmitButton() {
+        waitsSwitcher.setImplicitWaits(100);
+        if ( submitButton == null) {
+            submitButton = new ButtonElement(this.driver, CreateNewsPageLocators.SUBMIT_BUTTON);
+        }
+        submitButton.click();
+
+        return new CreateNewsPO(driver);
+    }
+    public CreateNewsPO clickPublishButton() {
+        waitsSwitcher.setImplicitWaits(100);
+        if ( publishButton == null) {
+            publishButton = new ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
+        }
+        publishButton.click();
+
         return this;
     }
 }
