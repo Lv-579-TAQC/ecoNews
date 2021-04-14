@@ -4,10 +4,8 @@ import com.elements.ButtonElement;
 import com.elements.FieldElement;
 import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
-import com.locators.EcoNewsPageLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.concurrent.TimeUnit;
 
