@@ -67,16 +67,17 @@ public class CreateNewsContentFieldTest{
         Assert.assertEquals(textFieldMessageColorActual, textFieldMessageColorExpected);
     }
 */
-    @Test(dataProvider = "correctDataForText")
-    public void verifyTextFieldCorrect(String mainText, String ExpectedText) {
-        LabelElement l = new EcoNewsPO(webDriver)
-                .clickEcoNews()
-                .clickCreateNewsBtn()
-                .setContent(mainText)
-                .clickLanguageDropdown()
-                .getContentLabel();
-        Assert.assertEquals(l.getColorHex(), ExpectedText);
-    }
+//    @Test(dataProvider = "correctDataForText")
+//    public void verifyTextFieldCorrect(String mainText, String ExpectedText) {
+//        LabelElement l = new EcoNewsPO(webDriver)
+//                .clickEcoNews()
+//                .clickCreateNewsBtn()
+//                .setContent(mainText)
+//                .clickLanguageDropdown()
+//                .getContentLabel();
+//        Assert.assertEquals(l.getColorHex(), ExpectedText);
+//    }
+
 //    @Test
 //    public void verifyTextFieldMoreThan63206() {
 //        CreateNewsPO createNewsPage = new EcoNewsPO(webDriver)

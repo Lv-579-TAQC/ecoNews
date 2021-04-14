@@ -7,14 +7,10 @@ import com.locators.CreateNewsPageLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 
-import java.util.concurrent.TimeUnit;
 
 public class CreateNewsPO extends BasePage {
 
-    private ButtonElement languageDropdown;
-    private ButtonElement uaButton;
-    private ButtonElement enButton;
-    private ButtonElement ruButton;
+
 
     private FieldElement titleField;
     private FieldElement sourceField;
@@ -30,11 +26,13 @@ public class CreateNewsPO extends BasePage {
     private LabelElement choosePictureLabel;
     private LabelElement sourceLabel;
     private LabelElement contentLabel;
-    private LabelElement dateLabel ;
+    private LabelElement dateLabel;
     private LabelElement authorLabel;
 
     private TagComponent tags;
     private ButtonElement previewButton;
+    private ButtonElement cancelButton;
+    private ButtonElement publishButton;
 
     private WaitsSwitcher waitsSwitcher;
     private static final int SECONDS_FOR_WAITING_TAGS = 50;
@@ -45,21 +43,7 @@ public class CreateNewsPO extends BasePage {
         waitsSwitcher = new WaitsSwitcher(driver);
     }
 
-    public CreateNewsPO clickLanguageDropdown() {
-        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.SECONDS);
-        if (languageDropdown == null) {
-            languageDropdown = new ButtonElement(this.driver, CreateNewsPageLocators.LANGUAGE_DROPDOWN);
-        }
-        languageDropdown.click();
-
-        return this;
-    }
-
     private void clear() {
-        languageDropdown = null;
-        uaButton = null;
-        enButton = null;
-        ruButton = null;
 
         titleField = null;
         sourceField = null;
@@ -77,53 +61,14 @@ public class CreateNewsPO extends BasePage {
 
         tags = null;
         previewButton = null;
+        cancelButton = null;
+        publishButton = null;
     }
 
-    public CreateNewsPO clickUaButton() {
-        if (uaButton == null) {
-            uaButton = new ButtonElement(this.driver, CreateNewsPageLocators.UA_BUTTON);
-        }
-        uaButton.click();
-        clear();
-        try {
-            Thread.sleep(7000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+    public CreateNewsPO setLanguage(String language) {
+        this.clickChangeLanguage(language);
         return new CreateNewsPO(driver);
     }
-
-    public CreateNewsPO clickEnButton() {
-        if (enButton == null) {
-            enButton = new ButtonElement(this.driver, CreateNewsPageLocators.EN_BUTTON);
-        }
-        enButton.click();
-        clear();
-        try {
-            Thread.sleep(7000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return new CreateNewsPO(driver);
-    }
-
-    public CreateNewsPO clickRuButton() {
-        if (ruButton == null) {
-            ruButton = new ButtonElement(this.driver, CreateNewsPageLocators.RU_BUTTON);
-        }
-        ruButton.click();
-        clear();
-        try {
-            Thread.sleep(7000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return new CreateNewsPO(driver);
-    }
-
 
     public CreateNewsPO setTitle(String title) {
         if (titleField == null) {
@@ -220,6 +165,14 @@ public class CreateNewsPO extends BasePage {
         return authorLabel;
     }
 
+    public ButtonElement getCancelButton() {
+        if (cancelButton == null) {
+            cancelButton = new ButtonElement(this.driver, CreateNewsPageLocators.CANCEL_BUTTON);
+        }
+        return cancelButton;
+
+    }
+
     public CreateNewsPO setSource(String source) {
         if (sourceField == null) {
             sourceField = new FieldElement(this.driver, CreateNewsPageLocators.SOURCE_FIELD);
@@ -247,45 +200,45 @@ public class CreateNewsPO extends BasePage {
         return new PreviewPO(driver);
     }
 
-    public CreateNewsPO clickTagNews(){
+    public CreateNewsPO clickTagNews() {
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
-        if(tags == null){
+        if (tags == null) {
             tags = new TagComponent(driver);
         }
         tags.clickNewsTag();
         return this;
     }
 
-    public CreateNewsPO clickTagAds(){
+    public CreateNewsPO clickTagAds() {
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
-        if(tags == null){
+        if (tags == null) {
             tags = new TagComponent(driver);
         }
         tags.clickAdsTag();
         return this;
     }
 
-    public CreateNewsPO clickEventsTag(){
+    public CreateNewsPO clickEventsTag() {
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
-        if(tags == null){
+        if (tags == null) {
             tags = new TagComponent(driver);
         }
         tags.clickEventsTag();
         return this;
     }
 
-    public CreateNewsPO clickInitiativesTag(){
+    public CreateNewsPO clickInitiativesTag() {
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
-        if(tags == null){
+        if (tags == null) {
             tags = new TagComponent(driver);
         }
         tags.clickInitiativesTag();
         return this;
     }
 
-    public CreateNewsPO clickEducationTag(){
+    public CreateNewsPO clickEducationTag() {
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
-        if(tags == null){
+        if (tags == null) {
             tags = new TagComponent(driver);
         }
         tags.clickEducationTag();
