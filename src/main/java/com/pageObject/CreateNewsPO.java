@@ -32,6 +32,8 @@ public class CreateNewsPO extends BasePage {
     private ButtonElement previewButton;
     private ButtonElement cancelButton;
     private ButtonElement publishButton;
+    private ButtonElement browseButton;
+    private ButtonElement submitButton;
 
     private WaitsSwitcher waitsSwitcher;
     private static final int SECONDS_FOR_WAITING_TAGS = 50;
