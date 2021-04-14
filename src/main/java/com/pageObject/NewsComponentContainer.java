@@ -36,7 +36,7 @@ public class NewsComponentContainer {
 
     private List<WebElement> getItems() {
         WaitsSwitcher waitsSwitcher = new WaitsSwitcher(driver);
-        return waitsSwitcher.setExplicitWait(65,
+        return waitsSwitcher.setExplicitWait(5,
                 ExpectedConditions.presenceOfAllElementsLocatedBy(items));
     }
 
