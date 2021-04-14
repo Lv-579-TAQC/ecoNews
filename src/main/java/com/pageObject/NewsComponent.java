@@ -4,14 +4,10 @@ import com.elements.BaseElement;
 import com.elements.ButtonElement;
 import com.elements.LabelElement;
 import com.locators.NewsComponentLocators;
-import com.locators.TagComponentLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class NewsComponent extends BasePage{
     private WebDriver driver;
@@ -56,7 +52,6 @@ public class NewsComponent extends BasePage{
     }
 
     public WebElement getNewsContent(){
-        waitsSwitcher.setImplicitWaits(7000);
         if(isVertical){
             path = NewsComponentLocators.NEWS_CONTENT_LIST.getPath();
         } else {
@@ -64,5 +59,4 @@ public class NewsComponent extends BasePage{
         }
         return newsItem.findElement(path);
     }
-
 }
