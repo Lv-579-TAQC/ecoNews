@@ -2,21 +2,23 @@ package com.pageObject;
 
 import com.elements.ButtonElement;
 import com.elements.LabelElement;
-import com.locators.CreateNewsPageLocators;
 import com.locators.PreviewPageLocators;
+import com.tools.WaitsSwitcher;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class PreviewPO extends BasePage{
-    ButtonElement backToEditingButton;
-    ButtonElement publishNewsButton;
-    LabelElement newsTitleLabel;
-    LabelElement newsContentLabel;
-    LabelElement titleBackLabel;
+    private ButtonElement backToEditingButton;
+    private ButtonElement publishNewsButton;
+    private LabelElement newsTitleLabel;
+    private LabelElement newsContentLabel;
+    private LabelElement titleBackLabel;
+    private WaitsSwitcher waitsSwitcher;
 
 
     public PreviewPO(WebDriver driver) {
         super(driver);
+        waitsSwitcher = new WaitsSwitcher(driver);
     }
 
     public CreateNewsPO clickBackToEditingButton(){
@@ -65,6 +67,7 @@ public class PreviewPO extends BasePage{
             publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
         }
         publishNewsButton.click();
+        waitsSwitcher.setImplicitWaits(25);
         return new EcoNewsPO(driver);
     }
 
