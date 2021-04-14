@@ -82,11 +82,11 @@ public class CreateNewsTest {
         softAssertCreateNews.assertEquals(createNewsPage.getAdditionalLabel().getText(), getTranslation("ADDITIONAL", language));
         softAssertCreateNews.assertEquals(createNewsPage.getTitleNewsLabel().getText(), getTranslation("NEWS_TITLE", language));
         softAssertCreateNews.assertEquals(createNewsPage.getChooseTagsLabel().getText(), getTranslation("CHOOSE_TAGS", language));
-//        softAssertCreateNews.assertEquals(createNewsPage.getTags().getNewsTagButton().getText(), getTranslation("NEWS_TAG", language));
-//        softAssertCreateNews.assertEquals(createNewsPage.getTags().getAdsTagButton().getText(), getTranslation("ADS_TAG", language));
-//        softAssertCreateNews.assertEquals(createNewsPage.getTags().getEventsTagButton().getText(), getTranslation("EVENTS_TAG", language));
-//        softAssertCreateNews.assertEquals(createNewsPage.getTags().getInitiativesTagButton().getText(), getTranslation("INITIATIVES_TAG", language));
-//        softAssertCreateNews.assertEquals(createNewsPage.getTags().getEducationsTagButton().getText(), getTranslation("EDUCATION_TAG", language));
+        softAssertCreateNews.assertEquals(createNewsPage.getTags().getNewsTagButton().getText(), getTranslation("NEWS_TAG", language));
+        softAssertCreateNews.assertEquals(createNewsPage.getTags().getAdsTagButton().getText(), getTranslation("ADS_TAG", language));
+        softAssertCreateNews.assertEquals(createNewsPage.getTags().getEventsTagButton().getText(), getTranslation("EVENTS_TAG", language));
+        softAssertCreateNews.assertEquals(createNewsPage.getTags().getInitiativesTagButton().getText(), getTranslation("INITIATIVES_TAG", language));
+        softAssertCreateNews.assertEquals(createNewsPage.getTags().getEducationsTagButton().getText(), getTranslation("EDUCATION_TAG", language));
         softAssertCreateNews.assertEquals(createNewsPage.getPictureLabel().getText(), getTranslation("PICTURE", language));
         softAssertCreateNews.assertEquals(createNewsPage.getChoosePictureLabel().getText(), getTranslation("CHOOSE_PICTURE", language));
         softAssertCreateNews.assertEquals(createNewsPage.getSourceLabel().getText(), getTranslation("SOURCE", language));
@@ -105,7 +105,6 @@ public class CreateNewsTest {
         Assert.assertTrue(createNewsPage.getDateLabel().getLocation().getY() > createNewsPage.getContentLabel().getLocation().getY());
         Assert.assertTrue(createNewsPage.getAuthorLabel().getLocation().getY() > createNewsPage.getContentLabel().getLocation().getY());
     }
-
 
 //    @Test(dataProvider = "languages")
 //    public void verifyCreateNewsTabulation(String language) {
