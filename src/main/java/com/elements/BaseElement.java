@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class BaseElement {
-
-
     protected WebDriver driver;
     public WebElement webElement;
     protected By path;
@@ -30,5 +28,4 @@ public class BaseElement {
     public boolean isDisplayed() {
         return this.webElement.isDisplayed();
     }
-
 }

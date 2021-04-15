@@ -17,9 +17,7 @@ public class EcoNewsPO extends BasePage{
     public EcoNewsPO(WebDriver driver) {
         super(driver);
     }
-
     public CreateNewsPO clickCreateNewsBtn(){
-        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.SECONDS);
         if(createNews == null) {
             createNews = new ButtonElement(this.driver, EcoNewsPageLocators.CREATE_NEWS);
         }

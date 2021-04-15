@@ -27,3 +27,4 @@ public enum NewsComponentLocators implements BaseLocator{
         return path;
     }
 }
+

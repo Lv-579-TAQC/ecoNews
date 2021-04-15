@@ -51,6 +51,14 @@ public class PreviewPageTest extends BasicTest{
         };
     }
 
+    @DataProvider()
+    public Object[][] incorrectDataForNews(){
+        return new Object[][]{
+                {"This is title",
+                        "Content"}
+        };
+    }
+
     @Test(dataProvider = "correctDataForNews")
     public void verifyPreviewTitleAndContent(String title, String content) {
         PreviewPO previewPO = new EcoNewsPO(webDriver)
@@ -61,9 +69,23 @@ public class PreviewPageTest extends BasicTest{
                 .setContent(content)
                 .clickPreviewButton();
 
-        Assert.assertEquals(previewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same");
-        Assert.assertEquals(previewPO.getContentLabel().getText().trim(), content.trim());
-        Assert.assertTrue(previewPO.isPublishButtonExists());
+        Assert.assertEquals(previewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same.");
+        Assert.assertEquals(previewPO.getContentLabel().getText().trim(), content.trim(), "Input and viewed content should be the same.");
+        Assert.assertTrue(previewPO.isPublishButtonExists(), "Publish button should exist if correct data are entered.");
+    }
+
+    @Test(dataProvider = "incorrectDataForNews")
+    public void verifyPublishButtonNotExistsWithIncorrectData(String title, String content){
+        PreviewPO previewPO = new EcoNewsPO(webDriver)
+                .clickEcoNews()
+                .clickCreateNewsBtn()
+                .setTitle(title)
+                .setContent(content)
+                .clickPreviewButton();
+
+        Assert.assertEquals(previewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same.");
+        Assert.assertEquals(previewPO.getContentLabel().getText().trim(), content.trim(), "Input and viewed content should be the same.");
+        Assert.assertFalse(previewPO.isPublishButtonExists(), "Publish button should not exist if incorrect data are entered.");
     }
 
     @Test(dataProvider = "correctDataForNews")
@@ -71,19 +93,16 @@ public class PreviewPageTest extends BasicTest{
         PreviewPO previewPO = new EcoNewsPO(webDriver)
                 .clickEcoNews()
                 .clickCreateNewsBtn()
-                .clickPreviewButton();
-
-        Assert.assertFalse(previewPO.isPublishButtonExists());
-
-        PreviewPO newPreviewPO = previewPO.clickBackToEditingButton()
+                .clickPreviewButton()
+                .clickBackToEditingButton()
                 .setTitle(title)
                 .setContent(content)
                 .clickTagNews()
                 .clickPreviewButton();
 
-        Assert.assertEquals(newPreviewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same");
-        Assert.assertEquals(newPreviewPO.getContentLabel().getText().trim(), content.trim());
-        Assert.assertTrue(newPreviewPO.isPublishButtonExists());
+        Assert.assertEquals(previewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same.");
+        Assert.assertEquals(previewPO.getContentLabel().getText().trim(), content.trim(), "Input and viewed content should be the same.");
+        Assert.assertTrue(previewPO.isPublishButtonExists(), "Publish button should exist if correct data are entered after editing.");
     }
 
     @Test(dataProvider = "correctDataForNews")
@@ -97,22 +116,9 @@ public class PreviewPageTest extends BasicTest{
                 .clickPreviewButton()
                 .clickPublishButton();
 
-        WaitsSwitcher wait = new WaitsSwitcher(webDriver);
-        wait.setImplicitWaits(100);
-
         NewsComponent firstNews = ecoNewsPO.getNewsComponentContainer(false)
                 .chooseNewsByNumber(0);
-        Assert.assertEquals(firstNews.getNewsTitle().getText().trim(), title.trim());
-
-    }
-
-    @Test(dataProvider = "correctDataForNews")
-    public void verifyNewsCreated(String title, String content){
-        NewsComponent firstNews = new EcoNewsPO(webDriver)
-                .clickEcoNews()
-                .getNewsComponentContainer(false)
-                .chooseNewsByNumber(0);
-
-        Assert.assertEquals(firstNews.getNewsTitle().getText().trim(), title.trim());
+        Assert.assertEquals(firstNews.getNewsTitle().getText().trim(), title.trim(), "Input and published new's titles should be the same.");
+        Assert.assertEquals(firstNews.getNewsContent().getText().trim(), content.trim(), "Input and published new's content should be the same.");
     }
 }
