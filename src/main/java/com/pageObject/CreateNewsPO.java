@@ -32,6 +32,8 @@ public class CreateNewsPO extends BasePage {
     private ButtonElement previewButton;
     private ButtonElement cancelButton;
     private ButtonElement publishButton;
+    private ButtonElement browseButton;
+    private ButtonElement submitButton;
 
     private WaitsSwitcher waitsSwitcher;
     private static final int SECONDS_FOR_WAITING_TAGS = 50;
@@ -103,7 +105,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getChooseTagsLabel() {
-
+        clear();
         if (chooseTagsLabel == null) {
             chooseTagsLabel = new LabelElement(this.driver, CreateNewsPageLocators.CHOOSE_TAGS_LABEL);
         }
@@ -111,7 +113,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getPictureLabel() {
-
+        clear();
         if (pictureLabel == null) {
             pictureLabel = new LabelElement(this.driver, CreateNewsPageLocators.PICTURE_LABEL);
         }
@@ -119,7 +121,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getChoosePictureLabel() {
-
+        clear();
         if (choosePictureLabel == null) {
             choosePictureLabel = new LabelElement(this.driver, CreateNewsPageLocators.CHOOSE_PICTURE_LABEL);
         }
@@ -127,7 +129,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getSourceLabel() {
-
+        clear();
         if (sourceLabel == null) {
             sourceLabel = new LabelElement(this.driver, CreateNewsPageLocators.SOURCE_LABEL);
         }
@@ -135,6 +137,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getContentLabel() {
+        clear();
         if (contentLabel == null) {
             contentLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_LABEL);
         }
@@ -143,6 +146,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getTitleNewsLabel() {
+        clear();
         if (titleNewsLabel == null) {
             titleNewsLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_NEWS_LABEL);
         }
@@ -151,6 +155,7 @@ public class CreateNewsPO extends BasePage {
 
 
     public LabelElement getDateLabel() {
+        clear();
         if (dateLabel == null) {
             dateLabel = new LabelElement(this.driver, CreateNewsPageLocators.DATE_LABEL);
         }
@@ -158,6 +163,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getAuthorLabel() {
+        clear();
         if (authorLabel == null) {
             authorLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_LABEL);
         }
@@ -165,6 +171,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public ButtonElement getCancelButton() {
+        clear();
         if (cancelButton == null) {
             cancelButton = new ButtonElement(this.driver, CreateNewsPageLocators.CANCEL_BUTTON);
         }
