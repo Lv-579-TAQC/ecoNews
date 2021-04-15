@@ -16,9 +16,16 @@ public class AddImageTest {
 
     @BeforeClass
     public void setUpClass() {
-        final  String WebDriverPath = System.getenv("WebDrivers");
+        String WebDriverPath = System.getenv("WebDrivers");
+        String os = System.getProperty("os.name");
+        if (os.startsWith("Windows")) {
+            WebDriverPath += "\\chromedriver.exe";
+        } else {
+            WebDriverPath += "/chromedriver";
+        }
 
-        System.setProperty("webdriver.chrome.driver","E:\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", WebDriverPath);
+
         webDriver = new ChromeDriver();
         webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
         webDriver.manage().window().maximize();
