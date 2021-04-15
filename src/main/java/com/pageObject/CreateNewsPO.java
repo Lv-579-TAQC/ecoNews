@@ -24,6 +24,7 @@ public class CreateNewsPO extends BasePage {
     private LabelElement pictureLabel;
     private LabelElement choosePictureLabel;
     private LabelElement sourceLabel;
+    private LabelElement sourceWarningLabel;
     private LabelElement contentLabel;
     private LabelElement dateLabel;
     private LabelElement authorLabel;
@@ -134,6 +135,14 @@ public class CreateNewsPO extends BasePage {
             sourceLabel = new LabelElement(this.driver, CreateNewsPageLocators.SOURCE_LABEL);
         }
         return sourceLabel;
+    }
+
+    public LabelElement getSourceWarningLabel() {
+
+        if (sourceWarningLabel == null) {
+            sourceWarningLabel = new LabelElement(this.driver, CreateNewsPageLocators.SOURCE_FIELD_WARNING_LABEL);
+        }
+        return sourceWarningLabel;
     }
 
     public LabelElement getContentLabel() {

@@ -1,4 +1,5 @@
 import com.elements.LabelElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -28,6 +29,7 @@ public class CreateNewsSourseFieldTest {
 
         webDriver = new ChromeDriver();
         webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
+        webDriver.manage().window().maximize();
         LogInPO logInPO = new LogInPO(webDriver)
                 .clickSignInMenuButton()
                 .setEmail(email)
@@ -54,7 +56,8 @@ public class CreateNewsSourseFieldTest {
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setSource(mainText)
-                .getSourceLabel();
+                .getSourceWarningLabel();
+
         Assert.assertEquals(lb.getColorHex(), ExpectedColor);
 
     }
