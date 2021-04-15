@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
-public class CreateNewsTest {
+public class CreateNewsChangeLanguageTest {
     private static WebDriver webDriver;
     final String EMAIL = "bilobram.v@ukr.net";
     final String PASSWORD = "8428665Bilobramlfml.";
@@ -92,6 +92,7 @@ public class CreateNewsTest {
         softAssertCreateNews.assertEquals(createNewsPage.getTags().getInitiativesTagButton().getText(), getTranslation("INITIATIVES_TAG", language));
         softAssertCreateNews.assertEquals(createNewsPage.getTags().getEducationsTagButton().getText(), getTranslation("EDUCATION_TAG", language));
         softAssertCreateNews.assertEquals(createNewsPage.getCancelButton().getText(), getTranslation("CANCEL", language));
+        softAssertCreateNews.assertEquals(createNewsPage.getSubmitButton().getText(), getTranslation("SUBMIT", language));
 
         softAssertCreateNews.assertAll();
     }
@@ -99,27 +100,28 @@ public class CreateNewsTest {
     @Test(dataProvider = "languages")
     public void verifyDateAndAuthorUaRUEnPositionUnderForm(String language) {
         createNewsPage.setLanguage(language);
+        int theLowestLabelOnThePage = createNewsPage.getContentLabel().getLocation().getY();
 
-        Assert.assertTrue(createNewsPage.getDateLabel().getLocation().getY() > createNewsPage.getContentLabel().getLocation().getY());
-        Assert.assertTrue(createNewsPage.getAuthorLabel().getLocation().getY() > createNewsPage.getContentLabel().getLocation().getY());
+        Assert.assertTrue(createNewsPage.getDateLabel().getLocation().getY() > theLowestLabelOnThePage);
+        Assert.assertTrue(createNewsPage.getAuthorLabel().getLocation().getY() > theLowestLabelOnThePage);
     }
 
-//    @Test(dataProvider = "languages")
-//    public void verifyCreateNewsTabulation(String language) {
-//        createNewsPage.setLanguage(language);
-//
-//        SoftAssert softAssertCreateNews = new SoftAssert();
-//
-//        int expectedX = createNewsPage.getTitlePageLabel().getLocation().getX();
-//
-//        softAssertCreateNews.assertEquals(createNewsPage.getTitlePageLabel().getLocation().getX(), createNewsPage.getAdditionalLabel().getLocation().getX());
-//        softAssertCreateNews.assertEquals(createNewsPage.getAdditionalLabel().getLocation().getX(), createNewsPage.getTitleNewsLabel().getLocation().getX());
-//        softAssertCreateNews.assertEquals(createNewsPage.getTitleNewsLabel().getLocation().getX(), createNewsPage.getSourceLabel().getLocation().getX());
-//        softAssertCreateNews.assertEquals(createNewsPage.getSourceLabel().getLocation().getX(), createNewsPage.getContentLabel().getLocation().getX());
-//        softAssertCreateNews.assertEquals(createNewsPage.getDateLabel().getLocation().getX(), createNewsPage.getContentLabel().getLocation().getX());
-//
-//        softAssertCreateNews.assertAll();
-//    }
+    @Test(dataProvider = "languages")
+    public void verifyCreateNewsPageTabulation(String language) {
+        createNewsPage.setLanguage(language);
+
+        SoftAssert softAssertCreateNews = new SoftAssert();
+
+        int expectedX = createNewsPage.getTitlePageLabel().getLocation().getX();
+
+        softAssertCreateNews.assertEquals(expectedX, createNewsPage.getAdditionalLabel().getLocation().getX());
+        softAssertCreateNews.assertEquals(expectedX, createNewsPage.getTitleNewsLabel().getLocation().getX());
+        softAssertCreateNews.assertEquals(expectedX, createNewsPage.getSourceLabel().getLocation().getX());
+        softAssertCreateNews.assertEquals(expectedX, createNewsPage.getContentLabel().getLocation().getX());
+        softAssertCreateNews.assertEquals(expectedX, createNewsPage.getContentLabel().getLocation().getX());
+
+        softAssertCreateNews.assertAll();
+    }
 
 }
 

@@ -187,6 +187,14 @@ public class CreateNewsPO extends BasePage {
         return cancelButton;
 
     }
+    public ButtonElement getSubmitButton() {
+        clear();
+        if (submitButton == null) {
+            submitButton = new ButtonElement(this.driver, CreateNewsPageLocators.SUBMIT_BUTTON);
+        }
+        return submitButton;
+
+    }
 
     public CreateNewsPO setSource(String source) {
         if (sourceField == null) {
