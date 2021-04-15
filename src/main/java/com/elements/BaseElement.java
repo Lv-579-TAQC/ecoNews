@@ -28,4 +28,7 @@ public class BaseElement {
     public boolean isDisplayed() {
         return this.webElement.isDisplayed();
     }
+    public boolean isSelected() {
+        return this.webElement.isSelected();
+    }
 }

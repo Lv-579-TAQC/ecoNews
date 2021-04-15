@@ -20,6 +20,7 @@ public class TagComponent extends BasePage {
     private ButtonElement eventsTag;
     private ButtonElement initiativesTag;
     private ButtonElement educationTag;
+    private WebElement buttonIsActive;
 
 
     private WaitsSwitcher waitsSwitcher;
@@ -121,6 +122,8 @@ public class TagComponent extends BasePage {
             educationTag = new ButtonElement(this.driver, TagComponentLocators.EDUCATION_TAGBUTTON);
         }
         return educationTag;
-
     }
+
+
+
 }

@@ -4,8 +4,10 @@ import com.elements.ButtonElement;
 import com.elements.FieldElement;
 import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
+import com.locators.TagComponentLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class CreateNewsPO extends BasePage {
 
@@ -35,6 +37,7 @@ public class CreateNewsPO extends BasePage {
     private ButtonElement publishButton;
     private ButtonElement browseButton;
     private ButtonElement submitButton;
+
 
     private WaitsSwitcher waitsSwitcher;
     private static final int SECONDS_FOR_WAITING_TAGS = 50;
@@ -292,5 +295,24 @@ public class CreateNewsPO extends BasePage {
         publishButton.click();
 
         return this;
+    }
+    public boolean isEventsTagIsActive(){
+        return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+    }
+    public boolean isNewsTagIsActive(){
+        return driver.findElement(TagComponentLocators.NEWS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+    }
+    public boolean isEducationTagIsActive(){
+        return driver.findElement(TagComponentLocators.EDUCATION_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+    }
+    public boolean isInitiativesTagIsActive(){
+        return driver.findElement(TagComponentLocators.INITIATIVES_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+
+    }
+    public boolean isAdsTagIsActive(){
+        return driver.findElement(TagComponentLocators.ADS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+    }
+    public boolean isSignUnderTagsMakingWarning(){
+        return driver.findElement(TagComponentLocators.SIGN_UNDER_TAGS.getPath()).getAttribute("class").contains("warning");
     }
 }
