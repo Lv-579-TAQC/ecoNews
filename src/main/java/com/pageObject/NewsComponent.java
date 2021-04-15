@@ -27,6 +27,7 @@ public class NewsComponent extends BasePage{
     private WebElement newsItem;
     private By path;
 
+
     private LabelElement newsTag;
     private LabelElement newsTitle;
     private LabelElement newsContent;

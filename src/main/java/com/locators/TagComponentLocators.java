@@ -8,7 +8,8 @@ public enum TagComponentLocators implements BaseLocator{
     ADS_TAGBUTTON(By.xpath("//button[contains(@class, 'ng')][2]")),
     EVENTS_TAGBUTTON(By.xpath("//button[contains(@class, 'ng')][3]")),
     INITIATIVES_TAGBUTTON(By.xpath("//button[contains(@class, 'ng')][4]")),
-    EDUCATION_TAGBUTTON(By.xpath("//button[contains(@class, 'ng')][5]"));
+    EDUCATION_TAGBUTTON(By.xpath("//button[contains(@class, 'ng')][5]")),
+    SIGN_UNDER_TAGS(By.xpath("//*[contains(@class, 'tags')]//p"));
 
     private By path;
     TagComponentLocators (By path){
