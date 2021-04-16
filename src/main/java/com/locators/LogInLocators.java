@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public enum LogInLocators implements BaseLocator {
 
-    SIGN_IN_MENU_BUTTON(By.xpath("//a[@role='sign in']")),
+    SIGN_IN_MENU_BUTTON(By.xpath("//a[@role='link']")),
     EMAIL_FIELD(By.id("email")),
     PASSWORD_FIELD(By.id("password")),
     SIGN_IN_BUTTON(By.xpath("//button[contains(@class, 'primary-global-button') and @type='submit']"));
