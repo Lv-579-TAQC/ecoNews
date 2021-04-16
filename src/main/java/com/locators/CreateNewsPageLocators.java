@@ -22,9 +22,10 @@ public enum CreateNewsPageLocators implements BaseLocator{
     PREVIEW_BUTTON(By.xpath("//button[text()=' Preview ']")),
     PUBLISH_BUTTON(By.xpath("//button[@type='submit']")),
     LANGUAGE_DROPDOWN(By.xpath("//ul[@class='header_lang-switcher-wrp header_navigation-menu-right-list']")),
-    EN_BUTTON(By.xpath("//li[text()=' En ']")),
-    UA_BUTTON(By.xpath("//li[text()=' Ua ']")),
-    RU_BUTTON(By.xpath("//li[text()=' Ru ']")),
+    EN_BUTTON(By.xpath("//span[text()='En']")),
+    UA_BUTTON(By.xpath("//span[text()='Ua']")),
+    RU_BUTTON(By.xpath("//span[text()='Ru']")),
+
     DATE_LABEL(By.xpath("//div[@class='date']//descendant::span[1]")),
     AUTHOR_LABEL(By.xpath("//div[@class='date']//descendant::span[3]")),
 
