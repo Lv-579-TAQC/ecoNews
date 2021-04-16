@@ -19,7 +19,7 @@ public enum CreateNewsPageLocators implements BaseLocator{
     CONTENT_LABEL(By.xpath("//div[@class='textarea-wrapper']/child::h3")),
     CONTENT_FIELD(By.xpath("//textarea[@name='main-area']")),
     CANCEL_BUTTON(By.xpath("//button[@class='cancel']")),
-    PREVIEW_BUTTON(By.xpath("//button[text()=' Preview ']")),
+    PREVIEW_BUTTON(By.xpath("//div[@class='submit-buttons']//descendant::button[2]")),
     PUBLISH_BUTTON(By.xpath("//button[@type='submit']")),
     LANGUAGE_DROPDOWN(By.xpath("//ul[@class='header_lang-switcher-wrp header_navigation-menu-right-list']")),
     EN_BUTTON(By.xpath("//span[text()='En']")),
