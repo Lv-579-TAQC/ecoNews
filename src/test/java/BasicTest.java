@@ -5,8 +5,8 @@ import org.testng.annotations.*;
 
 public class BasicTest {
 
-    final String email = "amelyanovich11@gmail.com";
-    final String password = "Qwerty123_";
+    final String email = "howiv47374@nenekbet.com";
+    final String password = "Test-User123";
     protected static WebDriver webDriver;
 
     @BeforeClass
@@ -30,8 +30,5 @@ public class BasicTest {
                 .clickSignInButton();
     }
 
-    @AfterClass
-    public void tearDownClass(){
-        webDriver.quit();
-    }
+
 }

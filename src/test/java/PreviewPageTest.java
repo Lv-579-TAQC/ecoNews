@@ -114,7 +114,7 @@ public class PreviewPageTest extends BasicTest{
                 .setContent(content)
                 .clickTagNews()
                 .clickPreviewButton()
-                .clickPublishButton();
+                .clickPublishButtonFromPreviewPage();
 
         NewsComponent firstNews = ecoNewsPO.getNewsComponentContainer(false)
                 .chooseNewsByNumber(0);

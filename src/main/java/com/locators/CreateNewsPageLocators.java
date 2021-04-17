@@ -35,9 +35,6 @@ public enum CreateNewsPageLocators implements BaseLocator{
     CONTENTFIELD_MASSEGA_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[2]/p")),
     SUBMIT_BUTTON(By.xpath("//button[text() = 'Submit']"));
 
-
-
-
     private By path;
 
     CreateNewsPageLocators(By path) {
@@ -48,5 +45,3 @@ public enum CreateNewsPageLocators implements BaseLocator{
         return path;
     }
 }
-
-

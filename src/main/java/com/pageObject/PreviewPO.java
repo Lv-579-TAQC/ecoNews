@@ -62,7 +62,7 @@ public class PreviewPO extends BasePage{
         return true;
     }
 
-    public EcoNewsPO clickPublishButton(){
+    public EcoNewsPO clickPublishButtonFromPreviewPage(){
         if(publishNewsButton == null){
             publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
         }

@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class EcoNewsPO extends BasePage{
     private ButtonElement createNews;
+    private ButtonElement firstNews;
     private NewsComponentContainer newsComponentContainer;
 
     public EcoNewsPO(WebDriver driver) {
@@ -23,6 +24,20 @@ public class EcoNewsPO extends BasePage{
         }
         createNews.click();
         return new CreateNewsPO(driver);
+    }
+
+    public SomeNewsPagePO clickOnFirstNewsOnPage(){
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if(firstNews == null) {
+            firstNews = new ButtonElement(this.driver, EcoNewsPageLocators.FIRST_NEWS_ON_ECONEWS_PAGE);
+        }
+        firstNews.click();
+        return new SomeNewsPagePO(driver);
     }
 
     public NewsComponentContainer getNewsComponentContainer(boolean isVertical){
