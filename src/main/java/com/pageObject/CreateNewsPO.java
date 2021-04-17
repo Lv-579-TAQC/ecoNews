@@ -293,14 +293,14 @@ public class CreateNewsPO extends BasePage {
 
         return new CreateNewsPO(driver);
     }
-    public CreateNewsPO clickPublishButton() {
+    public EcoNewsPO clickPublishButton() {
         waitsSwitcher.setImplicitWaits(100);
         if ( publishButton == null) {
             publishButton = new ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
         }
         publishButton.click();
 
-        return this;
+        return new EcoNewsPO(driver);
     }
     public boolean isEventsTagIsActive(){
         return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
