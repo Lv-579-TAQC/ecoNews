@@ -38,7 +38,7 @@ public class EcoNewsEditNewsTest extends BasicTest{
         String actualTextContentLabel = createNewsForEdit
                 .getContentOnNewsPage()
                 .getText();
-        String expectedTextContentLabel = "Content field after edit";
+        String expectedTextContentLabel = " Content field after edit ";
         Assert.assertEquals(actualTextContentLabel, expectedTextContentLabel);
 
     }
