@@ -1,13 +1,7 @@
 import com.pageObject.CreateNewsPO;
 import com.pageObject.EcoNewsPO;
-import com.pageObject.LogInPO;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.io.FileInputStream;
@@ -15,10 +9,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
-public class CreateNewsChangeLanguageTest {
-    private static WebDriver webDriver;
-    final String EMAIL = "bilobram.v@ukr.net";
-    final String PASSWORD = "8428665Bilobramlfml.";
+public class CreateNewsChangeLanguageTest extends BasicTest{
+
     CreateNewsPO createNewsPage;
 
     public String getTranslation(String key, String language) throws IOException {
@@ -29,35 +21,11 @@ public class CreateNewsChangeLanguageTest {
         return prop.getProperty(key);
     }
 
-    @BeforeClass
-    public void setUpClass() {
-
-        String WebDriverPath = System.getenv("WebDrivers");
-        String os = System.getProperty("os.name");
-        if (os.startsWith("Windows")) {
-            WebDriverPath += "\\chromedriver.exe";
-        } else {
-            WebDriverPath += "/chromedriver";
-        }
-
-        System.setProperty("webdriver.chrome.driver", WebDriverPath);
-
-        webDriver = new ChromeDriver();
-        webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
-        LogInPO logInPO = new LogInPO(webDriver)
-                .clickSignInMenuButton()
-                .setEmail(EMAIL)
-                .setPassword(PASSWORD)
-                .clickSignInButton();
-
+    @BeforeMethod
+    public void beforeMethod(){
         createNewsPage = new EcoNewsPO(webDriver)
                 .clickEcoNews()
                 .clickCreateNewsBtn();
-    }
-
-    @AfterClass
-    public void tearDownClass() {
-        webDriver.quit();
     }
 
     @DataProvider(name = "languages")
@@ -92,7 +60,8 @@ public class CreateNewsChangeLanguageTest {
         softAssertCreateNews.assertEquals(createNewsPage.getTags().getInitiativesTagButton().getText(), getTranslation("INITIATIVES_TAG", language));
         softAssertCreateNews.assertEquals(createNewsPage.getTags().getEducationsTagButton().getText(), getTranslation("EDUCATION_TAG", language));
         softAssertCreateNews.assertEquals(createNewsPage.getCancelButton().getText(), getTranslation("CANCEL", language));
-        softAssertCreateNews.assertEquals(createNewsPage.getSubmitButton().getText(), getTranslation("SUBMIT", language));
+        softAssertCreateNews.assertEquals(createNewsPage.getPublishButton().getText(), getTranslation("PUBLISH", language));
+        softAssertCreateNews.assertEquals(createNewsPage.getPreviewButton().getText(), getTranslation("PREVIEW", language));
 
         softAssertCreateNews.assertAll();
     }

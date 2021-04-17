@@ -190,13 +190,19 @@ public class CreateNewsPO extends BasePage {
         return cancelButton;
 
     }
-    public ButtonElement getSubmitButton() {
+    public ButtonElement getPublishButton() {
         clear();
-        if (submitButton == null) {
-            submitButton = new ButtonElement(this.driver, CreateNewsPageLocators.SUBMIT_BUTTON);
+        if (publishButton == null) {
+            publishButton = new ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
         }
-        return submitButton;
-
+        return publishButton;
+    }
+    public ButtonElement getPreviewButton() {
+        clear();
+        if (previewButton == null) {
+            previewButton = new ButtonElement(this.driver, CreateNewsPageLocators.PREVIEW_BUTTON);
+        }
+        return previewButton;
     }
 
     public CreateNewsPO setSource(String source) {
@@ -287,14 +293,14 @@ public class CreateNewsPO extends BasePage {
 
         return new CreateNewsPO(driver);
     }
-    public CreateNewsPO clickPublishButton() {
+    public EcoNewsPO clickPublishButton() {
         waitsSwitcher.setImplicitWaits(100);
         if ( publishButton == null) {
             publishButton = new ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
         }
         publishButton.click();
 
-        return this;
+        return new EcoNewsPO(driver);
     }
     public boolean isEventsTagIsActive(){
         return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");

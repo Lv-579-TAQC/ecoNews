@@ -19,12 +19,13 @@ public enum CreateNewsPageLocators implements BaseLocator{
     CONTENT_LABEL(By.xpath("//div[@class='textarea-wrapper']/child::h3")),
     CONTENT_FIELD(By.xpath("//textarea[@name='main-area']")),
     CANCEL_BUTTON(By.xpath("//button[@class='cancel']")),
-    PREVIEW_BUTTON(By.xpath("//button[text()=' Preview ']")),
+    PREVIEW_BUTTON(By.xpath("//div[@class='submit-buttons']//descendant::button[2]")),
     PUBLISH_BUTTON(By.xpath("//button[@type='submit']")),
     LANGUAGE_DROPDOWN(By.xpath("//ul[@class='header_lang-switcher-wrp header_navigation-menu-right-list']")),
-    EN_BUTTON(By.xpath("//li[text()=' En ']")),
-    UA_BUTTON(By.xpath("//li[text()=' Ua ']")),
-    RU_BUTTON(By.xpath("//li[text()=' Ru ']")),
+    EN_BUTTON(By.xpath("//span[text()='En']")),
+    UA_BUTTON(By.xpath("//span[text()='Ua']")),
+    RU_BUTTON(By.xpath("//span[text()='Ru']")),
+
     DATE_LABEL(By.xpath("//div[@class='date']//descendant::span[1]")),
     AUTHOR_LABEL(By.xpath("//div[@class='date']//descendant::span[3]")),
 
@@ -33,9 +34,6 @@ public enum CreateNewsPageLocators implements BaseLocator{
 
     CONTENTFIELD_MASSEGA_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[2]/p")),
     SUBMIT_BUTTON(By.xpath("//button[text() = 'Submit']"));
-
-
-
 
     private By path;
 
@@ -47,5 +45,3 @@ public enum CreateNewsPageLocators implements BaseLocator{
         return path;
     }
 }
-
-
