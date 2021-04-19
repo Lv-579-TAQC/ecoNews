@@ -1,7 +1,6 @@
 package com.pageObject;
 import com.elements.ButtonElement;
 import com.elements.LabelElement;
-import com.locators.PreviewPageLocators;
 import com.locators.SomeNewsPageLocators;
 import org.openqa.selenium.WebDriver;
 
@@ -12,18 +11,15 @@ public class SomeNewsPagePO extends BasePage{
     private LabelElement contentLabel;
 
     public EditNewsPagePO clickEditNewsButton() {
-
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         if (editNewsButton == null) {
             editNewsButton = new ButtonElement(this.driver, SomeNewsPageLocators.EDIT_NEWS_BUTTON);
         }
         editNewsButton.click();
-
         return new EditNewsPagePO(driver);
     }
 
