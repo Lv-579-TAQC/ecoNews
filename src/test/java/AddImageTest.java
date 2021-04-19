@@ -9,38 +9,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 
-public class AddImageTest {
-    private static WebDriver webDriver;
-    private final String EMAIL = "amelyanovich11@gmail.com";
-    private final String PASSWORD = "Qwerty123_";
-
-    @BeforeClass
-    public void setUpClass() {
-        String WebDriverPath = System.getenv("WebDrivers");
-        String os = System.getProperty("os.name");
-        if (os.startsWith("Windows")) {
-            WebDriverPath += "\\chromedriver.exe";
-        } else {
-            WebDriverPath += "/chromedriver";
-        }
-
-        System.setProperty("webdriver.chrome.driver", WebDriverPath);
-
-        webDriver = new ChromeDriver();
-        webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
-        webDriver.manage().window().maximize();
-        LogInPO logInPO = new LogInPO(webDriver)
-                .clickSignInMenuButton()
-                .setEmail(EMAIL)
-                .setPassword(PASSWORD)
-                .clickSignInButton();
-    }
-
-
-    @AfterClass
-    public void tearDownClass(){
-        webDriver.quit();
-    }
+public class AddImageTest extends BasicTest{
 
     @Test (dataProvider  = "validValuesToCreateNews")
     public void verifyCreatingNewsWithImage(String title, String content, String tags) {
