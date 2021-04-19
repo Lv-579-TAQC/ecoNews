@@ -21,13 +21,6 @@ public class CreateNewsChangeLanguageTest extends BasicTest{
         return dtf.format(localDate);
     }
 
-    public String getCurrentDateRU(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy г.");
-        //ZoneId zone = ZoneId.of( "Eurasia/Moscow" );
-        LocalDate localDate = LocalDate.now();
-        return dtf.format(localDate);
-    }
-
     public String getCurrentDateUA(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy р.");
         LocalDate localDate = LocalDate.now();
@@ -87,13 +80,12 @@ public class CreateNewsChangeLanguageTest extends BasicTest{
         softAssertCreateNews.assertAll();
     }
 
-    @Test(dataProvider = "languages")
-    public void verifyDateAndAuthorUaRUEnPositionUnderForm(String language) {
-        createNewsPage.setLanguage(language);
-        int theLowestLabelOnThePage = createNewsPage.getContentLabel().getLocation().getY();
+    @Test
+    public void verifyDateAndAuthorLabelPositionUnderForm() {
+        int theLowestLabelOnTheForm = createNewsPage.getContentLabel().getLocation().getY();
 
-        Assert.assertTrue(createNewsPage.getDateLabel().getLocation().getY() > theLowestLabelOnThePage);
-        Assert.assertTrue(createNewsPage.getAuthorLabel().getLocation().getY() > theLowestLabelOnThePage);
+        Assert.assertTrue(createNewsPage.getDateLabel().getLocation().getY() > theLowestLabelOnTheForm);
+        Assert.assertTrue(createNewsPage.getAuthorLabel().getLocation().getY() > theLowestLabelOnTheForm);
     }
 
     @Test
@@ -101,12 +93,6 @@ public class CreateNewsChangeLanguageTest extends BasicTest{
         createNewsPage.setLanguage("en");
         Assert.assertEquals(createNewsPage.getCurrentDateLabel().getText(), getCurrentDateEN());
     }
-
-//    @Test
-//    public void verifyCurrentDateRU() {
-//        createNewsPage.setLanguage("ru");
-//        Assert.assertEquals(createNewsPage.getCurrentDateLabel().getText(), getCurrentDateRU());
-//    }
 
     @Test
     public void verifyCurrentDateUA() {
