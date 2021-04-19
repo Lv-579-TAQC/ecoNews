@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 
 public enum SomeNewsPageLocators implements BaseLocator{
     EDIT_NEWS_BUTTON(By.xpath("//*[@id='main-content']/div/div[1]/a/div")),//TODO
-    TITLE_LABEL_ON_DONE_PAGE(By.className("news-title word-wrap")),
-    CONTENT_LABEL_ON_DONE_PAGE(By.className("news-text-content word-wrap"));
+    TITLE_LABEL_ON_DONE_PAGE(By.xpath("//div[@class='news-title word-wrap']")),
+    CONTENT_LABEL_ON_DONE_PAGE(By.xpath("//div[@class='news-text-content word-wrap']"));
 
     private By path;
     SomeNewsPageLocators (By path){
