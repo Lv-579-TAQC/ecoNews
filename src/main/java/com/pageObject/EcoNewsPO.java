@@ -26,7 +26,7 @@ public class EcoNewsPO extends BasePage{
         return new CreateNewsPO(driver);
     }
 
-    public SomeNewsPagePO clickOnFirstNewsOnPage(){
+    public SomeNewsPagePO clickOnTheLatestNewsCreatedByTheTestUserOnTheEcoNewsPage(){
 
         try {
             Thread.sleep(10000);
@@ -34,7 +34,7 @@ public class EcoNewsPO extends BasePage{
             e.printStackTrace();
         }
         if(firstNews == null) {
-            firstNews = new ButtonElement(this.driver, EcoNewsPageLocators.FIRST_NEWS_ON_ECONEWS_PAGE);
+            firstNews = new ButtonElement(this.driver, EcoNewsPageLocators.LAST_NEWS_ON_ECONEWS_PAGE_BY_TESTUSER);
         }
         firstNews.click();
         return new SomeNewsPagePO(driver);
