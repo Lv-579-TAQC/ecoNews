@@ -30,5 +30,9 @@ public class BasicTest {
                 .clickSignInButton();
     }
 
+    @AfterClass
+    public void tearDownClass(){
+        webDriver.quit();
+    }
 
 }
