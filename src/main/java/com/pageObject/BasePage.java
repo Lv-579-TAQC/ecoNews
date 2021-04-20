@@ -3,7 +3,6 @@ package com.pageObject;
 import com.elements.ButtonElement;
 import com.locators.EcoNewsPageLocators;
 import org.openqa.selenium.WebDriver;
-import com.locators.EcoNewsPageLocators;
 
 public class BasePage {
     protected WebDriver driver;
