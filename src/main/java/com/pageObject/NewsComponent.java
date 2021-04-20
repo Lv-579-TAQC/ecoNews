@@ -47,9 +47,9 @@ public class NewsComponent extends BasePage{
 
     public WebElement getNewsTag(){
         if(isVertical){
-            path = NewsComponentLocators.NEWS_TITLE_LIST.getPath();
+            path = NewsComponentLocators.NEWS_TAG_LIST.getPath();
         } else {
-            path = NewsComponentLocators.NEWS_TITLE.getPath();
+            path = NewsComponentLocators.NEWS_TAG.getPath();
         }
         return newsItem.findElement(path);
     }
@@ -64,7 +64,6 @@ public class NewsComponent extends BasePage{
     }
 
     public WebElement getNewsContent(){
-//        waitsSwitcher.setImplicitWaits(15);
         if(isVertical){
             path = NewsComponentLocators.NEWS_CONTENT_LIST.getPath();
         } else {
@@ -75,7 +74,6 @@ public class NewsComponent extends BasePage{
     }
 
     public String getNewsImage(){
-//        waitsSwitcher.setImplicitWaits(15);
         if (isVertical){
             path = NewsComponentLocators.NEWS_IMAGE_LIST.getPath();
         }

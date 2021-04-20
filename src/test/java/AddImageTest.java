@@ -12,8 +12,8 @@ import java.io.File;
 public class AddImageTest extends BasicTest{
 
     @Test (dataProvider  = "validValuesToCreateNews")
-    public void verifyCreatingNewsWithImage(String title, String content, String tags) {
-        final String urlForDefault ="https://ita-social-projects.github.io/GreenCityClient/assets/img/icon/econews/default-image-list-view.png";
+    public void verifyCreatingNewsWithImage(String title, String content, String urlForDefault) {
+//        final String urlForDefault ="https://ita-social-projects.github.io/GreenCityClient/assets/img/icon/econews/default-image-list-view.png";
         File file = new File("src/main/resources/Images/29072.png");
         final String imagePlaceOnYourComputer = file.getAbsolutePath();
 
@@ -36,8 +36,8 @@ public class AddImageTest extends BasicTest{
         String titleOfFisrtNews = firstNews.getNewsTitle().getText();
 
         SoftAssert asert = new SoftAssert();
-        asert.assertEquals(srcOfFirstNewsImage, urlForDefault, "Image don't match");
-        asert.assertEquals(tagsOfFirstNews, tags, "Tags are not same");
+        asert.assertNotEquals(srcOfFirstNewsImage, urlForDefault, "Image doesn't match");
+        asert.assertEquals(tagsOfFirstNews, "ADS", "Tags are not same");
         asert.assertEquals(contentOfFistNews, content, "Content don't match");
         asert.assertEquals(titleOfFisrtNews, title, "Title is not same");
         asert.assertAll();
@@ -47,7 +47,7 @@ public class AddImageTest extends BasicTest{
         return new Object[][]{
                 {"Wow, this is example of new news",
                         "This content for test example new news",
-                        "Ads"}
+                "https://ita-social-projects.github.io/GreenCityClient/assets/img/icon/econews/default-image-list-view.png"}
         };
     }
 }

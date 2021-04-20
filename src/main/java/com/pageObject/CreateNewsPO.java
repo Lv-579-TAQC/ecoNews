@@ -300,7 +300,7 @@ public class CreateNewsPO extends BasePage {
     public CreateNewsPO browseImage(String img){
         waitsSwitcher.setImplicitWaits(100);
         if (browseButton == null) {
-            browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON);
+            browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON_UPLOAD);
         }
         browseButton.sendKeys(img);
         return this;

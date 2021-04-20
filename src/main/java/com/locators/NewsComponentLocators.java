@@ -6,7 +6,7 @@ public enum NewsComponentLocators implements BaseLocator{
     NEWS_TAG(By.cssSelector(".filter-tag div")),
     NEWS_TITLE(By.cssSelector("div.title-list.word-wrap")),
     NEWS_CONTENT(By.cssSelector("div.list-text.word-wrap")),
-    NEWS_IMAGE(By.cssSelector(".list-image")),
+    NEWS_IMAGE(By.xpath("//*[contains(@class, 'list-image-content')]")),
 
     NEWS_TAG_LIST(By.cssSelector(".filter-tag span")),
     NEWS_TITLE_LIST(By.cssSelector("div.eco-news_list-content-title.one-row")),
