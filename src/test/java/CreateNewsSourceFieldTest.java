@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import com.pageObject.EcoNewsPO;
 import com.pageObject.LogInPO;
 
-public class CreateNewsSourseFieldTest extends BasicTest{
+public class CreateNewsSourceFieldTest extends BasicTest{
 
     @DataProvider
     public Object[][] inCorrectDataInSourceField(){
