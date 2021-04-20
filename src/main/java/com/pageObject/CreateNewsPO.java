@@ -8,12 +8,6 @@ import com.locators.TagComponentLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-
 public class CreateNewsPO extends BasePage {
 
     private FieldElement titleField;
@@ -34,7 +28,7 @@ public class CreateNewsPO extends BasePage {
     private LabelElement dateLabel;
     private LabelElement currentdateLabel;
     private LabelElement authorLabel;
-    private LabelElement usernameLabel;
+    private LabelElement authornameLabel;
 
     private TagComponent tags;
     private ButtonElement previewButton;
@@ -69,7 +63,7 @@ public class CreateNewsPO extends BasePage {
         contentLabel = null;
         dateLabel = null;
         authorLabel = null;
-        usernameLabel= null;
+        authornameLabel= null;
 
         tags = null;
         previewButton = null;
@@ -196,12 +190,12 @@ public class CreateNewsPO extends BasePage {
         return authorLabel;
     }
 
-    public LabelElement getUserNameLabel() {
+    public LabelElement getAuthorNameLabel() {
         clear();
-        if (usernameLabel == null) {
-            usernameLabel = new LabelElement(this.driver, CreateNewsPageLocators.USER_NAME_LABEL);
+        if (authornameLabel == null) {
+            authornameLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_NAME_LABEL);
         }
-        return usernameLabel;
+        return authornameLabel;
     }
 
     public ButtonElement getCancelButton() {
