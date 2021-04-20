@@ -12,36 +12,36 @@ import org.testng.annotations.Test;
 
 
 public class PreviewPageTest extends BasicTest{
-    private static WebDriver webDriver;
-    private static final String EMAIL = "lizochka1211@gmail.com";
-    private static final String PASSWORD = "eAZAaq4X7KQQ6f6~";
-
-    @BeforeClass
-    public void setUpClass() {
-        String WebDriverPath = System.getenv("WebDrivers");
-        String os = System.getProperty("os.name");
-        if (os.startsWith("Windows")) {
-            WebDriverPath += "\\chromedriver.exe";
-        } else {
-            WebDriverPath += "/chromedriver";
-        }
-
-        System.setProperty("webdriver.chrome.driver", WebDriverPath);
-
-        webDriver = new ChromeDriver();
-        webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
-        webDriver.manage().window().maximize();
-        LogInPO logInPO = new LogInPO(webDriver)
-                .clickSignInMenuButton()
-                .setEmail(EMAIL)
-                .setPassword(PASSWORD)
-                .clickSignInButton();
-    }
-
-    @AfterClass
-    public void tearDownClass(){
-        webDriver.quit();
-    }
+//    private static WebDriver webDriver;
+//    private static final String EMAIL = "lizochka1211@gmail.com";
+//    private static final String PASSWORD = "eAZAaq4X7KQQ6f6~";
+//
+//    @BeforeClass
+//    public void setUpClass() {
+//        String WebDriverPath = System.getenv("WebDrivers");
+//        String os = System.getProperty("os.name");
+//        if (os.startsWith("Windows")) {
+//            WebDriverPath += "\\chromedriver.exe";
+//        } else {
+//            WebDriverPath += "/chromedriver";
+//        }
+//
+//        System.setProperty("webdriver.chrome.driver", WebDriverPath);
+//
+//        webDriver = new ChromeDriver();
+//        webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
+//        webDriver.manage().window().maximize();
+//        LogInPO logInPO = new LogInPO(webDriver)
+//                .clickSignInMenuButton()
+//                .setEmail(EMAIL)
+//                .setPassword(PASSWORD)
+//                .clickSignInButton();
+//    }
+//
+//    @AfterClass
+//    public void tearDownClass(){
+//        webDriver.quit();
+//    }
 
     @DataProvider()
     public Object[][] correctDataForNews(){
@@ -69,6 +69,9 @@ public class PreviewPageTest extends BasicTest{
                 .setContent(content)
                 .clickPreviewButton();
 
+        String expectedAuthor = "by " + previewPO.getHeaderComponent().getUserName().getText();
+
+        Assert.assertEquals(previewPO.getAuthorLabel().getText(), expectedAuthor, "Usernames must be the same");
         Assert.assertEquals(previewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same.");
         Assert.assertEquals(previewPO.getContentLabel().getText().trim(), content.trim(), "Input and viewed content should be the same.");
         Assert.assertTrue(previewPO.isPublishButtonExists(), "Publish button should exist if correct data are entered.");

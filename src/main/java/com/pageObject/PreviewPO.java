@@ -14,6 +14,9 @@ public class PreviewPO extends BasePage{
     private LabelElement newsContentLabel;
     private LabelElement titleBackLabel;
     private WaitsSwitcher waitsSwitcher;
+    private LabelElement dateLabel;
+    private LabelElement authorLabel;
+    private HeaderComponent headerComponent;
 
 
     public PreviewPO(WebDriver driver) {
@@ -49,6 +52,25 @@ public class PreviewPO extends BasePage{
             newsContentLabel = new LabelElement(this.driver, PreviewPageLocators.TEXT_CONTENT);
         }
         return newsContentLabel;
+    }
+
+    public LabelElement getDateLabel(){
+        if(dateLabel == null){
+            dateLabel = new LabelElement(this.driver, PreviewPageLocators.DATE_LABEL);
+        }
+        return dateLabel;
+    }
+
+    public LabelElement getAuthorLabel(){
+        if(authorLabel == null){
+            authorLabel = new LabelElement(this.driver, PreviewPageLocators.AUTHOR_LABEL);
+        }
+        return authorLabel;
+    }
+
+    public HeaderComponent getHeaderComponent(){
+        headerComponent = new HeaderComponent(driver);
+        return headerComponent;
     }
 
     public boolean isPublishButtonExists(){

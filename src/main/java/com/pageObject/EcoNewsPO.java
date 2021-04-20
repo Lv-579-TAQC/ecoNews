@@ -14,6 +14,7 @@ public class EcoNewsPO extends BasePage{
     private ButtonElement createNews;
     private ButtonElement firstNews;
     private NewsComponentContainer newsComponentContainer;
+    private HeaderComponent headerComponent;
 
     public EcoNewsPO(WebDriver driver) {
         super(driver);
@@ -43,5 +44,10 @@ public class EcoNewsPO extends BasePage{
     public NewsComponentContainer getNewsComponentContainer(boolean isVertical){
         newsComponentContainer = new NewsComponentContainer(driver, isVertical);
         return newsComponentContainer;
+    }
+
+    public HeaderComponent getHeaderComponent(){
+        headerComponent = new HeaderComponent(driver);
+        return headerComponent;
     }
 }
