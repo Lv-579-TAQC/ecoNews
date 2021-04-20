@@ -1,9 +1,9 @@
-import com.pageObject.ChangeLanguageComponent;
 import com.pageObject.CreateNewsPO;
 import com.pageObject.EcoNewsPO;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,17 +12,26 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Properties;
 
-public class CreateNewsChangeLanguageTest extends BasicTest{
+public class CreateNewsChangeLanguageTest extends BasicTest {
 
     CreateNewsPO createNewsPage;
-    public String getCurrentDateEN(){
+    Locale rus = new Locale("ru", "RU");
+    Locale uk = new Locale("uk", "UA");
+
+    public String getCurrentDateEN() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM, yyyy", Locale.ENGLISH);
         LocalDate localDate = LocalDate.now();
         return dtf.format(localDate);
     }
 
-    public String getCurrentDateUA(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy р.");
+    public String getCurrentDateRU() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM. yyyy г.", rus);
+        LocalDate localDate = LocalDate.now();
+        return dtf.format(localDate);
+    }
+
+    public String getCurrentDateUA() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy р.", uk);
         LocalDate localDate = LocalDate.now();
         return dtf.format(localDate);
     }
@@ -36,7 +45,7 @@ public class CreateNewsChangeLanguageTest extends BasicTest{
     }
 
     @BeforeMethod
-    public void beforeMethod(){
+    public void beforeMethod() {
         createNewsPage = new EcoNewsPO(webDriver)
                 .clickEcoNews()
                 .clickCreateNewsBtn();
@@ -52,8 +61,7 @@ public class CreateNewsChangeLanguageTest extends BasicTest{
     }
 
     @Test(dataProvider = "languages")
-    public void verifyCreateNewsUaEnRuTranslation(String language) throws IOException {
-
+    public void verifyCreateNewsPageUaEnRuTranslation(String language) throws IOException {
         createNewsPage.setLanguage(language);
 
         SoftAssert softAssertCreateNews = new SoftAssert();
@@ -80,12 +88,15 @@ public class CreateNewsChangeLanguageTest extends BasicTest{
         softAssertCreateNews.assertAll();
     }
 
-    @Test
-    public void verifyDateAndAuthorLabelPositionUnderForm() {
+    @Test(dataProvider = "languages")
+    public void verifyDateAndAuthorLabelPositionUnderForm(String language) {
+        createNewsPage.setLanguage(language);
         int theLowestLabelOnTheForm = createNewsPage.getContentLabel().getLocation().getY();
 
         Assert.assertTrue(createNewsPage.getDateLabel().getLocation().getY() > theLowestLabelOnTheForm);
+        Assert.assertTrue(createNewsPage.getCurrentDateLabel().getLocation().getY() > theLowestLabelOnTheForm);
         Assert.assertTrue(createNewsPage.getAuthorLabel().getLocation().getY() > theLowestLabelOnTheForm);
+        Assert.assertTrue(createNewsPage.getAuthorNameLabel().getLocation().getY() > theLowestLabelOnTheForm);
     }
 
     @Test
@@ -97,11 +108,27 @@ public class CreateNewsChangeLanguageTest extends BasicTest{
     @Test
     public void verifyCurrentDateUA() {
         createNewsPage.setLanguage("ua");
+
         Assert.assertEquals(createNewsPage.getCurrentDateLabel().getText(), getCurrentDateUA());
     }
 
+    @Test
+    public void verifyCurrentDateRU() {
+        createNewsPage.setLanguage("ru");
+
+        Assert.assertEquals(createNewsPage.getCurrentDateLabel().getText(), getCurrentDateRU());
+    }
+
     @Test(dataProvider = "languages")
-    public void verifyCreateNewsPageTabulation(String language) {
+    public void verifyUsernameAndAuthorLabel(String language) {
+        createNewsPage.setLanguage(language);
+        String expectedAuthor = createNewsPage.getHeaderComponent().getUserName().getText();
+
+        Assert.assertEquals(createNewsPage.getAuthorNameLabel().getText(), expectedAuthor);
+    }
+
+    @Test(dataProvider = "languages")
+    public void verifyCreateNewsPageMainElementsPosition(String language) {
         createNewsPage.setLanguage(language);
 
         SoftAssert softAssertCreateNews = new SoftAssert();
