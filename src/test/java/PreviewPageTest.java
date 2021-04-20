@@ -1,47 +1,14 @@
-import com.elements.LabelElement;
 import com.pageObject.*;
-import com.tools.WaitsSwitcher;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 
 public class PreviewPageTest extends BasicTest{
-//    private static WebDriver webDriver;
-//    private static final String EMAIL = "lizochka1211@gmail.com";
-//    private static final String PASSWORD = "eAZAaq4X7KQQ6f6~";
-//
-//    @BeforeClass
-//    public void setUpClass() {
-//        String WebDriverPath = System.getenv("WebDrivers");
-//        String os = System.getProperty("os.name");
-//        if (os.startsWith("Windows")) {
-//            WebDriverPath += "\\chromedriver.exe";
-//        } else {
-//            WebDriverPath += "/chromedriver";
-//        }
-//
-//        System.setProperty("webdriver.chrome.driver", WebDriverPath);
-//
-//        webDriver = new ChromeDriver();
-//        webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
-//        webDriver.manage().window().maximize();
-//        LogInPO logInPO = new LogInPO(webDriver)
-//                .clickSignInMenuButton()
-//                .setEmail(EMAIL)
-//                .setPassword(PASSWORD)
-//                .clickSignInButton();
-//    }
-//
-//    @AfterClass
-//    public void tearDownClass(){
-//        webDriver.quit();
-//    }
 
     @DataProvider()
     public Object[][] correctDataForNews(){
@@ -70,7 +37,9 @@ public class PreviewPageTest extends BasicTest{
                 .clickPreviewButton();
 
         String expectedAuthor = "by " + previewPO.getHeaderComponent().getUserName().getText();
+        String expectedDate = getCurrentDate();
 
+        Assert.assertEquals(previewPO.getDateLabel().getText(), expectedDate, "There are should be current date");
         Assert.assertEquals(previewPO.getAuthorLabel().getText(), expectedAuthor, "Usernames must be the same");
         Assert.assertEquals(previewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same.");
         Assert.assertEquals(previewPO.getContentLabel().getText().trim(), content.trim(), "Input and viewed content should be the same.");
@@ -123,5 +92,11 @@ public class PreviewPageTest extends BasicTest{
                 .chooseNewsByNumber(0);
         Assert.assertEquals(firstNews.getNewsTitle().getText().trim(), title.trim(), "Input and published new's titles should be the same.");
         Assert.assertEquals(firstNews.getNewsContent().getText().trim(), content.trim(), "Input and published new's content should be the same.");
+    }
+
+    public String getCurrentDate(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.ENGLISH);
+        LocalDate localDate = LocalDate.now();
+        return dtf.format(localDate);
     }
 }

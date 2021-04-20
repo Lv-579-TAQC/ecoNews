@@ -123,7 +123,4 @@ public class TagComponent extends BasePage {
         }
         return educationTag;
     }
-
-
-
 }
