@@ -7,11 +7,14 @@ import com.locators.CreateNewsPageLocators;
 import com.locators.TagComponentLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class CreateNewsPO extends BasePage {
-
-
 
     private FieldElement titleField;
     private FieldElement sourceField;
@@ -29,7 +32,9 @@ public class CreateNewsPO extends BasePage {
     private LabelElement sourceWarningLabel;
     private LabelElement contentLabel;
     private LabelElement dateLabel;
+    private LabelElement currentdateLabel;
     private LabelElement authorLabel;
+    private LabelElement usernameLabel;
 
     private TagComponent tags;
     private ButtonElement previewButton;
@@ -38,6 +43,7 @@ public class CreateNewsPO extends BasePage {
     private ButtonElement browseButton;
     private ButtonElement submitButton;
 
+    private HeaderComponent headerComponent;
 
     private WaitsSwitcher waitsSwitcher;
     private static final int SECONDS_FOR_WAITING_TAGS = 50;
@@ -63,6 +69,7 @@ public class CreateNewsPO extends BasePage {
         contentLabel = null;
         dateLabel = null;
         authorLabel = null;
+        usernameLabel= null;
 
         tags = null;
         previewButton = null;
@@ -173,6 +180,13 @@ public class CreateNewsPO extends BasePage {
         }
         return dateLabel;
     }
+    public LabelElement getCurrentDateLabel() {
+        clear();
+        if (currentdateLabel == null) {
+            currentdateLabel = new LabelElement(this.driver, CreateNewsPageLocators.CURRENT_DATE_LABEL);
+        }
+        return currentdateLabel;
+    }
 
     public LabelElement getAuthorLabel() {
         clear();
@@ -180,6 +194,14 @@ public class CreateNewsPO extends BasePage {
             authorLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_LABEL);
         }
         return authorLabel;
+    }
+
+    public LabelElement getUserNameLabel() {
+        clear();
+        if (usernameLabel == null) {
+            usernameLabel = new LabelElement(this.driver, CreateNewsPageLocators.USER_NAME_LABEL);
+        }
+        return usernameLabel;
     }
 
     public ButtonElement getCancelButton() {
@@ -279,7 +301,7 @@ public class CreateNewsPO extends BasePage {
     public CreateNewsPO browseImage(String img){
         waitsSwitcher.setImplicitWaits(100);
         if (browseButton == null) {
-            browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON);
+            browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON_UPLOAD);
         }
         browseButton.sendKeys(img);
         return this;
@@ -293,15 +315,17 @@ public class CreateNewsPO extends BasePage {
 
         return new CreateNewsPO(driver);
     }
-    public EcoNewsPO clickPublishButton() {
+    public WaitingPagePO clickPublishButton() {
         waitsSwitcher.setImplicitWaits(100);
         if ( publishButton == null) {
             publishButton = new ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
         }
         publishButton.click();
 
-        return new EcoNewsPO(driver);
+        return new WaitingPagePO(driver);
     }
+
+
     public boolean isEventsTagIsActive(){
         return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
@@ -320,5 +344,12 @@ public class CreateNewsPO extends BasePage {
     }
     public boolean isSignUnderTagsMakingWarning(){
         return driver.findElement(TagComponentLocators.SIGN_UNDER_TAGS.getPath()).getAttribute("class").contains("warning");
+    }
+    public boolean isPublishButtonIsActive(){
+        return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
+    }
+    public HeaderComponent getHeaderComponent(){
+        headerComponent = new HeaderComponent(driver);
+        return headerComponent;
     }
 }

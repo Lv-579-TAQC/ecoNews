@@ -22,13 +22,18 @@ public class BasicTest {
         System.setProperty("webdriver.chrome.driver", WebDriverPath);
 
         webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
         webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
-        LogInPO logInPO = new LogInPO(webDriver)
+        new LogInPO(webDriver)
                 .clickSignInMenuButton()
                 .setEmail(email)
                 .setPassword(password)
                 .clickSignInButton();
     }
 
-
+    @AfterClass
+    public void closeUp(){
+        webDriver.close();
+        webDriver.quit();
+    }
 }

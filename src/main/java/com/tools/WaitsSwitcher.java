@@ -24,4 +24,12 @@ public class WaitsSwitcher {
         V wait = driverWait.until(condition);
         return wait;
     }
+
+    public void sleep(long millis){
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

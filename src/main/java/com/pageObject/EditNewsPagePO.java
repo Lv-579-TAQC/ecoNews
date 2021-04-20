@@ -2,11 +2,7 @@ package com.pageObject;
 
 import com.elements.ButtonElement;
 import com.elements.FieldElement;
-import com.elements.LabelElement;
-import com.locators.CreateNewsPageLocators;
 import com.locators.EditDonePageLocators;
-import com.locators.LogInLocators;
-import com.locators.SomeNewsPageLocators;
 import org.openqa.selenium.WebDriver;
 
 public class EditNewsPagePO extends BasePage{
@@ -16,6 +12,9 @@ public class EditNewsPagePO extends BasePage{
     private ButtonElement editButton;
     private FieldElement clearTitleField;
     private FieldElement clearContentField;
+    private ButtonElement previewButton;
+    private ButtonElement cancelButton;
+    private HeaderComponent headerComponent;
 
     public EditNewsPagePO(WebDriver driver) {
         super(driver);
@@ -29,11 +28,11 @@ public class EditNewsPagePO extends BasePage{
         return this;
     }
 
-    public EditNewsPagePO clearContentOnEditPage(String content) {
+    public EditNewsPagePO clearContentOnEditPage() {
         if (clearContentField == null) {
             clearContentField = new FieldElement(this.driver, EditDonePageLocators.CONTENT_FIELD);
         }
-        clearContentField.sendKeys(content);
+        clearContentField.clear();
         return this;
     }
 
@@ -45,7 +44,7 @@ public class EditNewsPagePO extends BasePage{
         return this;
     }
 
-    public EditNewsPagePO clearTitleFieldOnEditPage(String content){
+    public EditNewsPagePO clearTitleFieldOnEditPage(){
 
         try {
             Thread.sleep(3000);
@@ -55,9 +54,8 @@ public class EditNewsPagePO extends BasePage{
         if (clearTitleField == null) {
             clearTitleField = new FieldElement(this.driver, EditDonePageLocators.TITLE_FIELD);
         }
-
-        clearTitleField.sendKeys(content);
-        return this;
+        clearTitleField.clear();
+        return new EditNewsPagePO(driver);
     }
 
     public EcoNewsPO clickEditButton() {
@@ -68,4 +66,24 @@ public class EditNewsPagePO extends BasePage{
         return new EcoNewsPO(driver);
     }
 
+    public PreviewEditPagePO clickPreviewButtonOnEditNewsPage() {
+        if (previewButton == null) {
+            previewButton = new ButtonElement(this.driver, EditDonePageLocators.PREVIEW_BUTTON_ON_EDIT_NEWS_PAGE);
+        }
+        previewButton.click();
+        return new PreviewEditPagePO(driver);
+    }
+
+    public EcoNewsPO clickCancelButtonOnEditNewsPage() {
+        if (cancelButton == null) {
+            cancelButton = new ButtonElement(this.driver, EditDonePageLocators.CANCEL_BUTTON_ON_EDIT_NEWS_PAGE);
+        }
+        cancelButton.click();
+        return new EcoNewsPO(driver);
+    }
+
+    public HeaderComponent getHeaderComponent(){
+        headerComponent = new HeaderComponent(driver);
+        return headerComponent;
+    }
 }

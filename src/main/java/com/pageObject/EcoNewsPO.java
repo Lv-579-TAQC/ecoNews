@@ -14,6 +14,7 @@ public class EcoNewsPO extends BasePage{
     private ButtonElement createNews;
     private ButtonElement firstNews;
     private NewsComponentContainer newsComponentContainer;
+    private HeaderComponent headerComponent;
 
     public EcoNewsPO(WebDriver driver) {
         super(driver);
@@ -26,7 +27,7 @@ public class EcoNewsPO extends BasePage{
         return new CreateNewsPO(driver);
     }
 
-    public SomeNewsPagePO clickOnFirstNewsOnPage(){
+    public SomeNewsPagePO clickOnTheLatestNewsCreatedByTheTestUserOnTheEcoNewsPage(){
 
         try {
             Thread.sleep(10000);
@@ -34,7 +35,7 @@ public class EcoNewsPO extends BasePage{
             e.printStackTrace();
         }
         if(firstNews == null) {
-            firstNews = new ButtonElement(this.driver, EcoNewsPageLocators.FIRST_NEWS_ON_ECONEWS_PAGE);
+            firstNews = new ButtonElement(this.driver, EcoNewsPageLocators.LAST_NEWS_ON_ECONEWS_PAGE_BY_TESTUSER);
         }
         firstNews.click();
         return new SomeNewsPagePO(driver);
@@ -43,5 +44,10 @@ public class EcoNewsPO extends BasePage{
     public NewsComponentContainer getNewsComponentContainer(boolean isVertical){
         newsComponentContainer = new NewsComponentContainer(driver, isVertical);
         return newsComponentContainer;
+    }
+
+    public HeaderComponent getHeaderComponent(){
+        headerComponent = new HeaderComponent(driver);
+        return headerComponent;
     }
 }

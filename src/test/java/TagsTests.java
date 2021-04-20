@@ -1,55 +1,13 @@
-import com.locators.CreateNewsPageLocators;
-import com.locators.TagComponentLocators;
 import com.pageObject.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class TagsTests {
-    private static WebDriver webDriver;
-    private final String EMAIL = "amelyanovich11@gmail.com";
-    private final String PASSWORD = "Qwerty123_";
-
-    @BeforeClass
-    public void setUpClass() {
-        String WebDriverPath = System.getenv("WebDrivers");
-        String os = System.getProperty("os.name");
-        if (os.startsWith("Windows")) {
-            WebDriverPath += "\\chromedriver.exe";
-        } else {
-            WebDriverPath += "/chromedriver";
-        }
-
-        System.setProperty("webdriver.chrome.driver", WebDriverPath);
-
-        webDriver = new ChromeDriver();
-        webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
-        webDriver.manage().window().maximize();
-        LogInPO logInPO = new LogInPO(webDriver)
-                .clickSignInMenuButton()
-                .setEmail(EMAIL)
-                .setPassword(PASSWORD)
-                .clickSignInButton();
-    }
-
-//    @AfterClass
-//    public void tearDownClass(){
-//        webDriver.quit();
-//    }
+public class TagsTests extends BasicTest {
 
     @Test
-    public void verifyWeCannotUseMoreThanThreeTags(){
-
-        String  NEWS_TAGBUTTON = "//button[contains(@class, 'ng')][1]";
-        String      ADS_TAGBUTTON="//button[contains(@class, 'ng')][2]";
-                String      EVENTS_TAGBUTTON="//button[contains(@class, 'ng')][3]";
-                String      INITIATIVES_TAGBUTTON="//button[contains(@class, 'ng')][4]";
-                String     EDUCATION_TAGBUTTON="//button[contains(@class, 'ng')][5]";
+    public void verifyWeCannotUseMoreThanThreeTags() {
         CreateNewsPO warning = new EcoNewsPO(webDriver)
                 .clickEcoNews()
                 .clickCreateNewsBtn()
@@ -59,21 +17,32 @@ public class TagsTests {
                 .clickEducationTag()
                 .clickEventsTag();
 
-
-
-
         SoftAssert asert = new SoftAssert();
-        asert.assertEquals(warning.isNewsTagIsActive(), true,"News");
-        asert.assertEquals(warning.isEducationTagIsActive(), false,"Education");
-        asert.assertEquals(warning.isInitiativesTagIsActive(), true,"Initiative");
-        asert.assertEquals(warning.isAdsTagIsActive(), true,"Ads");
-        asert.assertEquals(warning.isEventsTagIsActive(), false,"Ads");
-        asert.assertEquals(warning.isSignUnderTagsMakingWarning(),true,"Warning");
+        asert.assertTrue(warning.isNewsTagIsActive(), "News tag is not active, but should be");
+        asert.assertFalse(warning.isEducationTagIsActive(), "Education tag is active, but should not be");
+        asert.assertTrue(warning.isInitiativesTagIsActive(), "Initiative tag is not active, but should be");
+        asert.assertTrue(warning.isAdsTagIsActive(), "Ads tag is not active, but should not be");
+        asert.assertFalse(warning.isEventsTagIsActive(), "Ads tag is active, but should be");
+        asert.assertTrue(warning.isSignUnderTagsMakingWarning(), "Warning sign was not shown");
         asert.assertAll();
+    }
 
+    @Test(dataProvider = "notValidValuesToCreateNews")
+    public void verifyWeCannotCreateNewsWithoutTags(String title, String content) {
+        CreateNewsPO creatingNewsWithoutTags = new EcoNewsPO(webDriver)
+                .clickEcoNews()
+                .clickCreateNewsBtn()
+                .setTitle(title)
+                .setContent(content);
 
+        Assert.assertFalse(creatingNewsWithoutTags.isPublishButtonIsActive(), "Publish button is active, but should not be active");
+    }
 
-
-
+    @DataProvider()
+    public Object[][] notValidValuesToCreateNews() {
+        return new Object[][]{
+                {"Wow, this is example of new news",
+                        "This content for test example new news"}
+        };
     }
 }
