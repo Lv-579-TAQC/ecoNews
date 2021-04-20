@@ -1,17 +1,31 @@
+import com.pageObject.ChangeLanguageComponent;
 import com.pageObject.CreateNewsPO;
 import com.pageObject.EcoNewsPO;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Properties;
 
 public class CreateNewsChangeLanguageTest extends BasicTest{
 
     CreateNewsPO createNewsPage;
+    public String getCurrentDateEN(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM, yyyy", Locale.ENGLISH);
+        LocalDate localDate = LocalDate.now();
+        return dtf.format(localDate);
+    }
+
+    public String getCurrentDateUA(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy р.");
+        LocalDate localDate = LocalDate.now();
+        return dtf.format(localDate);
+    }
 
     public String getTranslation(String key, String language) throws IOException {
         Properties prop = new Properties();
@@ -66,13 +80,24 @@ public class CreateNewsChangeLanguageTest extends BasicTest{
         softAssertCreateNews.assertAll();
     }
 
-    @Test(dataProvider = "languages")
-    public void verifyDateAndAuthorUaRUEnPositionUnderForm(String language) {
-        createNewsPage.setLanguage(language);
-        int theLowestLabelOnThePage = createNewsPage.getContentLabel().getLocation().getY();
+    @Test
+    public void verifyDateAndAuthorLabelPositionUnderForm() {
+        int theLowestLabelOnTheForm = createNewsPage.getContentLabel().getLocation().getY();
 
-        Assert.assertTrue(createNewsPage.getDateLabel().getLocation().getY() > theLowestLabelOnThePage);
-        Assert.assertTrue(createNewsPage.getAuthorLabel().getLocation().getY() > theLowestLabelOnThePage);
+        Assert.assertTrue(createNewsPage.getDateLabel().getLocation().getY() > theLowestLabelOnTheForm);
+        Assert.assertTrue(createNewsPage.getAuthorLabel().getLocation().getY() > theLowestLabelOnTheForm);
+    }
+
+    @Test
+    public void verifyCurrentDateEN() {
+        createNewsPage.setLanguage("en");
+        Assert.assertEquals(createNewsPage.getCurrentDateLabel().getText(), getCurrentDateEN());
+    }
+
+    @Test
+    public void verifyCurrentDateUA() {
+        createNewsPage.setLanguage("ua");
+        Assert.assertEquals(createNewsPage.getCurrentDateLabel().getText(), getCurrentDateUA());
     }
 
     @Test(dataProvider = "languages")

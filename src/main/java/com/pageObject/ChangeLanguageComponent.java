@@ -18,13 +18,14 @@ public class ChangeLanguageComponent {
     }
 
     public ChangeLanguageComponent clickLanguageDropdown() {
-        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(7000, TimeUnit.SECONDS);
         if (languageDropdown == null) {
             languageDropdown = new ButtonElement(this.driver, CreateNewsPageLocators.LANGUAGE_DROPDOWN);
         }
         languageDropdown.click();
         return this;
     }
+
     public void clickUaButton() {
         if (uaButton == null) {
             uaButton = new ButtonElement(this.driver, CreateNewsPageLocators.UA_BUTTON);
@@ -35,7 +36,6 @@ public class ChangeLanguageComponent {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     public void clickEnButton() {
@@ -48,7 +48,6 @@ public class ChangeLanguageComponent {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     public void clickRuButton() {
@@ -61,7 +60,6 @@ public class ChangeLanguageComponent {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     public void changeLanguage(String language){
