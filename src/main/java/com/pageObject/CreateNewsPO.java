@@ -344,4 +344,8 @@ public class CreateNewsPO extends BasePage {
     public boolean isSignUnderTagsMakingWarning(){
         return driver.findElement(TagComponentLocators.SIGN_UNDER_TAGS.getPath()).getAttribute("class").contains("warning");
     }
+    public boolean isPublishButtonIsActive(){
+//        return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).getAttribute("disabled").isEmpty();
+        return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
+    }
 }
