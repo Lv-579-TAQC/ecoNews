@@ -10,37 +10,7 @@ import org.testng.annotations.Test;
 import com.pageObject.EcoNewsPO;
 import com.pageObject.LogInPO;
 
-public class CreateNewsSourseFieldTest {
-    private final String email = "bohdan.potochniak@gmail.com";
-    private final String password = "Qwertyuiop-123";
-    private static WebDriver webDriver;
-
-    @BeforeClass
-    public void setUpClass() {
-        String WebDriverPath = System.getenv("WebDrivers");
-        String os = System.getProperty("os.name");
-        if (os.startsWith("Windows")) {
-            WebDriverPath += "\\chromedriver.exe";
-        } else {
-            WebDriverPath += "/chromedriver";
-        }
-
-        System.setProperty("webdriver.chrome.driver", WebDriverPath);
-
-        webDriver = new ChromeDriver();
-        webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
-        webDriver.manage().window().maximize();
-        LogInPO logInPO = new LogInPO(webDriver)
-                .clickSignInMenuButton()
-                .setEmail(email)
-                .setPassword(password)
-                .clickSignInButton();
-    }
-
-    @AfterClass
-    public void tearDownClass() {
-        webDriver.quit();
-    }
+public class CreateNewsSourseFieldTest extends BasicTest{
 
     @DataProvider
     public Object[][] inCorrectDataInSourceField(){

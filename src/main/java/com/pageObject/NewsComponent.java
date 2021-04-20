@@ -21,7 +21,6 @@ import org.openqa.selenium.WebElement;
 
 
 public class NewsComponent extends BasePage{
-    private WebDriver driver;
     private WaitsSwitcher waitsSwitcher;
     private Boolean isVertical;
     private WebElement newsItem;
