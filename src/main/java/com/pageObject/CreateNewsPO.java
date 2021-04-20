@@ -43,6 +43,7 @@ public class CreateNewsPO extends BasePage {
     private ButtonElement browseButton;
     private ButtonElement submitButton;
 
+    private HeaderComponent headerComponent;
 
     private WaitsSwitcher waitsSwitcher;
     private static final int SECONDS_FOR_WAITING_TAGS = 50;
@@ -344,8 +345,12 @@ public class CreateNewsPO extends BasePage {
     public boolean isSignUnderTagsMakingWarning(){
         return driver.findElement(TagComponentLocators.SIGN_UNDER_TAGS.getPath()).getAttribute("class").contains("warning");
     }
+
+    public HeaderComponent getHeaderComponent(){
+        headerComponent = new HeaderComponent(driver);
+        return headerComponent;
+    }
     public boolean isPublishButtonIsActive(){
-//        return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).getAttribute("disabled").isEmpty();
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
     }
 }
