@@ -28,11 +28,11 @@ public class EditNewsPagePO extends BasePage{
         return this;
     }
 
-    public EditNewsPagePO clearContentOnEditPage(String content) {
+    public EditNewsPagePO clearContentOnEditPage() {
         if (clearContentField == null) {
             clearContentField = new FieldElement(this.driver, EditDonePageLocators.CONTENT_FIELD);
         }
-        clearContentField.sendKeys(content);
+        clearContentField.clear();
         return this;
     }
 
@@ -44,7 +44,7 @@ public class EditNewsPagePO extends BasePage{
         return this;
     }
 
-    public EditNewsPagePO clearTitleFieldOnEditPage(String content){
+    public EditNewsPagePO clearTitleFieldOnEditPage(){
 
         try {
             Thread.sleep(3000);
@@ -54,9 +54,8 @@ public class EditNewsPagePO extends BasePage{
         if (clearTitleField == null) {
             clearTitleField = new FieldElement(this.driver, EditDonePageLocators.TITLE_FIELD);
         }
-
-        clearTitleField.sendKeys(content);
-        return this;
+        clearTitleField.clear();
+        return new EditNewsPagePO(driver);
     }
 
     public EcoNewsPO clickEditButton() {

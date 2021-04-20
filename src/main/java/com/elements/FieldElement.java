@@ -18,5 +18,9 @@ public class FieldElement extends BaseElement {
         this.webElement.sendKeys(keys);
     }
 
+    public void clear() {
+        this.webElement.clear();
+    }
+
 
 }

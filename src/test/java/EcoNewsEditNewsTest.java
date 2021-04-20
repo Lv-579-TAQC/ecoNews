@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 public class EcoNewsEditNewsTest extends BasicTest {
     private final String EDIT_TITLE = "Title field after edit";
     private final String EDIT_CONTENT = "Content field after edit";
-    private final String CLEAR_FIELD = "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 
     @BeforeMethod
     public void createNewsAndOpenEditPage() {
@@ -22,6 +21,7 @@ public class EcoNewsEditNewsTest extends BasicTest {
                 .setContent(CONTENT)
                 .clickEducationTag()
                 .clickPublishButton()
+                .waitForEcoNewsPageOpened()
                 .clickOnTheLatestNewsCreatedByTheTestUserOnTheEcoNewsPage()
                 .clickEditNewsButton();
     }
@@ -29,9 +29,9 @@ public class EcoNewsEditNewsTest extends BasicTest {
     @Test
     public void verifyNewsEditing() {
         SomeNewsPagePO verifyNewsEditing = new EditNewsPagePO(webDriver)
-                .clearTitleFieldOnEditPage(CLEAR_FIELD)
+                .clearTitleFieldOnEditPage()
                 .setTitleOnEditPage(EDIT_TITLE)
-                .clearContentOnEditPage(CLEAR_FIELD)
+                .clearContentOnEditPage()
                 .setContentOnEditPage(EDIT_CONTENT)
                 .clickEditButton()
                 .clickOnTheLatestNewsCreatedByTheTestUserOnTheEcoNewsPage();
@@ -53,9 +53,9 @@ public class EcoNewsEditNewsTest extends BasicTest {
     @Test
     public void verifyPreviewButtonOnEditNewsPage() {
         PreviewEditPagePO verifyPreviewButtonOnEditNewsPage = new EditNewsPagePO(webDriver)
-                .clearTitleFieldOnEditPage(CLEAR_FIELD)
+                .clearTitleFieldOnEditPage()
                 .setTitleOnEditPage(EDIT_TITLE)
-                .clearContentOnEditPage(CLEAR_FIELD)
+                .clearContentOnEditPage()
                 .setContentOnEditPage(EDIT_CONTENT)
                 .clickPreviewButtonOnEditNewsPage();
 
@@ -77,9 +77,9 @@ public class EcoNewsEditNewsTest extends BasicTest {
     @Test
     public void verifyEditButtonFunctionalOnPreviewEditPage() {
         SomeNewsPagePO verifyEditButtonFunctionalOnPreviewEditPage = new EditNewsPagePO(webDriver)
-                .clearTitleFieldOnEditPage(CLEAR_FIELD)
+                .clearTitleFieldOnEditPage()
                 .setTitleOnEditPage(EDIT_TITLE)
-                .clearContentOnEditPage(CLEAR_FIELD)
+                .clearContentOnEditPage()
                 .setContentOnEditPage(EDIT_CONTENT)
                 .clickPreviewButtonOnEditNewsPage()
                 .clickEditButtonOnPreviewEditPage()
@@ -115,7 +115,6 @@ public class EcoNewsEditNewsTest extends BasicTest {
                 .getText();
         String expectedTextContentLabel = " Content field before edit ";
         Assert.assertEquals(actualTextContentLabel, expectedTextContentLabel, "Verification failed, actual and expected contents do not match");
-
     }
 }
 

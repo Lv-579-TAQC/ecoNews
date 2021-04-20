@@ -315,14 +315,14 @@ public class CreateNewsPO extends BasePage {
 
         return new CreateNewsPO(driver);
     }
-    public EcoNewsPO clickPublishButton() {
+    public WaitingPagePO clickPublishButton() {
         waitsSwitcher.setImplicitWaits(100);
         if ( publishButton == null) {
             publishButton = new ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
         }
         publishButton.click();
 
-        return new EcoNewsPO(driver);
+        return new WaitingPagePO(driver);
     }
 
 
