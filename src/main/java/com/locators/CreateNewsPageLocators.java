@@ -31,6 +31,7 @@ public enum CreateNewsPageLocators implements BaseLocator{
     CURRENT_DATE_LABEL(By.xpath("//div[@class='date']//descendant::span[2]")),
     AUTHOR_LABEL(By.xpath("//div[@class='date']//descendant::span[3]")),
     AUTHOR_NAME_LABEL(By.xpath("//div[@class='date']//descendant::span[4]")),
+    BLANK_AREA(By.xpath("//*[@id='main-content']")),
 
     PREVIEWPAGEBUTTON(By.xpath("//*[@id='main-content']/div/div[2]/form/div[4]/button[2]")),
     BACKTOEDITINGBUTTON(By.xpath("/html/body/app-root/div[3]/app-eco-news/div/app-news-preview-page/div/div[1]/div/a/div/div[2]")),
