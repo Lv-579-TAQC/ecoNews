@@ -97,7 +97,7 @@ public class CreateNewsChangeLanguageTest extends BasicTest {
         Assert.assertTrue(createNewsPage.getDateLabel().getLocation().getY() > theLowestLabelOnTheForm);
         Assert.assertTrue(createNewsPage.getCurrentDateLabel().getLocation().getY() > theLowestLabelOnTheForm);
         Assert.assertTrue(createNewsPage.getAuthorLabel().getLocation().getY() > theLowestLabelOnTheForm);
-        Assert.assertTrue(createNewsPage.getAuthorNameLabel().getLocation().getY() > theLowestLabelOnTheForm);
+        Assert.assertTrue(createNewsPage.getUserNameLabel().getLocation().getY() > theLowestLabelOnTheForm);
     }
 
     @Test
@@ -125,7 +125,7 @@ public class CreateNewsChangeLanguageTest extends BasicTest {
         createNewsPage.setLanguage(language);
         String expectedAuthor = createNewsPage.getHeaderComponent().getUserName().getText();
 
-        Assert.assertEquals(createNewsPage.getAuthorNameLabel().getText(), expectedAuthor);
+        Assert.assertEquals(createNewsPage.getUserNameLabel().getText(), expectedAuthor);
     }
 
     @Test(dataProvider = "languages")
