@@ -29,6 +29,7 @@ public class CreateNewsPO extends BasePage {
     private LabelElement currentdateLabel;
     private LabelElement authorLabel;
     private LabelElement authornameLabel;
+    private LabelElement contentMassegeLabel;
 
     private TagComponent tags;
     private ButtonElement previewButton;
@@ -36,6 +37,7 @@ public class CreateNewsPO extends BasePage {
     private ButtonElement publishButton;
     private ButtonElement browseButton;
     private ButtonElement submitButton;
+    private ButtonElement blankArea;
 
     private HeaderComponent headerComponent;
 
@@ -197,6 +199,13 @@ public class CreateNewsPO extends BasePage {
         }
         return authornameLabel;
     }
+    public LabelElement getContentMassegeLabel() {
+        clear();
+        if (contentMassegeLabel == null) {
+            contentMassegeLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENTFIELD_MASSEGA_LABEL);
+        }
+        return contentMassegeLabel;
+    }
 
     public ButtonElement getCancelButton() {
         clear();
@@ -246,6 +255,15 @@ public class CreateNewsPO extends BasePage {
         previewButton.click();
 
         return new PreviewPO(driver);
+    }
+    public CreateNewsPO clickOnBlankArea() {
+        waitsSwitcher.setImplicitWaits(100);
+        if ( blankArea == null) {
+            blankArea = new ButtonElement(this.driver, CreateNewsPageLocators.BLANK_AREA);
+        }
+        blankArea.click();
+
+        return new CreateNewsPO(driver);
     }
 
     public CreateNewsPO clickTagNews() {
