@@ -29,7 +29,7 @@ public class BasePage {
     }
 
     public void clickChangeLanguage(String language) {
-        if (changeLanguage == null){
+        if (changeLanguage == null) {
             changeLanguage = new ChangeLanguageComponent(this.driver);
         }
         changeLanguage.changeLanguage(language);

@@ -16,6 +16,6 @@ public class OpenPreviewPageTest extends BasicTest{
                 .getBackToEditingButton()
                 .getText();
         String expectedTextBackToEditingButton = "Back to editing";
-        Assert.assertEquals(textBackToEditingButton, expectedTextBackToEditingButton, "");  //TODO
+        Assert.assertEquals(textBackToEditingButton, expectedTextBackToEditingButton, "Failed, can`t find label with 'Back to editing' text");
     }
 }
