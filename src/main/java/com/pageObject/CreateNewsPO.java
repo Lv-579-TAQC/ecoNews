@@ -8,6 +8,12 @@ import com.locators.TagComponentLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 public class CreateNewsPO extends BasePage {
 
     private FieldElement titleField;
@@ -365,5 +371,14 @@ public class CreateNewsPO extends BasePage {
     }
     public boolean isPublishButtonIsActive(){
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
+    }
+    public boolean isSignUnderImageMakingWarning() {
+        return driver.findElement(CreateNewsPageLocators.WARNING_UNDER_IMAGE_PLACE.getPath()).isDisplayed();
+    }
+    public boolean isBackGroundOnImagePlaceMakingWarning() {
+        return driver.findElement(CreateNewsPageLocators.RED_WARNING_ON_IMAGE_PLACE.getPath()).getAttribute("class").contains("dropzone warning-background");
+    }
+    public boolean isSignOnImagePleaseAppears(){
+        return driver.findElement(CreateNewsPageLocators.SIGN_CREATING_AFTER_INCORRECT_IMAGE_UPLOAD.getPath()).isDisplayed();
     }
 }
