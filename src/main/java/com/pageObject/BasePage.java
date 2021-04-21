@@ -8,7 +8,7 @@ public class BasePage {
     protected WebDriver driver;
     private ButtonElement ecoNewsButton;
     private ChangeLanguageComponent changeLanguage;
-
+    private HeaderComponent headerComponent;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -35,4 +35,8 @@ public class BasePage {
         changeLanguage.changeLanguage(language);
     }
 
+    public HeaderComponent getHeaderComponent(){
+        headerComponent = new HeaderComponent(driver);
+        return headerComponent;
+    }
 }

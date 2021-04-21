@@ -40,8 +40,6 @@ public class CreateNewsPO extends BasePage {
     private ButtonElement submitButton;
     private ButtonElement blankArea;
 
-    private HeaderComponent headerComponent;
-
     private WaitsSwitcher waitsSwitcher;
     private static final int SECONDS_FOR_WAITING_TAGS = 50;
 
@@ -367,9 +365,5 @@ public class CreateNewsPO extends BasePage {
     }
     public boolean isPublishButtonIsActive(){
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
-    }
-    public HeaderComponent getHeaderComponent() {
-        headerComponent = new HeaderComponent(driver);
-        return headerComponent;
     }
 }
