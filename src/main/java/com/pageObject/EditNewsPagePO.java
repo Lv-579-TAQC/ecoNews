@@ -14,7 +14,6 @@ public class EditNewsPagePO extends BasePage{
     private FieldElement clearContentField;
     private ButtonElement previewButton;
     private ButtonElement cancelButton;
-    private HeaderComponent headerComponent;
 
     public EditNewsPagePO(WebDriver driver) {
         super(driver);
@@ -80,10 +79,5 @@ public class EditNewsPagePO extends BasePage{
         }
         cancelButton.click();
         return new EcoNewsPO(driver);
-    }
-
-    public HeaderComponent getHeaderComponent(){
-        headerComponent = new HeaderComponent(driver);
-        return headerComponent;
     }
 }

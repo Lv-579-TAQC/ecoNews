@@ -1,4 +1,5 @@
 import com.elements.LabelElement;
+import com.pageObject.CreateNewsPO;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -41,9 +42,17 @@ public class CreateNewsContentFieldTest extends BasicTest{
                         "#ff0000"}
         };
     }
+    @DataProvider()
+    public Object[][] isAutoResizeable448px(){
+        return new Object[][]{
+                {"estestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestesestestestestesestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestesttestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestestes",
+                        448}
+        };
+    }
     @Test(dataProvider = "inCorrectDataEmpty")
     public void verifyTextFieldinEmpty(String mainText, String ExpectedText) {
         LabelElement contentFieldMessage = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setContent(mainText)
@@ -55,6 +64,7 @@ public class CreateNewsContentFieldTest extends BasicTest{
     @Test(dataProvider = "inCorrectDataLessThenT20")
     public void verifyTextFieldLessThan20(String mainText, String ExpectedText) {
         LabelElement contentFieldMessage = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setContent(mainText)
@@ -66,6 +76,7 @@ public class CreateNewsContentFieldTest extends BasicTest{
     @Test(dataProvider = "correctDataForText")
     public void verifyTextFieldCorrect(String mainText, String ExpectedText) {
         LabelElement contentFieldMessage = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setContent(mainText)
@@ -77,11 +88,23 @@ public class CreateNewsContentFieldTest extends BasicTest{
     @Test(dataProvider = "inCorrectDataLessMoreThen63207")
     public void verifyTextFieldMoreThen63207(String mainText, String ExpectedText) {
         LabelElement contentFieldMessage = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setContent(mainText)
                 .clickOnBlankArea()
                 .getContentMassegeLabel();
         Assert.assertEquals(contentFieldMessage.getColorHex(), ExpectedText);
+    }
+    @Test(dataProvider = "isAutoResizeable448px")
+    public void isContentFieldAutoResizable(String mainText, int ExpectedHeight) {
+        LabelElement contentField = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
+                .clickEcoNews()
+                .clickCreateNewsBtn()
+                .setContent(mainText)
+                .clickOnBlankArea()
+                .getContentField();
+        Assert.assertEquals(contentField.getHeight(), ExpectedHeight);
     }
 }

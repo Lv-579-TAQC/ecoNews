@@ -30,6 +30,7 @@ public class CreateNewsPO extends BasePage {
     private LabelElement authorLabel;
     private LabelElement authornameLabel;
     private LabelElement contentMassegeLabel;
+    private LabelElement contentFieldBox;
 
     private TagComponent tags;
     private ButtonElement previewButton;
@@ -38,8 +39,6 @@ public class CreateNewsPO extends BasePage {
     private ButtonElement browseButton;
     private ButtonElement submitButton;
     private ButtonElement blankArea;
-
-    private HeaderComponent headerComponent;
 
     private WaitsSwitcher waitsSwitcher;
     private static final int SECONDS_FOR_WAITING_TAGS = 50;
@@ -66,6 +65,8 @@ public class CreateNewsPO extends BasePage {
         dateLabel = null;
         authorLabel = null;
         authornameLabel= null;
+        contentMassegeLabel = null;
+        contentFieldBox = null;
 
         tags = null;
         previewButton = null;
@@ -207,6 +208,13 @@ public class CreateNewsPO extends BasePage {
         }
         return contentMassegeLabel;
     }
+    public LabelElement getContentField() {
+        clear();
+        if (contentFieldBox == null) {
+            contentFieldBox  = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD);
+        }
+        return contentFieldBox;
+    }
 
     public ButtonElement getCancelButton() {
         clear();
@@ -312,7 +320,6 @@ public class CreateNewsPO extends BasePage {
         return this;
     }
     public CreateNewsPO browseImage(String img){
-        waitsSwitcher.setImplicitWaits(100);
         if (browseButton == null) {
             browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON_UPLOAD);
         }
@@ -338,7 +345,6 @@ public class CreateNewsPO extends BasePage {
         return new WaitingPagePO(driver);
     }
 
-
     public boolean isEventsTagIsActive(){
         return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
@@ -360,9 +366,5 @@ public class CreateNewsPO extends BasePage {
     }
     public boolean isPublishButtonIsActive(){
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
-    }
-    public HeaderComponent getHeaderComponent(){
-        headerComponent = new HeaderComponent(driver);
-        return headerComponent;
     }
 }

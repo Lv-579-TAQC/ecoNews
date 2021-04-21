@@ -16,7 +16,6 @@ public class PreviewPO extends BasePage{
     private WaitsSwitcher waitsSwitcher;
     private LabelElement dateLabel;
     private LabelElement authorLabel;
-    private HeaderComponent headerComponent;
 
 
     public PreviewPO(WebDriver driver) {
@@ -66,11 +65,6 @@ public class PreviewPO extends BasePage{
             authorLabel = new LabelElement(this.driver, PreviewPageLocators.AUTHOR_LABEL);
         }
         return authorLabel;
-    }
-
-    public HeaderComponent getHeaderComponent(){
-        headerComponent = new HeaderComponent(driver);
-        return headerComponent;
     }
 
     public boolean isPublishButtonExists(){

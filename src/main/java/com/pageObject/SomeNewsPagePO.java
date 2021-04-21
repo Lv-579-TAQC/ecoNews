@@ -1,10 +1,11 @@
 package com.pageObject;
+
 import com.elements.ButtonElement;
 import com.elements.LabelElement;
 import com.locators.SomeNewsPageLocators;
 import org.openqa.selenium.WebDriver;
 
-public class SomeNewsPagePO extends BasePage{
+public class SomeNewsPagePO extends BasePage {
 
     private ButtonElement editNewsButton;
     private LabelElement titleLabel;

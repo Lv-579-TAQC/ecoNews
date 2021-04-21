@@ -9,12 +9,13 @@ import org.testng.annotations.Test;
 public class EcoNewsEditNewsTest extends BasicTest {
     private final String EDIT_TITLE = "Title field after edit";
     private final String EDIT_CONTENT = "Content field after edit";
+    String CONTENT = "Content field before edit";
+    String TITLE = "Title field before edit";
 
     @BeforeMethod
     public void createNewsAndOpenEditPage() {
-        String CONTENT = "Content field before edit";
-        String TITLE = "Title field before edit";
         new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(TITLE)
@@ -67,11 +68,11 @@ public class EcoNewsEditNewsTest extends BasicTest {
         Assert.assertEquals(actualTextTitleLabelOnPreviewEditPage, expectedTextTitleLabelOnPreviewEditPage, "Verification failed, actual and expected titles do not match");
 
         String actualTextContentLabelOnPreviewEditPage = verifyPreviewButtonOnEditNewsPage
-                .getTitleLabelOnPreviewEditPage()
+                .getContentLabelOnPreviewEditPage()
                 .getText();
 
         String expectedTextContentLabelOnPreviewEditPage = "Title field after edit";
-        Assert.assertEquals(actualTextContentLabelOnPreviewEditPage, expectedTextContentLabelOnPreviewEditPage, "Verification failed, actual and expected titles do not match");
+        Assert.assertEquals(actualTextContentLabelOnPreviewEditPage, expectedTextContentLabelOnPreviewEditPage, "Verification failed, actual and expected contents do not match");
     }
 
     @Test
