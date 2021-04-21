@@ -345,12 +345,11 @@ public class CreateNewsPO extends BasePage {
     public boolean isSignUnderTagsMakingWarning(){
         return driver.findElement(TagComponentLocators.SIGN_UNDER_TAGS.getPath()).getAttribute("class").contains("warning");
     }
-
-    public HeaderComponent getHeaderComponent(){
-        headerComponent = new HeaderComponent(driver);
-        return headerComponent;
-    }
     public boolean isPublishButtonIsActive(){
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
+    }
+    public HeaderComponent getHeaderComponent() {
+        headerComponent = new HeaderComponent(driver);
+        return headerComponent;
     }
 }
