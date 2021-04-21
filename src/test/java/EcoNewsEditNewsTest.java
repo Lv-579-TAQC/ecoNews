@@ -48,7 +48,6 @@ public class EcoNewsEditNewsTest extends BasicTest {
                 .getText();
         String expectedTextContentLabel = " Content field after edit ";
         Assert.assertEquals(actualTextContentLabel, expectedTextContentLabel, "Verification failed, actual and expected contents do not match");
-
     }
 
     @Test
