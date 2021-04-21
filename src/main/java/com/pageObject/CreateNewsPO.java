@@ -299,7 +299,6 @@ public class CreateNewsPO extends BasePage {
         return this;
     }
     public CreateNewsPO browseImage(String img){
-        waitsSwitcher.setImplicitWaits(100);
         if (browseButton == null) {
             browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON_UPLOAD);
         }
@@ -324,7 +323,6 @@ public class CreateNewsPO extends BasePage {
 
         return new EcoNewsPO(driver);
     }
-
 
     public boolean isEventsTagIsActive(){
         return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
