@@ -49,17 +49,15 @@ public class CreateNewsContentFieldTest extends BasicTest{
                 .setContent(mainText)
                 .clickOnBlankArea()
                 .getContentMessageLabel();
-        Assert.assertEquals(contentFieldMessage.getColorHex(), ExpectedText);
+        Assert.assertEquals(contentFieldMessage.getColorHex(), ExpectedText, "Color of error message is different from expected ");
     }
 
     @Test(dataProvider = "isAutoResizeable448px")
     public void isContentFieldAutoResizable(String mainText, int ExpectedHeight) {
-        LabelElement contentField = new EcoNewsPO(webDriver)
-                .clickEcoNews()
-                .clickCreateNewsBtn()
+        LabelElement contentField = new CreateNewsPO(webDriver)
                 .setContent(mainText)
                 .clickOnBlankArea()
                 .getContentField();
-        Assert.assertEquals(contentField.getHeight(), ExpectedHeight, "");
+        Assert.assertEquals(contentField.getHeight(), ExpectedHeight, "Size of actual textbook is different from expected ");
     }
 }
