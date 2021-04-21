@@ -8,12 +8,6 @@ import com.locators.TagComponentLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-
 public class CreateNewsPO extends BasePage {
 
     private FieldElement titleField;
@@ -352,20 +346,20 @@ public class CreateNewsPO extends BasePage {
     }
 
     public boolean isEventsTagIsActive(){
-        return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.EVENTS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
     public boolean isNewsTagIsActive(){
-        return driver.findElement(TagComponentLocators.NEWS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.NEWS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
     public boolean isEducationTagIsActive(){
-        return driver.findElement(TagComponentLocators.EDUCATION_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.EDUCATION_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
     public boolean isInitiativesTagIsActive(){
-        return driver.findElement(TagComponentLocators.INITIATIVES_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.INITIATIVES_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
 
     }
     public boolean isAdsTagIsActive(){
-        return driver.findElement(TagComponentLocators.ADS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.ADS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
     public boolean isSignUnderTagsMakingWarning(){
         return driver.findElement(TagComponentLocators.SIGN_UNDER_TAGS.getPath()).getAttribute("class").contains("warning");

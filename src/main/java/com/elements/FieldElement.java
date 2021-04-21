@@ -21,6 +21,4 @@ public class FieldElement extends BaseElement {
     public void clear() {
         this.webElement.clear();
     }
-
-
 }
