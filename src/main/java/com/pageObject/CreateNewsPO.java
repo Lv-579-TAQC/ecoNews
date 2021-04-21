@@ -30,6 +30,7 @@ public class CreateNewsPO extends BasePage {
     private LabelElement authorLabel;
     private LabelElement authornameLabel;
     private LabelElement contentMassegeLabel;
+    private LabelElement contentFieldBox;
 
     private TagComponent tags;
     private ButtonElement previewButton;
@@ -38,8 +39,6 @@ public class CreateNewsPO extends BasePage {
     private ButtonElement browseButton;
     private ButtonElement submitButton;
     private ButtonElement blankArea;
-
-    private HeaderComponent headerComponent;
 
     private WaitsSwitcher waitsSwitcher;
     private static final int SECONDS_FOR_WAITING_TAGS = 50;
@@ -66,6 +65,8 @@ public class CreateNewsPO extends BasePage {
         dateLabel = null;
         authorLabel = null;
         authornameLabel= null;
+        contentMassegeLabel = null;
+        contentFieldBox = null;
 
         tags = null;
         previewButton = null;
@@ -88,6 +89,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getTitlePageLabel() {
+        clear();
         if (titlePageLabel == null) {
             titlePageLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_PAGE_LABEL);
         }
@@ -96,7 +98,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getAdditionalLabel() {
-
+        clear();
         if (additionalLabel == null) {
             additionalLabel = new LabelElement(this.driver, CreateNewsPageLocators.ADDITIONAL_LABEL);
         }
@@ -205,6 +207,13 @@ public class CreateNewsPO extends BasePage {
             contentMassegeLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENTFIELD_MASSEGA_LABEL);
         }
         return contentMassegeLabel;
+    }
+    public LabelElement getContentField() {
+        clear();
+        if (contentFieldBox == null) {
+            contentFieldBox  = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD);
+        }
+        return contentFieldBox;
     }
 
     public ButtonElement getCancelButton() {
@@ -337,20 +346,20 @@ public class CreateNewsPO extends BasePage {
     }
 
     public boolean isEventsTagIsActive(){
-        return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.EVENTS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
     public boolean isNewsTagIsActive(){
-        return driver.findElement(TagComponentLocators.NEWS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.NEWS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
     public boolean isEducationTagIsActive(){
-        return driver.findElement(TagComponentLocators.EDUCATION_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.EDUCATION_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
     public boolean isInitiativesTagIsActive(){
-        return driver.findElement(TagComponentLocators.INITIATIVES_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.INITIATIVES_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
 
     }
     public boolean isAdsTagIsActive(){
-        return driver.findElement(TagComponentLocators.ADS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.ADS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
     public boolean isSignUnderTagsMakingWarning(){
         return driver.findElement(TagComponentLocators.SIGN_UNDER_TAGS.getPath()).getAttribute("class").contains("warning");
@@ -358,8 +367,13 @@ public class CreateNewsPO extends BasePage {
     public boolean isPublishButtonIsActive(){
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
     }
-    public HeaderComponent getHeaderComponent() {
-        headerComponent = new HeaderComponent(driver);
-        return headerComponent;
+    public boolean isSignUnderImageMakingWarning() {
+        return driver.findElement(CreateNewsPageLocators.WARNING_UNDER_IMAGE_PLACE.getPath()).isDisplayed();
+    }
+    public boolean isBackGroundOnImagePlaceMakingWarning() {
+        return driver.findElement(CreateNewsPageLocators.RED_WARNING_ON_IMAGE_PLACE.getPath()).getAttribute("class").contains("dropzone warning-background");
+    }
+    public boolean isSignOnImagePleaseAppears(){
+        return driver.findElement(CreateNewsPageLocators.SIGN_CREATING_AFTER_INCORRECT_IMAGE_UPLOAD.getPath()).isDisplayed();
     }
 }

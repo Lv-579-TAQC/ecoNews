@@ -14,7 +14,7 @@ import java.util.Properties;
 
 public class CreateNewsChangeLanguageTest extends BasicTest {
 
-    CreateNewsPO createNewsPage;
+    private CreateNewsPO createNewsPage;
     Locale rus = new Locale("ru", "RU");
     Locale uk = new Locale("uk", "UA");
 
@@ -47,6 +47,7 @@ public class CreateNewsChangeLanguageTest extends BasicTest {
     @BeforeMethod
     public void beforeMethod() {
         createNewsPage = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn();
     }

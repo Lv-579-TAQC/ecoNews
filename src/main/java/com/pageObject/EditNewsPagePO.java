@@ -3,6 +3,7 @@ package com.pageObject;
 import com.elements.ButtonElement;
 import com.elements.FieldElement;
 import com.locators.EditDonePageLocators;
+import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 
 public class EditNewsPagePO extends BasePage{
@@ -14,7 +15,6 @@ public class EditNewsPagePO extends BasePage{
     private FieldElement clearContentField;
     private ButtonElement previewButton;
     private ButtonElement cancelButton;
-    private HeaderComponent headerComponent;
 
     public EditNewsPagePO(WebDriver driver) {
         super(driver);
@@ -22,7 +22,7 @@ public class EditNewsPagePO extends BasePage{
 
     public EditNewsPagePO setContentOnEditPage(String content) {
         if (contentField == null) {
-            contentField = new FieldElement(this.driver, EditDonePageLocators.CONTENT_FIELD);
+            contentField = new FieldElement(this.driver, EditDonePageLocators.CONTENT_FIELD_ON_EDIT_NEWS_PAGE);
         }
         contentField.sendKeys(content);
         return this;
@@ -30,7 +30,7 @@ public class EditNewsPagePO extends BasePage{
 
     public EditNewsPagePO clearContentOnEditPage() {
         if (clearContentField == null) {
-            clearContentField = new FieldElement(this.driver, EditDonePageLocators.CONTENT_FIELD);
+            clearContentField = new FieldElement(this.driver, EditDonePageLocators.CONTENT_FIELD_ON_EDIT_NEWS_PAGE);
         }
         clearContentField.clear();
         return this;
@@ -38,21 +38,16 @@ public class EditNewsPagePO extends BasePage{
 
     public EditNewsPagePO setTitleOnEditPage(String content) {
         if (titleField == null) {
-            titleField = new FieldElement(this.driver, EditDonePageLocators.TITLE_FIELD);
+            titleField = new FieldElement(this.driver, EditDonePageLocators.TITLE_FIELD_ON_EDIT_NEWS_PAGE);
         }
         titleField.sendKeys(content);
         return this;
     }
 
     public EditNewsPagePO clearTitleFieldOnEditPage(){
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WaitsSwitcher.sleep(3000);
         if (clearTitleField == null) {
-            clearTitleField = new FieldElement(this.driver, EditDonePageLocators.TITLE_FIELD);
+            clearTitleField = new FieldElement(this.driver, EditDonePageLocators.TITLE_FIELD_ON_EDIT_NEWS_PAGE);
         }
         clearTitleField.clear();
         return new EditNewsPagePO(driver);
@@ -60,7 +55,7 @@ public class EditNewsPagePO extends BasePage{
 
     public EcoNewsPO clickEditButton() {
         if (editButton == null) {
-            editButton = new ButtonElement(this.driver, EditDonePageLocators.EDIT_BUTTON);
+            editButton = new ButtonElement(this.driver, EditDonePageLocators.EDIT_BUTTON_ON_EDIT_NEWS_PAGE);
         }
         editButton.click();
         return new EcoNewsPO(driver);
@@ -80,10 +75,5 @@ public class EditNewsPagePO extends BasePage{
         }
         cancelButton.click();
         return new EcoNewsPO(driver);
-    }
-
-    public HeaderComponent getHeaderComponent(){
-        headerComponent = new HeaderComponent(driver);
-        return headerComponent;
     }
 }

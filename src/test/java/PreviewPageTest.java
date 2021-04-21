@@ -14,7 +14,7 @@ public class PreviewPageTest extends BasicTest{
     public Object[][] correctDataForNews(){
         return new Object[][]{
                 {"This is title",
-                "This is new test content for this page!\nThis is new test content for this page!"}
+                "This is new test content for this page!This is new test content for this page!"}
         };
     }
 
@@ -29,6 +29,7 @@ public class PreviewPageTest extends BasicTest{
     @Test(dataProvider = "correctDataForNews")
     public void verifyPreviewTitleAndContent(String title, String content) {
         PreviewPO previewPO = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(title)
@@ -49,6 +50,7 @@ public class PreviewPageTest extends BasicTest{
     @Test(dataProvider = "incorrectDataForNews")
     public void verifyPublishButtonNotExistsWithIncorrectData(String title, String content){
         PreviewPO previewPO = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(title)
@@ -63,6 +65,7 @@ public class PreviewPageTest extends BasicTest{
     @Test(dataProvider = "correctDataForNews")
     public void verifyEditingNewsAfterClickBack(String title, String content){
         PreviewPO previewPO = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .clickPreviewButton()
@@ -80,6 +83,7 @@ public class PreviewPageTest extends BasicTest{
     @Test(dataProvider = "correctDataForNews")
     public void verifyPublishButton(String title, String content){
         EcoNewsPO ecoNewsPO = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(title)
