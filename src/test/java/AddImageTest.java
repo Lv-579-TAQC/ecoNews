@@ -31,15 +31,15 @@ public class AddImageTest extends BasicTest{
 
         String srcOfFirstNewsImage = firstNews.getNewsImage();
         String tagsOfFirstNews = firstNews.getNewsTag().getText();
-        String contentOfFistNews = firstNews.getNewsContent().getText();
-        String titleOfFisrtNews = firstNews.getNewsTitle().getText();
+        String contentOfFirstNews = firstNews.getNewsContent().getText();
+        String titleOfFirstNews = firstNews.getNewsTitle().getText();
 
-        SoftAssert asert = new SoftAssert();
-        asert.assertNotEquals(srcOfFirstNewsImage, urlForDefault, "Image of the last news matches with default image");
-        asert.assertEquals(contentOfFistNews, content, "Content don't matches");
-        asert.assertEquals(titleOfFisrtNews, title, "Title is not same");
-        asert.assertEquals(tagsOfFirstNews, tags, "Tags are not correct");
-        asert.assertAll();
+        SoftAssert softAssertForImageTest = new SoftAssert();
+        softAssertForImageTest.assertNotEquals(srcOfFirstNewsImage, urlForDefault, "Image of the last news matches with default image");
+        softAssertForImageTest.assertEquals(contentOfFirstNews, content, "Content don't matches");
+        softAssertForImageTest.assertEquals(titleOfFirstNews, title, "Title is not same");
+        softAssertForImageTest.assertEquals(tagsOfFirstNews, tags, "Tags are not correct");
+        softAssertForImageTest.assertAll();
     }
     @DataProvider()
     public Object[][] validValuesToCreateNews(){

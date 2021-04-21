@@ -311,7 +311,6 @@ public class CreateNewsPO extends BasePage {
         return this;
     }
     public CreateNewsPO browseImage(String img){
-        waitsSwitcher.setImplicitWaits(100);
         if (browseButton == null) {
             browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON_UPLOAD);
         }
@@ -337,7 +336,6 @@ public class CreateNewsPO extends BasePage {
         return new WaitingPagePO(driver);
     }
 
-
     public boolean isEventsTagIsActive(){
         return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
@@ -360,7 +358,7 @@ public class CreateNewsPO extends BasePage {
     public boolean isPublishButtonIsActive(){
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
     }
-    public HeaderComponent getHeaderComponent(){
+    public HeaderComponent getHeaderComponent() {
         headerComponent = new HeaderComponent(driver);
         return headerComponent;
     }
