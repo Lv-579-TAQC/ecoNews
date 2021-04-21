@@ -3,7 +3,6 @@ import com.pageObject.EcoNewsPO;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -62,7 +61,7 @@ public class CreateNewsChangeLanguageTest extends BasicTest {
     }
 
     @Test(dataProvider = "languages")
-    public void verifyCreateNewsPageUaEnRuTranslation(String language) throws IOException {
+    public void verifyCreateNewsPageUaEnRuTranslation(String language) throws IOException{
         createNewsPage.setLanguage(language);
 
         SoftAssert softAssertCreateNews = new SoftAssert();

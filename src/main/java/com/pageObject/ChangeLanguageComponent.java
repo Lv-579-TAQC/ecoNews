@@ -18,7 +18,7 @@ public class ChangeLanguageComponent {
     }
 
     public ChangeLanguageComponent clickLanguageDropdown() {
-        driver.manage().timeouts().implicitlyWait(7000, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(7000, TimeUnit.SECONDS);
         if (languageDropdown == null) {
             languageDropdown = new ButtonElement(this.driver, CreateNewsPageLocators.LANGUAGE_DROPDOWN);
         }
