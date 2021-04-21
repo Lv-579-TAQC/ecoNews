@@ -71,7 +71,7 @@ public class CreateNewsPO extends BasePage {
         contentLabel = null;
         dateLabel = null;
         authorLabel = null;
-        usernameLabel= null;
+        usernameLabel = null;
 
         tags = null;
         previewButton = null;
@@ -182,6 +182,7 @@ public class CreateNewsPO extends BasePage {
         }
         return dateLabel;
     }
+
     public LabelElement getCurrentDateLabel() {
         clear();
         if (currentdateLabel == null) {
@@ -214,6 +215,7 @@ public class CreateNewsPO extends BasePage {
         return cancelButton;
 
     }
+
     public ButtonElement getPublishButton() {
         clear();
         if (publishButton == null) {
@@ -221,6 +223,7 @@ public class CreateNewsPO extends BasePage {
         }
         return publishButton;
     }
+
     public ButtonElement getPreviewButton() {
         clear();
         if (previewButton == null) {
@@ -300,7 +303,8 @@ public class CreateNewsPO extends BasePage {
         tags.clickEducationTag();
         return this;
     }
-    public CreateNewsPO browseImage(String img){
+
+    public CreateNewsPO browseImage(String img) {
         waitsSwitcher.setImplicitWaits(100);
         if (browseButton == null) {
             browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON_UPLOAD);
@@ -308,18 +312,20 @@ public class CreateNewsPO extends BasePage {
         browseButton.sendKeys(img);
         return this;
     }
+
     public CreateNewsPO clickSubmitButton() {
         waitsSwitcher.setImplicitWaits(100);
-        if ( submitButton == null) {
+        if (submitButton == null) {
             submitButton = new ButtonElement(this.driver, CreateNewsPageLocators.SUBMIT_BUTTON);
         }
         submitButton.click();
 
         return new CreateNewsPO(driver);
     }
+
     public WaitingPagePO clickPublishButton() {
         waitsSwitcher.setImplicitWaits(100);
-        if ( publishButton == null) {
+        if (publishButton == null) {
             publishButton = new ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
         }
         publishButton.click();
@@ -328,29 +334,36 @@ public class CreateNewsPO extends BasePage {
     }
 
 
-    public boolean isEventsTagIsActive(){
+    public boolean isEventsTagIsActive() {
         return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
-    public boolean isNewsTagIsActive(){
+
+    public boolean isNewsTagIsActive() {
         return driver.findElement(TagComponentLocators.NEWS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
-    public boolean isEducationTagIsActive(){
+
+    public boolean isEducationTagIsActive() {
         return driver.findElement(TagComponentLocators.EDUCATION_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
-    public boolean isInitiativesTagIsActive(){
+
+    public boolean isInitiativesTagIsActive() {
         return driver.findElement(TagComponentLocators.INITIATIVES_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
 
     }
-    public boolean isAdsTagIsActive(){
+
+    public boolean isAdsTagIsActive() {
         return driver.findElement(TagComponentLocators.ADS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
-    public boolean isSignUnderTagsMakingWarning(){
+
+    public boolean isSignUnderTagsMakingWarning() {
         return driver.findElement(TagComponentLocators.SIGN_UNDER_TAGS.getPath()).getAttribute("class").contains("warning");
     }
-    public boolean isPublishButtonIsActive(){
+
+    public boolean isPublishButtonIsActive() {
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
     }
-    public HeaderComponent getHeaderComponent(){
+
+    public HeaderComponent getHeaderComponent() {
         headerComponent = new HeaderComponent(driver);
         return headerComponent;
     }
@@ -363,5 +376,25 @@ public class CreateNewsPO extends BasePage {
         List<String> classNameList;
         classNameList = Arrays.asList(driver.findElement(CreateNewsPageLocators.TITLE_FIELD.getPath()).getAttribute("class").split(" "));
         return classNameList.get(2);
+    }
+
+    public void selectTag(String tagName) {
+        switch (tagName) {
+            case "News":
+                this.clickTagNews();
+                break;
+            case "Ads":
+                this.clickTagAds();
+                break;
+            case "Events":
+                this.clickEventsTag();
+                break;
+            case "Initiatives":
+                this.clickInitiativesTag();
+                break;
+            case "Education":
+                this.clickEducationTag();
+                break;
+        }
     }
 }

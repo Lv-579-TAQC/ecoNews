@@ -18,9 +18,14 @@ import java.util.Set;
 
 public class TitleFieldTest extends BasicTest {
 
-//    @AfterTest
+//    @AfterMethod
 //    public void refreshPage() {
 //        webDriver.navigate().refresh();
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 //    }
 
     @Test
@@ -34,8 +39,8 @@ public class TitleFieldTest extends BasicTest {
     }
 
     @Test(dataProvider = "setOfTags")
-    public void isTitleMandatoryFieldOnPreviewPage(PreviewPO obj) {
-//        obj.();
+    public void isTitleMandatoryFieldOnPreviewPage(CreateNewsPO obj) {
+        obj.setTitle("Some text");
     }
 
     @DataProvider
@@ -63,7 +68,6 @@ public class TitleFieldTest extends BasicTest {
                 .setTitle(titleContent);
         String actualTitleFieldHeight = createNewsPO.getTitleFieldHeight();
         Assert.assertEquals(actualTitleFieldHeight, expectedTitleFieldHeight);
-        webDriver.navigate().refresh();
     }
 
     @DataProvider
@@ -85,7 +89,17 @@ public class TitleFieldTest extends BasicTest {
         Assert.assertEquals(checkForErrorMessage, expectedMessage);
         webDriver.navigate().refresh();
     }
-
+//    @Test
+//    public void temp() {
+//        CreateNewsPO createNewsPO = new CreateNewsPO(webDriver)
+//                .clickEcoNews()
+//                .clickCreateNewsBtn()
+//                .setTitle("ASJADjsajdolias;jdnsoa;fnoiuedrgbpno;nb;rebndofsnbgonfdosbnoisfdnibonfdisbnoifdsnboinfdsoibnodsifnbosdnfpbofrenobinonboifnb" +
+//                        "dofibnodndosfnbodfsnobndofsinbodsfnboindfsbnsdnfbosdnf[b['siengbiosnpbsefpgpfdsogbmjpfdosmjbpsdfjmbpfmsdpb" +
+//                        "dfspbmpsdfbpdkfsmobpmdsfpbmsdefmbopfsdmb;opmesdfrpbpdfsmbjfdsbopml;dmb;dsfmb[pksefrdobmsfdopbmopsebmj");
+//        String output = createNewsPO.getTitleFieldErrorMessage();
+//        System.out.println("Message: " + output);
+//    }
     @DataProvider
     public Object[][] titleFieldData() {
         return new Object[][]{
