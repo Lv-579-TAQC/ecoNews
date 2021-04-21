@@ -14,7 +14,7 @@ public class PreviewPageTest extends BasicTest{
     public Object[][] correctDataForNews(){
         return new Object[][]{
                 {"This is title",
-                "This is new test content for this page!\nThis is new test content for this page!"}
+                "This is new test content for this page!This is new test content for this page!"}
         };
     }
 

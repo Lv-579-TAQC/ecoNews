@@ -83,7 +83,7 @@ public class PreviewPO extends BasePage{
             publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
         }
         publishNewsButton.click();
-        waitsSwitcher.setImplicitWaits(25);
+        waitsSwitcher.setImplicitWaits(35);
         return new EcoNewsPO(driver);
     }
 
