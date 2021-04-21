@@ -30,5 +30,6 @@ public class LabelElement extends BaseElement {
     public String getColorHex(){
         return Color.fromString(getColorRGB()).asHex();
     }
+    public int getHeight(){ return webElement.getSize().getHeight();}
 
 }

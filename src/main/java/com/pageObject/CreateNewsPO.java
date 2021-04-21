@@ -30,6 +30,7 @@ public class CreateNewsPO extends BasePage {
     private LabelElement authorLabel;
     private LabelElement authornameLabel;
     private LabelElement contentMassegeLabel;
+    private LabelElement contentFieldBox;
 
     private TagComponent tags;
     private ButtonElement previewButton;
@@ -66,6 +67,8 @@ public class CreateNewsPO extends BasePage {
         dateLabel = null;
         authorLabel = null;
         authornameLabel= null;
+        contentMassegeLabel = null;
+        contentFieldBox = null;
 
         tags = null;
         previewButton = null;
@@ -205,6 +208,13 @@ public class CreateNewsPO extends BasePage {
             contentMassegeLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENTFIELD_MASSEGA_LABEL);
         }
         return contentMassegeLabel;
+    }
+    public LabelElement getContentField() {
+        clear();
+        if (contentFieldBox == null) {
+            contentFieldBox  = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD);
+        }
+        return contentFieldBox;
     }
 
     public ButtonElement getCancelButton() {
