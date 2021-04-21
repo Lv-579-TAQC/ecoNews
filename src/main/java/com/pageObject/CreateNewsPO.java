@@ -201,7 +201,7 @@ public class CreateNewsPO extends BasePage {
     public LabelElement getUserNameLabel() {
         clear();
         if (usernameLabel == null) {
-            usernameLabel = new LabelElement(this.driver, CreateNewsPageLocators.USER_NAME_LABEL);
+            usernameLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_NAME_LABEL);
         }
         return usernameLabel;
     }

@@ -64,7 +64,6 @@ public class TitleFieldTest extends BasicTest {
         String actualTitleFieldHeight = createNewsPO.getTitleFieldHeight();
         Assert.assertEquals(actualTitleFieldHeight, expectedTitleFieldHeight);
         webDriver.navigate().refresh();
-        webDriver.navigate().refresh();
     }
 
     @DataProvider
@@ -84,6 +83,7 @@ public class TitleFieldTest extends BasicTest {
                 .setTitle(fieldContent);
         String checkForErrorMessage = createNewsPO.getTitleFieldErrorMessage();
         Assert.assertEquals(checkForErrorMessage, expectedMessage);
+        webDriver.navigate().refresh();
     }
 
     @DataProvider
