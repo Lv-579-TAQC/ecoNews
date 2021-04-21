@@ -88,6 +88,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getTitlePageLabel() {
+        clear();
         if (titlePageLabel == null) {
             titlePageLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_PAGE_LABEL);
         }
@@ -96,7 +97,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getAdditionalLabel() {
-
+        clear();
         if (additionalLabel == null) {
             additionalLabel = new LabelElement(this.driver, CreateNewsPageLocators.ADDITIONAL_LABEL);
         }

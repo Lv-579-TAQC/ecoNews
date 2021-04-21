@@ -47,4 +47,5 @@ public class HeaderComponent extends BasePage{
 
         return usernameLabel;
     }
+
 }
