@@ -21,11 +21,10 @@ public class WaitsSwitcher {
 
     public <V> V setExplicitWait(int seconds, Function<? super WebDriver, V> condition){
         WebDriverWait driverWait = new WebDriverWait(driver, seconds);
-        V wait = driverWait.until(condition);
-        return wait;
+        return driverWait.until(condition);
     }
 
-    public void sleep(long millis){
+    public static void sleep(long millis){
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {

@@ -1,5 +1,3 @@
-import com.pageObject.BasePage;
-import com.pageObject.HeaderComponent;
 import com.pageObject.LogInPO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
