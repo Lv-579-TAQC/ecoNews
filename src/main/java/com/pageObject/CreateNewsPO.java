@@ -319,6 +319,7 @@ public class CreateNewsPO extends BasePage {
         tags.clickEducationTag();
         return this;
     }
+
     public CreateNewsPO browseImage(String img){
         if (browseButton == null) {
             browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON_UPLOAD);
@@ -326,6 +327,7 @@ public class CreateNewsPO extends BasePage {
         browseButton.sendKeys(img);
         return this;
     }
+
     public CreateNewsPO clickSubmitButton() {
         waitsSwitcher.setImplicitWaits(100);
         if ( submitButton == null) {
@@ -335,6 +337,7 @@ public class CreateNewsPO extends BasePage {
 
         return new CreateNewsPO(driver);
     }
+
     public WaitingPagePO clickPublishButton() {
         waitsSwitcher.setImplicitWaits(100);
         if ( publishButton == null) {
@@ -348,31 +351,39 @@ public class CreateNewsPO extends BasePage {
     public boolean isEventsTagIsActive(){
         return driver.findElement(TagComponentLocators.EVENTS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
+
     public boolean isNewsTagIsActive(){
         return driver.findElement(TagComponentLocators.NEWS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
+
     public boolean isEducationTagIsActive(){
         return driver.findElement(TagComponentLocators.EDUCATION_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
+
     public boolean isInitiativesTagIsActive(){
         return driver.findElement(TagComponentLocators.INITIATIVES_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
-
     }
+
     public boolean isAdsTagIsActive(){
         return driver.findElement(TagComponentLocators.ADS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
+
     public boolean isSignUnderTagsMakingWarning(){
         return driver.findElement(TagComponentLocators.SIGN_UNDER_TAGS.getPath()).getAttribute("class").contains("warning");
     }
+
     public boolean isPublishButtonIsActive(){
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
     }
+
     public boolean isSignUnderImageMakingWarning() {
         return driver.findElement(CreateNewsPageLocators.WARNING_UNDER_IMAGE_PLACE.getPath()).isDisplayed();
     }
+
     public boolean isBackGroundOnImagePlaceMakingWarning() {
         return driver.findElement(CreateNewsPageLocators.RED_WARNING_ON_IMAGE_PLACE.getPath()).getAttribute("class").contains("dropzone warning-background");
     }
+
     public boolean isSignOnImagePleaseAppears(){
         return driver.findElement(CreateNewsPageLocators.SIGN_CREATING_AFTER_INCORRECT_IMAGE_UPLOAD.getPath()).isDisplayed();
     }
