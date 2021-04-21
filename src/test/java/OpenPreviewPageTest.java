@@ -8,6 +8,7 @@ public class OpenPreviewPageTest extends BasicTest{
     @Test
     public void verifyButtonTextInPreviewPage() {
         PreviewPO createNewsPage = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .clickPreviewButton();

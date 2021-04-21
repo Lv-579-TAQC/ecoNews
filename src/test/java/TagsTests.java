@@ -9,6 +9,7 @@ public class TagsTests extends BasicTest {
     @Test
     public void verifyWeCannotUseMoreThanThreeTags() {
         CreateNewsPO warning = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .clickTagNews()
@@ -30,6 +31,7 @@ public class TagsTests extends BasicTest {
     @Test(dataProvider = "notValidValuesToCreateNews")
     public void verifyWeCannotCreateNewsWithoutTags(String title, String content) {
         CreateNewsPO creatingNewsWithoutTags = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(title)

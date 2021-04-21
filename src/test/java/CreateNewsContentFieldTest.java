@@ -52,6 +52,7 @@ public class CreateNewsContentFieldTest extends BasicTest{
     @Test(dataProvider = "inCorrectDataEmpty")
     public void verifyTextFieldinEmpty(String mainText, String ExpectedText) {
         LabelElement contentFieldMessage = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setContent(mainText)
@@ -63,6 +64,7 @@ public class CreateNewsContentFieldTest extends BasicTest{
     @Test(dataProvider = "inCorrectDataLessThenT20")
     public void verifyTextFieldLessThan20(String mainText, String ExpectedText) {
         LabelElement contentFieldMessage = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setContent(mainText)
@@ -74,6 +76,7 @@ public class CreateNewsContentFieldTest extends BasicTest{
     @Test(dataProvider = "correctDataForText")
     public void verifyTextFieldCorrect(String mainText, String ExpectedText) {
         LabelElement contentFieldMessage = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setContent(mainText)
@@ -85,6 +88,7 @@ public class CreateNewsContentFieldTest extends BasicTest{
     @Test(dataProvider = "inCorrectDataLessMoreThen63207")
     public void verifyTextFieldMoreThen63207(String mainText, String ExpectedText) {
         LabelElement contentFieldMessage = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setContent(mainText)
@@ -95,6 +99,7 @@ public class CreateNewsContentFieldTest extends BasicTest{
     @Test(dataProvider = "isAutoResizeable448px")
     public void isContentFieldAutoResizable(String mainText, int ExpectedHeight) {
         LabelElement contentField = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setContent(mainText)

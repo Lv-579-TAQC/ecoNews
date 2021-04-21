@@ -15,6 +15,7 @@ public class EcoNewsEditNewsTest extends BasicTest {
     @BeforeMethod
     public void createNewsAndOpenEditPage() {
         new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(TITLE)

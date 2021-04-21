@@ -17,6 +17,7 @@ public class AddImageTest extends BasicTest{
         final String imagePlaceOnYourComputer = file.getAbsolutePath();
 
         NewsComponent firstNews = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(title)
@@ -25,6 +26,7 @@ public class AddImageTest extends BasicTest{
                 .browseImage(imagePlaceOnYourComputer)
                 .clickSubmitButton()
                 .clickPublishButton()
+                .getHeaderComponent()
                 .clickEcoNews()
                 .getNewsComponentContainer(false)
                 .chooseNewsByNumber(0);

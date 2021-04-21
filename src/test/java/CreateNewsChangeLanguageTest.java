@@ -47,6 +47,7 @@ public class CreateNewsChangeLanguageTest extends BasicTest {
     @BeforeMethod
     public void beforeMethod() {
         createNewsPage = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn();
     }

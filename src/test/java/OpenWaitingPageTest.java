@@ -10,6 +10,7 @@ public class OpenWaitingPageTest extends BasicTest {
         String TITLE = "Some title for test";
         String CONTENT = "Some information for test in content field";
         WaitingPagePO openWaitingPage = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(TITLE)

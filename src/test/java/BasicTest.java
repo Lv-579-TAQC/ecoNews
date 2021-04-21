@@ -25,6 +25,7 @@ public class BasicTest {
 
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
+        webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
         new LogInPO(webDriver)
                 .getHeaderComponent()
                 .clickSignInMenuButton()
