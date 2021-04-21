@@ -29,7 +29,7 @@ public class CreateNewsPO extends BasePage {
     private LabelElement currentdateLabel;
     private LabelElement authorLabel;
     private LabelElement authornameLabel;
-    private LabelElement contentMassegeLabel;
+    private LabelElement contentMessageLabel;
     private LabelElement contentFieldBox;
 
     private TagComponent tags;
@@ -65,7 +65,7 @@ public class CreateNewsPO extends BasePage {
         dateLabel = null;
         authorLabel = null;
         authornameLabel= null;
-        contentMassegeLabel = null;
+        contentMessageLabel = null;
         contentFieldBox = null;
 
         tags = null;
@@ -201,12 +201,12 @@ public class CreateNewsPO extends BasePage {
         }
         return authornameLabel;
     }
-    public LabelElement getContentMassageLabel() {
+    public LabelElement getContentMessageLabel() {
         clear();
-        if (contentMassegeLabel == null) {
-            contentMassegeLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENTFIELD_MASSEGA_LABEL);
+        if (contentMessageLabel == null) {
+            contentMessageLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENTFIELD_MASSEGA_LABEL);
         }
-        return contentMassegeLabel;
+        return contentMessageLabel;
     }
     public LabelElement getContentField() {
         clear();
@@ -275,7 +275,7 @@ public class CreateNewsPO extends BasePage {
         return new CreateNewsPO(driver);
     }
 
-    public CreateNewsPO clickNewsTags() {
+    public CreateNewsPO clickTagNews() {
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if (tags == null) {
             tags = new TagComponent(driver);
@@ -284,7 +284,7 @@ public class CreateNewsPO extends BasePage {
         return this;
     }
 
-    public CreateNewsPO clickAdsTags() {
+    public CreateNewsPO clickTagAds() {
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if (tags == null) {
             tags = new TagComponent(driver);

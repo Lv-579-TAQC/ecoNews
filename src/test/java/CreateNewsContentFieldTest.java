@@ -1,14 +1,14 @@
 import com.elements.LabelElement;
 import com.pageObject.CreateNewsPO;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
-import org.testng.annotations.*;
 import com.pageObject.EcoNewsPO;
-import com.pageObject.LogInPO;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 public class CreateNewsContentFieldTest extends BasicTest{
+
     @BeforeMethod
     public void startUp(){
         new EcoNewsPO(webDriver)
@@ -17,10 +17,12 @@ public class CreateNewsContentFieldTest extends BasicTest{
                 .clickCreateNewsBtn();
 
     }
+
     @AfterMethod
     public void finishUp(){
         webDriver.navigate().refresh();
     }
+
     @DataProvider()
     public Object[][] DataForText(){
         return new Object[][]{
@@ -32,6 +34,7 @@ public class CreateNewsContentFieldTest extends BasicTest{
                         "#ff0000"}
         };
     }
+
     @DataProvider()
     public Object[][] isAutoResizeable448px(){
         return new Object[][]{
@@ -39,23 +42,22 @@ public class CreateNewsContentFieldTest extends BasicTest{
                         448}
         };
     }
+
     @Test(dataProvider = "DataForText")
     public void verifyTextField(String mainText, String ExpectedText) {
         LabelElement contentFieldMessage = new CreateNewsPO(webDriver)
                 .setContent(mainText)
                 .clickOnBlankArea()
-                .getContentMassegeLabel();
-        Assert.assertEquals(contentFieldMessage.getColorHex(), ExpectedText);
+                .getContentMessageLabel();
+        Assert.assertEquals(contentFieldMessage.getColorHex(), ExpectedText, "Color of error message is different from expected ");
     }
 
     @Test(dataProvider = "isAutoResizeable448px")
     public void isContentFieldAutoResizable(String mainText, int ExpectedHeight) {
-        LabelElement contentField = new EcoNewsPO(webDriver)
-                .clickEcoNews()
-                .clickCreateNewsBtn()
+        LabelElement contentField = new CreateNewsPO(webDriver)
                 .setContent(mainText)
                 .clickOnBlankArea()
                 .getContentField();
-        Assert.assertEquals(contentField.getHeight(), ExpectedHeight);
+        Assert.assertEquals(contentField.getHeight(), ExpectedHeight, "Size of actual textbook is different from expected ");
     }
 }
