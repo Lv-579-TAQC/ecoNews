@@ -37,6 +37,9 @@ public class CreateNewsPO extends BasePage {
     private LabelElement currentdateLabel;
     private LabelElement authorLabel;
     private LabelElement usernameLabel;
+    private LabelElement authornameLabel;
+    private LabelElement contentMassegeLabel;
+    private LabelElement contentFieldBox;
 
     private TagComponent tags;
     private ButtonElement previewButton;
@@ -44,8 +47,7 @@ public class CreateNewsPO extends BasePage {
     private ButtonElement publishButton;
     private ButtonElement browseButton;
     private ButtonElement submitButton;
-
-    private HeaderComponent headerComponent;
+    private ButtonElement blankArea;
 
     private WaitsSwitcher waitsSwitcher;
     private static final int SECONDS_FOR_WAITING_TAGS = 50;
@@ -72,6 +74,9 @@ public class CreateNewsPO extends BasePage {
         dateLabel = null;
         authorLabel = null;
         usernameLabel = null;
+        authornameLabel= null;
+        contentMassegeLabel = null;
+        contentFieldBox = null;
 
         tags = null;
         previewButton = null;
@@ -94,6 +99,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getTitlePageLabel() {
+        clear();
         if (titlePageLabel == null) {
             titlePageLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_PAGE_LABEL);
         }
@@ -102,7 +108,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getAdditionalLabel() {
-
+        clear();
         if (additionalLabel == null) {
             additionalLabel = new LabelElement(this.driver, CreateNewsPageLocators.ADDITIONAL_LABEL);
         }
@@ -206,6 +212,20 @@ public class CreateNewsPO extends BasePage {
         }
         return usernameLabel;
     }
+    public LabelElement getContentMassageLabel() {
+        clear();
+        if (contentMassegeLabel == null) {
+            contentMassegeLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENTFIELD_MASSEGA_LABEL);
+        }
+        return contentMassegeLabel;
+    }
+    public LabelElement getContentField() {
+        clear();
+        if (contentFieldBox == null) {
+            contentFieldBox  = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD);
+        }
+        return contentFieldBox;
+    }
 
     public ButtonElement getCancelButton() {
         clear();
@@ -303,9 +323,7 @@ public class CreateNewsPO extends BasePage {
         tags.clickEducationTag();
         return this;
     }
-
-    public CreateNewsPO browseImage(String img) {
-        waitsSwitcher.setImplicitWaits(100);
+    public CreateNewsPO browseImage(String img){
         if (browseButton == null) {
             browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON_UPLOAD);
         }
@@ -315,7 +333,7 @@ public class CreateNewsPO extends BasePage {
 
     public CreateNewsPO clickSubmitButton() {
         waitsSwitcher.setImplicitWaits(100);
-        if (submitButton == null) {
+        if ( submitButton == null) {
             submitButton = new ButtonElement(this.driver, CreateNewsPageLocators.SUBMIT_BUTTON);
         }
         submitButton.click();
@@ -325,7 +343,7 @@ public class CreateNewsPO extends BasePage {
 
     public WaitingPagePO clickPublishButton() {
         waitsSwitcher.setImplicitWaits(100);
-        if (publishButton == null) {
+        if ( publishButton == null) {
             publishButton = new ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
         }
         publishButton.click();
@@ -333,26 +351,21 @@ public class CreateNewsPO extends BasePage {
         return new WaitingPagePO(driver);
     }
 
-
-    public boolean isEventsTagIsActive() {
-        return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+    public boolean isEventsTagIsActive(){
+        return driver.findElement(TagComponentLocators.EVENTS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
-
-    public boolean isNewsTagIsActive() {
-        return driver.findElement(TagComponentLocators.NEWS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+    public boolean isNewsTagIsActive(){
+        return driver.findElement(TagComponentLocators.NEWS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
-
-    public boolean isEducationTagIsActive() {
-        return driver.findElement(TagComponentLocators.EDUCATION_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+    public boolean isEducationTagIsActive(){
+        return driver.findElement(TagComponentLocators.EDUCATION_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
-
-    public boolean isInitiativesTagIsActive() {
-        return driver.findElement(TagComponentLocators.INITIATIVES_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+    public boolean isInitiativesTagIsActive(){
+        return driver.findElement(TagComponentLocators.INITIATIVES_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
 
     }
-
-    public boolean isAdsTagIsActive() {
-        return driver.findElement(TagComponentLocators.ADS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+    public boolean isAdsTagIsActive(){
+        return driver.findElement(TagComponentLocators.ADS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
 
     public boolean isSignUnderTagsMakingWarning() {
@@ -362,10 +375,14 @@ public class CreateNewsPO extends BasePage {
     public boolean isPublishButtonIsActive() {
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
     }
-
-    public HeaderComponent getHeaderComponent() {
-        headerComponent = new HeaderComponent(driver);
-        return headerComponent;
+    public boolean isSignUnderImageMakingWarning() {
+        return driver.findElement(CreateNewsPageLocators.WARNING_UNDER_IMAGE_PLACE.getPath()).isDisplayed();
+    }
+    public boolean isBackGroundOnImagePlaceMakingWarning() {
+        return driver.findElement(CreateNewsPageLocators.RED_WARNING_ON_IMAGE_PLACE.getPath()).getAttribute("class").contains("dropzone warning-background");
+    }
+    public boolean isSignOnImagePleaseAppears(){
+        return driver.findElement(CreateNewsPageLocators.SIGN_CREATING_AFTER_INCORRECT_IMAGE_UPLOAD.getPath()).isDisplayed();
     }
 
     public String getTitleFieldHeight() {

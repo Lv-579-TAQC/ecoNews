@@ -23,6 +23,7 @@ public class CreateNewsSourceFieldTest extends BasicTest{
     @Test(dataProvider = "inCorrectDataInSourceField")
     public void verifyThatTextInFieldCorrect(String mainText, String ExpectedColor) {
         LabelElement lb = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setSource(mainText)

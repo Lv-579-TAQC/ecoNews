@@ -37,6 +37,7 @@ public class NewsComponent extends BasePage{
         this.isVertical = isVertical;
         waitsSwitcher = new WaitsSwitcher(driver);
     }
+
     public NewsComponent(WebDriver driver, WebElement newsItem, boolean isVertical) {
         super(driver);
         this.isVertical = isVertical;
