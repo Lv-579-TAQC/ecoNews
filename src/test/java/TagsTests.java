@@ -9,6 +9,7 @@ public class TagsTests extends BasicTest {
     @Test
     public void verifyWeCannotUseMoreThanThreeTags() {
         CreateNewsPO warning = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .clickTagNews()
@@ -17,19 +18,20 @@ public class TagsTests extends BasicTest {
                 .clickEducationTag()
                 .clickEventsTag();
 
-        SoftAssert asert = new SoftAssert();
-        asert.assertTrue(warning.isNewsTagIsActive(), "News tag is not active, but should be");
-        asert.assertFalse(warning.isEducationTagIsActive(), "Education tag is active, but should not be");
-        asert.assertTrue(warning.isInitiativesTagIsActive(), "Initiative tag is not active, but should be");
-        asert.assertTrue(warning.isAdsTagIsActive(), "Ads tag is not active, but should not be");
-        asert.assertFalse(warning.isEventsTagIsActive(), "Ads tag is active, but should be");
-        asert.assertTrue(warning.isSignUnderTagsMakingWarning(), "Warning sign was not shown");
-        asert.assertAll();
+        SoftAssert softAssertForTagsTest = new SoftAssert();
+        softAssertForTagsTest.assertTrue(warning.isNewsTagIsActive(), "News tag is not active, but should be");
+        softAssertForTagsTest.assertTrue(warning.isInitiativesTagIsActive(), "Initiative tag is not active, but should be");
+        softAssertForTagsTest.assertTrue(warning.isAdsTagIsActive(), "Ads tag is not active, but should be");
+        softAssertForTagsTest.assertFalse(warning.isEventsTagIsActive(), "Ads tag is active, but should be not");
+        softAssertForTagsTest.assertFalse(warning.isEducationTagIsActive(), "Education tag is active, but should be not");
+        softAssertForTagsTest.assertTrue(warning.isSignUnderTagsMakingWarning(), "Warning sign was not shown");
+        softAssertForTagsTest.assertAll();
     }
 
     @Test(dataProvider = "notValidValuesToCreateNews")
     public void verifyWeCannotCreateNewsWithoutTags(String title, String content) {
         CreateNewsPO creatingNewsWithoutTags = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(title)

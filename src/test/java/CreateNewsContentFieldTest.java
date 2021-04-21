@@ -12,6 +12,7 @@ public class CreateNewsContentFieldTest extends BasicTest{
     @BeforeMethod
     public void startUp(){
         new EcoNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn();
 

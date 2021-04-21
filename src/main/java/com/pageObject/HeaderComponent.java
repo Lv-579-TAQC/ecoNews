@@ -5,6 +5,7 @@ import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
 import com.locators.EcoNewsPageLocators;
 import com.locators.HeaderComponentLocator;
+import com.locators.LogInLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 
@@ -15,6 +16,7 @@ public class HeaderComponent extends BasePage{
     private ButtonElement ecoNewsButton;
     private ButtonElement languageDropdown;
     private LabelElement usernameLabel;
+    private ButtonElement signInMenuButton;
 
     public HeaderComponent(WebDriver driver) {
         super(driver);
@@ -46,5 +48,14 @@ public class HeaderComponent extends BasePage{
         }
 
         return usernameLabel;
+    }
+
+    public LogInPO clickSignInMenuButton() {
+        if (signInMenuButton == null) {
+            signInMenuButton = new ButtonElement(this.driver, LogInLocators.SIGN_IN_MENU_BUTTON);
+        }
+        signInMenuButton.click();
+
+        return new LogInPO(driver);
     }
 }

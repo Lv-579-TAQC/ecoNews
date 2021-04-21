@@ -8,6 +8,12 @@ import com.locators.TagComponentLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 public class CreateNewsPO extends BasePage {
 
     private FieldElement titleField;
@@ -39,8 +45,6 @@ public class CreateNewsPO extends BasePage {
     private ButtonElement browseButton;
     private ButtonElement submitButton;
     private ButtonElement blankArea;
-
-    private HeaderComponent headerComponent;
 
     private WaitsSwitcher waitsSwitcher;
     private static final int SECONDS_FOR_WAITING_TAGS = 50;
@@ -91,6 +95,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getTitlePageLabel() {
+        clear();
         if (titlePageLabel == null) {
             titlePageLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_PAGE_LABEL);
         }
@@ -99,7 +104,7 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getAdditionalLabel() {
-
+        clear();
         if (additionalLabel == null) {
             additionalLabel = new LabelElement(this.driver, CreateNewsPageLocators.ADDITIONAL_LABEL);
         }
@@ -321,7 +326,6 @@ public class CreateNewsPO extends BasePage {
         return this;
     }
     public CreateNewsPO browseImage(String img){
-        waitsSwitcher.setImplicitWaits(100);
         if (browseButton == null) {
             browseButton = new ButtonElement(this.driver, CreateNewsPageLocators.BROWSE_PICTURE_BUTTON_UPLOAD);
         }
@@ -347,7 +351,6 @@ public class CreateNewsPO extends BasePage {
         return new WaitingPagePO(driver);
     }
 
-
     public boolean isEventsTagIsActive(){
         return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
@@ -370,8 +373,13 @@ public class CreateNewsPO extends BasePage {
     public boolean isPublishButtonIsActive(){
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
     }
-    public HeaderComponent getHeaderComponent(){
-        headerComponent = new HeaderComponent(driver);
-        return headerComponent;
+    public boolean isSignUnderImageMakingWarning() {
+        return driver.findElement(CreateNewsPageLocators.WARNING_UNDER_IMAGE_PLACE.getPath()).isDisplayed();
+    }
+    public boolean isBackGroundOnImagePlaceMakingWarning() {
+        return driver.findElement(CreateNewsPageLocators.RED_WARNING_ON_IMAGE_PLACE.getPath()).getAttribute("class").contains("dropzone warning-background");
+    }
+    public boolean isSignOnImagePleaseAppears(){
+        return driver.findElement(CreateNewsPageLocators.SIGN_CREATING_AFTER_INCORRECT_IMAGE_UPLOAD.getPath()).isDisplayed();
     }
 }

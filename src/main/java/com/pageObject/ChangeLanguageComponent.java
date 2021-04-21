@@ -32,7 +32,7 @@ public class ChangeLanguageComponent {
         }
         uaButton.click();
         try {
-            Thread.sleep(7000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -44,7 +44,7 @@ public class ChangeLanguageComponent {
         }
         enButton.click();
         try {
-            Thread.sleep(7000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -56,7 +56,7 @@ public class ChangeLanguageComponent {
         }
         ruButton.click();
         try {
-            Thread.sleep(7000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
