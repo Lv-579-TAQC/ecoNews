@@ -199,7 +199,7 @@ public class CreateNewsPO extends BasePage {
         }
         return authornameLabel;
     }
-    public LabelElement getContentMassegeLabel() {
+    public LabelElement getContentMassageLabel() {
         clear();
         if (contentMassegeLabel == null) {
             contentMassegeLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENTFIELD_MASSEGA_LABEL);
@@ -266,7 +266,7 @@ public class CreateNewsPO extends BasePage {
         return new CreateNewsPO(driver);
     }
 
-    public CreateNewsPO clickTagNews() {
+    public CreateNewsPO clickNewsTags() {
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if (tags == null) {
             tags = new TagComponent(driver);
@@ -275,7 +275,7 @@ public class CreateNewsPO extends BasePage {
         return this;
     }
 
-    public CreateNewsPO clickTagAds() {
+    public CreateNewsPO clickAdsTags() {
         waitsSwitcher.setImplicitWaits(SECONDS_FOR_WAITING_TAGS);
         if (tags == null) {
             tags = new TagComponent(driver);

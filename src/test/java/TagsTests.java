@@ -11,8 +11,8 @@ public class TagsTests extends BasicTest {
         CreateNewsPO warning = new EcoNewsPO(webDriver)
                 .clickEcoNews()
                 .clickCreateNewsBtn()
-                .clickTagNews()
-                .clickTagAds()
+                .clickNewsTags()
+                .clickAdsTags()
                 .clickInitiativesTag()
                 .clickEducationTag()
                 .clickEventsTag();
