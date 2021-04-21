@@ -33,7 +33,7 @@ public class PreviewPageTest extends BasicTest{
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(title)
-                .clickNewsTags()
+                .clickTagNews()
                 .setContent(content)
                 .clickPreviewButton();
 
@@ -72,7 +72,7 @@ public class PreviewPageTest extends BasicTest{
                 .clickBackToEditingButton()
                 .setTitle(title)
                 .setContent(content)
-                .clickNewsTags()
+                .clickTagNews()
                 .clickPreviewButton();
 
         Assert.assertEquals(previewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same.");
@@ -88,7 +88,7 @@ public class PreviewPageTest extends BasicTest{
                 .clickCreateNewsBtn()
                 .setTitle(title)
                 .setContent(content)
-                .clickNewsTags()
+                .clickTagNews()
                 .clickPreviewButton()
                 .clickPublishButtonFromPreviewPage();
 

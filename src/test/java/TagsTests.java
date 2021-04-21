@@ -12,8 +12,8 @@ public class TagsTests extends BasicTest {
                 .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
-                .clickNewsTags()
-                .clickAdsTags()
+                .clickTagNews()
+                .clickTagAds()
                 .clickInitiativesTag()
                 .clickEducationTag()
                 .clickEventsTag();
