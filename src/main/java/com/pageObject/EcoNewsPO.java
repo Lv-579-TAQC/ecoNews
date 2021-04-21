@@ -4,6 +4,7 @@ import com.elements.ButtonElement;
 import com.elements.FieldElement;
 import com.elements.LabelElement;
 import com.locators.TagComponentLocators;
+import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 import com.locators.EcoNewsPageLocators;
 import org.openqa.selenium.WebElement;
@@ -27,12 +28,7 @@ public class EcoNewsPO extends BasePage{
     }
 
     public SomeNewsPagePO clickOnTheLatestNewsCreatedByTheTestUserOnTheEcoNewsPage(){
-
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WaitsSwitcher.sleep(10000);
         if(firstNews == null) {
             firstNews = new ButtonElement(this.driver, EcoNewsPageLocators.LAST_NEWS_ON_ECONEWS_PAGE_BY_TESTUSER);
         }

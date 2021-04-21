@@ -3,6 +3,7 @@ package com.pageObject;
 import com.elements.ButtonElement;
 import com.elements.LabelElement;
 import com.locators.SomeNewsPageLocators;
+import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 
 public class SomeNewsPagePO extends BasePage {
@@ -12,11 +13,7 @@ public class SomeNewsPagePO extends BasePage {
     private LabelElement contentLabel;
 
     public EditNewsPagePO clickEditNewsButton() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WaitsSwitcher.sleep(5000);
         if (editNewsButton == null) {
             editNewsButton = new ButtonElement(this.driver, SomeNewsPageLocators.EDIT_NEWS_BUTTON);
         }
