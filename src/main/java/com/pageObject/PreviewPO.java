@@ -16,7 +16,6 @@ public class PreviewPO extends BasePage{
     private WaitsSwitcher waitsSwitcher;
     private LabelElement dateLabel;
     private LabelElement authorLabel;
-    private HeaderComponent headerComponent;
 
 
     public PreviewPO(WebDriver driver) {
@@ -68,11 +67,6 @@ public class PreviewPO extends BasePage{
         return authorLabel;
     }
 
-    public HeaderComponent getHeaderComponent(){
-        headerComponent = new HeaderComponent(driver);
-        return headerComponent;
-    }
-
     public boolean isPublishButtonExists(){
         if(publishNewsButton == null){
             try {
@@ -89,7 +83,7 @@ public class PreviewPO extends BasePage{
             publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
         }
         publishNewsButton.click();
-        waitsSwitcher.setImplicitWaits(25);
+        waitsSwitcher.setImplicitWaits(35);
         return new EcoNewsPO(driver);
     }
 

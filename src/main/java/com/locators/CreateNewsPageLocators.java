@@ -37,7 +37,10 @@ public enum CreateNewsPageLocators implements BaseLocator{
     BACKTOEDITINGBUTTON(By.xpath("/html/body/app-root/div[3]/app-eco-news/div/app-news-preview-page/div/div[1]/div/a/div/div[2]")),
 
     CONTENTFIELD_MASSEGA_LABEL(By.xpath("//*[@id='main-content']/div/div[2]/form/div[2]/p")),
-    SUBMIT_BUTTON(By.xpath("//button[text() = 'Submit']"));
+    SUBMIT_BUTTON(By.xpath("//button[text() = 'Submit']")),
+    RED_WARNING_ON_IMAGE_PLACE(By.xpath("//*[contains(@class, 'warning')]")),
+    WARNING_UNDER_IMAGE_PLACE(By.xpath("//*[contains(@class, 'warning warning-color')]")),
+    SIGN_CREATING_AFTER_INCORRECT_IMAGE_UPLOAD(By.xpath("//div[@class='centered']/p"));
 
     private By path;
 

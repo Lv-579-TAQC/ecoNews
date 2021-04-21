@@ -25,6 +25,7 @@ public class BasicTest {
         webDriver.manage().window().maximize();
         webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
         new LogInPO(webDriver)
+                .getHeaderComponent()
                 .clickSignInMenuButton()
                 .setEmail(email)
                 .setPassword(password)
@@ -32,7 +33,7 @@ public class BasicTest {
     }
 
     @AfterClass
-    public void closeUp(){
+    public void closeUp() {
         webDriver.close();
         webDriver.quit();
     }

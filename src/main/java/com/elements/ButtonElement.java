@@ -7,7 +7,11 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.logging.Logger;
+
 public class ButtonElement extends BaseElement {
+
+    private Logger log = Logger.getLogger(ButtonElement.class.getName());
 
     public ButtonElement(WebDriver driver, BaseLocator locator) {
         super(driver, locator);
@@ -38,8 +42,7 @@ public class ButtonElement extends BaseElement {
                 } catch (InterruptedException interruptedException) {
                     interruptedException.printStackTrace();
                 }
-                //TODO: add logger
-                System.out.println("-");
+                log.info("-");
             }
         }while (ms < milliSeconds);
     }

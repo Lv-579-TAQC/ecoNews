@@ -16,14 +16,7 @@ public class LogInPO extends BasePage {
     public LogInPO(WebDriver driver) {
         super(driver);
     }
-    public LogInPO clickSignInMenuButton() {
-        if (signInMenuButton == null) {
-            signInMenuButton = new ButtonElement(this.driver, LogInLocators.SIGN_IN_MENU_BUTTON);
-        }
-        signInMenuButton.click();
 
-        return new LogInPO(driver);
-    }
     public LogInPO setEmail(String text) {
         if (emailField == null) {
             emailField = new FieldElement(this.driver, LogInLocators.EMAIL_FIELD);
@@ -32,6 +25,7 @@ public class LogInPO extends BasePage {
 
         return this;
     }
+
     public LogInPO setPassword(String text) {
         if (passwordField == null) {
             passwordField = new FieldElement(this.driver, LogInLocators.PASSWORD_FIELD);
