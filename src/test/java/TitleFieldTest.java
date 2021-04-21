@@ -1,68 +1,51 @@
 import com.pageObject.CreateNewsPO;
-import com.pageObject.EcoNewsPO;
-import com.pageObject.LogInPO;
 import com.pageObject.PreviewPO;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.*;
-import org.w3c.dom.ls.LSOutput;
-
-import javax.xml.ws.WebEndpoint;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 public class TitleFieldTest extends BasicTest {
 
-//    @AfterMethod
-//    public void refreshPage() {
-//        webDriver.navigate().refresh();
-//        try {
-//            Thread.sleep(3000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private String contentFieldContent = "Some text, some text, some text";
+
+    @AfterMethod
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void isTittleMandatoryFieldOnCreateNewsPage() {
         CreateNewsPO createNewsPO = new PreviewPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .clickTagNews()
-                .setContent("Some news, some news, some news");
+                .setContent(contentFieldContent);
         Assert.assertFalse(createNewsPO.isPublishButtonIsActive());
     }
 
-    @Test(dataProvider = "setOfTags")
-    public void isTitleMandatoryFieldOnPreviewPage(CreateNewsPO obj) {
-        obj.setTitle("Some text");
-    }
-
-    @DataProvider
-    public Object[][] setOfTags() {
-        CreateNewsPO createNewsPO = new CreateNewsPO(webDriver);
-        return new Object[][]{
-                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickTagNews()},
-                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickTagAds()},
-                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickEventsTag()},
-                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickInitiativesTag()},
-                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickEducationTag()},
-                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickEventsTag().clickInitiativesTag()},
-                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickEducationTag().clickEducationTag()},
-                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickTagNews().clickTagAds().clickEventsTag()},
-                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickTagNews().clickInitiativesTag().clickEducationTag()},
-                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickTagAds().clickInitiativesTag().clickEducationTag()}
-        };
+    @Test
+    public void isTitleMandatoryFieldOnPreviewPage() {
+        PreviewPO previewPO = new CreateNewsPO(webDriver)
+                .getHeaderComponent()
+                .clickEcoNews()
+                .clickCreateNewsBtn()
+                .clickTagNews()
+                .setContent(contentFieldContent)
+                .clickPreviewButton();
+        Assert.assertFalse(previewPO.isPublishButtonExists());
     }
 
     @Test(dataProvider = "fieldDataAndAppropriateHeight")
     public void isTitleFieldAutoResizable(String titleContent, String expectedTitleFieldHeight) {
         CreateNewsPO createNewsPO = new CreateNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(titleContent);
@@ -82,6 +65,7 @@ public class TitleFieldTest extends BasicTest {
     @Test(dataProvider = "titleFieldData")
     public void ifTitleFieldCanContainMoreTha170Symbols(String fieldContent, String expectedMessage) {
         CreateNewsPO createNewsPO = new CreateNewsPO(webDriver)
+                .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .setTitle(fieldContent);
@@ -89,17 +73,7 @@ public class TitleFieldTest extends BasicTest {
         Assert.assertEquals(checkForErrorMessage, expectedMessage);
         webDriver.navigate().refresh();
     }
-//    @Test
-//    public void temp() {
-//        CreateNewsPO createNewsPO = new CreateNewsPO(webDriver)
-//                .clickEcoNews()
-//                .clickCreateNewsBtn()
-//                .setTitle("ASJADjsajdolias;jdnsoa;fnoiuedrgbpno;nb;rebndofsnbgonfdosbnoisfdnibonfdisbnoifdsnboinfdsoibnodsifnbosdnfpbofrenobinonboifnb" +
-//                        "dofibnodndosfnbodfsnobndofsinbodsfnboindfsbnsdnfbosdnf[b['siengbiosnpbsefpgpfdsogbmjpfdosmjbpsdfjmbpfmsdpb" +
-//                        "dfspbmpsdfbpdkfsmobpmdsfpbmsdefmbopfsdmb;opmesdfrpbpdfsmbjfdsbopml;dmb;dsfmb[pksefrdobmsfdopbmopsebmj");
-//        String output = createNewsPO.getTitleFieldErrorMessage();
-//        System.out.println("Message: " + output);
-//    }
+
     @DataProvider
     public Object[][] titleFieldData() {
         return new Object[][]{

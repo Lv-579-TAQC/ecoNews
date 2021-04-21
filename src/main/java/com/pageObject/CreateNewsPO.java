@@ -394,24 +394,4 @@ public class CreateNewsPO extends BasePage {
         classNameList = Arrays.asList(driver.findElement(CreateNewsPageLocators.TITLE_FIELD.getPath()).getAttribute("class").split(" "));
         return classNameList.get(2);
     }
-
-    public void selectTag(String tagName) {
-        switch (tagName) {
-            case "News":
-                this.clickTagNews();
-                break;
-            case "Ads":
-                this.clickTagAds();
-                break;
-            case "Events":
-                this.clickEventsTag();
-                break;
-            case "Initiatives":
-                this.clickInitiativesTag();
-                break;
-            case "Education":
-                this.clickEducationTag();
-                break;
-        }
-    }
 }
