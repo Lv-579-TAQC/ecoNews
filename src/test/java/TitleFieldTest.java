@@ -7,64 +7,94 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import org.w3c.dom.ls.LSOutput;
 
 import javax.xml.ws.WebEndpoint;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-public class TitleFieldTest {
-    private static WebDriver webDriver;
-    private static final String EMAIL = "piliphemp@gmail.com";
-    private static final String PASSWORD = "@bcD1234";
+public class TitleFieldTest extends BasicTest {
 
-    @BeforeClass
-    public void setUpClass() {
-        String WebDriverPath = System.getenv("WebDrivers");
-        String os = System.getProperty("os.name");
-        if (os.startsWith("Windows")) {
-            WebDriverPath += "\\chromedriver.exe";
-        } else {
-            WebDriverPath += "/chromedriver";
-        }
-
-        System.setProperty("webdriver.chrome.driver", WebDriverPath);
-
-        webDriver = new ChromeDriver();
-        webDriver.get("https://ita-social-projects.github.io/GreenCityClient/#/");
-        webDriver.manage().window().maximize();
-        LogInPO logInPO = new LogInPO(webDriver)
-                .clickSignInMenuButton()
-                .setEmail(EMAIL)
-                .setPassword(PASSWORD)
-                .clickSignInButton();
-    }
-
-    @AfterClass
-    public void tearDownClass(){
-        webDriver.quit();
-    }
+//    @AfterTest
+//    public void refreshPage() {
+//        webDriver.navigate().refresh();
+//    }
 
     @Test
     public void isTittleMandatoryFieldOnCreateNewsPage() {
-        CreateNewsPO createNewsPO = new EcoNewsPO(webDriver)
+        CreateNewsPO createNewsPO = new PreviewPO(webDriver)
                 .clickEcoNews()
                 .clickCreateNewsBtn()
                 .clickTagNews()
                 .setContent("Some news, some news, some news");
-        Assert.assertFalse(createNewsPO.clickPreviewButton().isPublishButtonExists());
+        Assert.assertFalse(createNewsPO.isPublishButtonIsActive());
     }
 
-    @Test
-    public void isTitleMandatoryFieldOnPreviewPage() {
-        PreviewPO createNewsPO = new EcoNewsPO(webDriver)
+    @Test(dataProvider = "setOfTags")
+    public void isTitleMandatoryFieldOnPreviewPage(PreviewPO obj) {
+//        obj.();
+    }
+
+    @DataProvider
+    public Object[][] setOfTags() {
+        CreateNewsPO createNewsPO = new CreateNewsPO(webDriver);
+        return new Object[][]{
+                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickTagNews()},
+                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickTagAds()},
+                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickEventsTag()},
+                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickInitiativesTag()},
+                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickEducationTag()},
+                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickEventsTag().clickInitiativesTag()},
+                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickEducationTag().clickEducationTag()},
+                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickTagNews().clickTagAds().clickEventsTag()},
+                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickTagNews().clickInitiativesTag().clickEducationTag()},
+                {createNewsPO.clickEcoNews().clickCreateNewsBtn().clickTagAds().clickInitiativesTag().clickEducationTag()}
+        };
+    }
+
+    @Test(dataProvider = "fieldDataAndAppropriateHeight")
+    public void isTitleFieldAutoResizable(String titleContent, String expectedTitleFieldHeight) {
+        CreateNewsPO createNewsPO = new CreateNewsPO(webDriver)
                 .clickEcoNews()
                 .clickCreateNewsBtn()
-                .clickEducationTag()
-                .setContent("Some news, some news, some news")
-                .clickPreviewButton();
-        Assert.assertFalse(createNewsPO.isPublishButtonExists());
-        }
+                .setTitle(titleContent);
+        String actualTitleFieldHeight = createNewsPO.getTitleFieldHeight();
+        Assert.assertEquals(actualTitleFieldHeight, expectedTitleFieldHeight);
+        webDriver.navigate().refresh();
+        webDriver.navigate().refresh();
     }
+
+    @DataProvider
+    public Object[][] fieldDataAndAppropriateHeight() {
+        return new Object[][]{
+                {"Some Text", "height: 48px;"},
+                {"Some Text\nSome Text", "height: 72px;"},
+                {"Some Text\nSome Text\nSome Text\nSome Text", "height: 120px;"}
+        };
+    }
+
+    @Test(dataProvider = "titleFieldData")
+    public void ifTitleFieldCanContainMoreTha170Symbols(String fieldContent, String expectedMessage) {
+        CreateNewsPO createNewsPO = new CreateNewsPO(webDriver)
+                .clickEcoNews()
+                .clickCreateNewsBtn()
+                .setTitle(fieldContent);
+        String checkForErrorMessage = createNewsPO.getTitleFieldErrorMessage();
+        Assert.assertEquals(checkForErrorMessage, expectedMessage);
+    }
+
+    @DataProvider
+    public Object[][] titleFieldData() {
+        return new Object[][]{
+
+                {"NotWalidAmountNotWalidAmountNotWalidAmountNotWalidAmountNotWalidAmountNotWalidAmountNotWalidAmount" + //171 symbols
+                        "NotWalidAmountNotWalidAmountNotWalidAmountNotWalidAmountNotWalidAmountNot", "ng-invalid"},
+                {"WalidAmountWalidAmountWalidAmountWalidAmountWalidAmountWalidAmountWalidAmountWalidAmountWalidAmount" +    //170 symbols
+                        "WalidAmountWalidAmountWalidAmountWalidAmountWalidAmountWalidAmountWalid", "ng-valid"}
+
+        };
+    }
+}

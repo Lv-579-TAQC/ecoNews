@@ -12,6 +12,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 public class CreateNewsPO extends BasePage {
@@ -351,5 +353,15 @@ public class CreateNewsPO extends BasePage {
     public HeaderComponent getHeaderComponent(){
         headerComponent = new HeaderComponent(driver);
         return headerComponent;
+    }
+
+    public String getTitleFieldHeight() {
+        return driver.findElement(CreateNewsPageLocators.TITLE_FIELD.getPath()).getAttribute("style");
+    }
+
+    public String getTitleFieldErrorMessage() {
+        List<String> classNameList;
+        classNameList = Arrays.asList(driver.findElement(CreateNewsPageLocators.TITLE_FIELD.getPath()).getAttribute("class").split(" "));
+        return classNameList.get(2);
     }
 }
