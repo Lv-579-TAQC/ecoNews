@@ -42,7 +42,7 @@ public class ButtonElement extends BaseElement {
                 } catch (InterruptedException interruptedException) {
                     interruptedException.printStackTrace();
                 }
-                log.info("-");
+                log.info("Wait tag to be clickable");
             }
         }while (ms < milliSeconds);
     }

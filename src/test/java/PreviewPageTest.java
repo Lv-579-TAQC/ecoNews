@@ -1,4 +1,6 @@
-import com.pageObject.*;
+import com.pageObject.EcoNewsPO;
+import com.pageObject.NewsComponent;
+import com.pageObject.PreviewPO;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -22,7 +24,12 @@ public class PreviewPageTest extends BasicTest{
     public Object[][] incorrectDataForNews(){
         return new Object[][]{
                 {"This is title",
-                        "Content"}
+                        "Content"},
+                {"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nas",
+                        "This is new test content for this page!This is new test content for this page!"},
+                {"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nas",
+                        "Content"},
+                {"",""}
         };
     }
 
@@ -55,6 +62,7 @@ public class PreviewPageTest extends BasicTest{
                 .clickCreateNewsBtn()
                 .setTitle(title)
                 .setContent(content)
+                .clickTagNews()
                 .clickPreviewButton();
 
         Assert.assertEquals(previewPO.getTitleLabel().getText(), title, "Input and viewed titles should be the same.");

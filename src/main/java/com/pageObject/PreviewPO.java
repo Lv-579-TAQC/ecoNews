@@ -67,6 +67,7 @@ public class PreviewPO extends BasePage{
     }
 
     public boolean isPublishButtonExists(){
+        waitsSwitcher.setImplicitWaits(1);
         if(publishNewsButton == null){
             try {
                 publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
@@ -82,7 +83,7 @@ public class PreviewPO extends BasePage{
             publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
         }
         publishNewsButton.click();
-        waitsSwitcher.setImplicitWaits(35);
+        waitsSwitcher.setImplicitWaits(60);
         return new EcoNewsPO(driver);
     }
 }
