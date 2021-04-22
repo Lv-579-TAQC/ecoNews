@@ -376,4 +376,7 @@ public class CreateNewsPO extends BasePage {
     public boolean isSignOnImagePleaseAppears(){
         return driver.findElement(CreateNewsPageLocators.SIGN_CREATING_AFTER_INCORRECT_IMAGE_UPLOAD.getPath()).isDisplayed();
     }
+    public String getSourceFieldHeight() {
+        return driver.findElement(CreateNewsPageLocators.SOURCE_FIELD.getPath()).getAttribute("style");
+    }
 }

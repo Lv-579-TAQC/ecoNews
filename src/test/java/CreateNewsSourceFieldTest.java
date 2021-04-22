@@ -77,7 +77,7 @@ public class CreateNewsSourceFieldTest extends BasicTest {
     @DataProvider
     public Object[][] inCorrectLinkForVerifyWarningLabel() {
         return new Object[][]{
-                {"htps://google.com",
+                {"google.com",
                         "#ff0000"}
         };
     }
@@ -94,24 +94,26 @@ public class CreateNewsSourceFieldTest extends BasicTest {
         Assert.assertEquals(lb.getColorHex(), ExpectedColor);
     }
 
-//    @DataProvider
-//    public Object[][] inCorrectLinkForVerifyWarningLabel() {
-//        return new Object[][]{
-//                {"htps://google.com",
-//                        "#ff0000"}
-//        };
-//    }
+    @DataProvider
+    public Object[][] verifyNoAutoResizing() {
+        return new Object[][]{
+                {"https://ita-social-projects.github.io/GreenCityClient/#/news/create/GreenCityClient/#/" +
+                        "news/create-news-news/GreenCityClient/#/news/create/GreenCityClient/#/" +
+                        "news/create-news-news",
+                        "height: 48px;"}
+        };
+    }
 
-    @Test(dataProvider = "inCorrectLinkForVerifyWarningLabel")
-    public void verifyThatFrameInFieldCorrect(String mainText, String ExpectedColor) {
-        LabelElement lb = new EcoNewsPO(webDriver)
+    @Test(dataProvider = "verifyNoAutoResizing")
+    public void verifyNoAutoResizingInFieldCorrect(String source, String ExpectedFieldHeight) {
+        CreateNewsPO verifyNoAutoResizing = new EcoNewsPO(webDriver)
                 .getHeaderComponent()
                 .clickEcoNews()
                 .clickCreateNewsBtn()
-                .setSource(mainText)
-                .getSourceWarningLabel();
+                .setSource(source);
 
-        Assert.assertEquals(lb.getColorHex(), ExpectedColor);
+        String actualSourceFieldHeight = verifyNoAutoResizing.getSourceFieldHeight();
+        Assert.assertEquals(actualSourceFieldHeight, ExpectedFieldHeight);
     }
 
 
