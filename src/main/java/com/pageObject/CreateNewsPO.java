@@ -8,6 +8,14 @@ import com.locators.TagComponentLocators;
 import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+
 public class CreateNewsPO extends BasePage {
 
     private FieldElement titleField;
@@ -28,6 +36,7 @@ public class CreateNewsPO extends BasePage {
     private LabelElement dateLabel;
     private LabelElement currentdateLabel;
     private LabelElement authorLabel;
+    private LabelElement usernameLabel;
     private LabelElement authornameLabel;
     private LabelElement contentMessageLabel;
     private LabelElement contentFieldBox;
@@ -64,6 +73,7 @@ public class CreateNewsPO extends BasePage {
         contentLabel = null;
         dateLabel = null;
         authorLabel = null;
+        usernameLabel = null;
         authornameLabel= null;
         contentMessageLabel = null;
         contentFieldBox = null;
@@ -178,6 +188,7 @@ public class CreateNewsPO extends BasePage {
         }
         return dateLabel;
     }
+
     public LabelElement getCurrentDateLabel() {
         clear();
         if (currentdateLabel == null) {
@@ -194,12 +205,12 @@ public class CreateNewsPO extends BasePage {
         return authorLabel;
     }
 
-    public LabelElement getAuthorNameLabel() {
+    public LabelElement getUserNameLabel() {
         clear();
-        if (authornameLabel == null) {
-            authornameLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_NAME_LABEL);
+        if (usernameLabel == null) {
+            usernameLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_NAME_LABEL);
         }
-        return authornameLabel;
+        return usernameLabel;
     }
     public LabelElement getContentMessageLabel() {
         clear();
@@ -224,6 +235,7 @@ public class CreateNewsPO extends BasePage {
         return cancelButton;
 
     }
+
     public ButtonElement getPublishButton() {
         clear();
         if (publishButton == null) {
@@ -231,6 +243,7 @@ public class CreateNewsPO extends BasePage {
         }
         return publishButton;
     }
+
     public ButtonElement getPreviewButton() {
         clear();
         if (previewButton == null) {
@@ -264,15 +277,6 @@ public class CreateNewsPO extends BasePage {
         previewButton.click();
 
         return new PreviewPO(driver);
-    }
-    public CreateNewsPO clickOnBlankArea() {
-        waitsSwitcher.setImplicitWaits(100);
-        if ( blankArea == null) {
-            blankArea = new ButtonElement(this.driver, CreateNewsPageLocators.BLANK_AREA);
-        }
-        blankArea.click();
-
-        return new CreateNewsPO(driver);
     }
 
     public CreateNewsPO clickTagNews() {
@@ -326,6 +330,7 @@ public class CreateNewsPO extends BasePage {
         browseButton.sendKeys(img);
         return this;
     }
+
     public CreateNewsPO clickSubmitButton() {
         waitsSwitcher.setImplicitWaits(100);
         if ( submitButton == null) {
@@ -335,6 +340,7 @@ public class CreateNewsPO extends BasePage {
 
         return new CreateNewsPO(driver);
     }
+
     public WaitingPagePO clickPublishButton() {
         waitsSwitcher.setImplicitWaits(100);
         if ( publishButton == null) {
@@ -361,10 +367,12 @@ public class CreateNewsPO extends BasePage {
     public boolean isAdsTagIsActive(){
         return driver.findElement(TagComponentLocators.ADS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
-    public boolean isSignUnderTagsMakingWarning(){
+
+    public boolean isSignUnderTagsMakingWarning() {
         return driver.findElement(TagComponentLocators.SIGN_UNDER_TAGS.getPath()).getAttribute("class").contains("warning");
     }
-    public boolean isPublishButtonIsActive(){
+
+    public boolean isPublishButtonIsActive() {
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
     }
     public boolean isSignUnderImageMakingWarning() {
@@ -375,5 +383,15 @@ public class CreateNewsPO extends BasePage {
     }
     public boolean isSignOnImagePleaseAppears(){
         return driver.findElement(CreateNewsPageLocators.SIGN_CREATING_AFTER_INCORRECT_IMAGE_UPLOAD.getPath()).isDisplayed();
+    }
+
+    public String getTitleFieldHeight() {
+        return driver.findElement(CreateNewsPageLocators.TITLE_FIELD.getPath()).getAttribute("style");
+    }
+
+    public String getTitleFieldErrorMessage() {
+        List<String> classNameList;
+        classNameList = Arrays.asList(driver.findElement(CreateNewsPageLocators.TITLE_FIELD.getPath()).getAttribute("class").split(" "));
+        return classNameList.get(2);
     }
 }
