@@ -1,6 +1,5 @@
 import com.elements.LabelElement;
 import com.pageObject.CreateNewsPO;
-import com.pageObject.PreviewPO;
 import com.pageObject.WaitingPagePO;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -9,11 +8,14 @@ import org.testng.annotations.Test;
 import com.pageObject.EcoNewsPO;
 
 public class CreateNewsSourceFieldTest extends BasicTest {
+    private String expectedTextOfMainLabelOnWaitingPage = "Please wait while loading...";
+    private String expectedTextOfInformationLabelOnWaitingPage =
+            "Your news is loading to the website. Please wait until the page refreshes.";
+
     @AfterMethod
-    void finishUp() {
+    public void finishUp() {
         webDriver.navigate().refresh();
     }
-
 
     @DataProvider
     public Object[][] correctLinkInSourceField() {
@@ -39,15 +41,17 @@ public class CreateNewsSourceFieldTest extends BasicTest {
                 .setContent(content)
                 .clickPublishButton();
 
-        String actualTextOfMainLabelOnWaitingPage = createNewsWithCorrectLinkInSourceField.getMainLabel().getText();
-        String expectedTextOfMainLabelOnWaitingPage = "Please wait while loading...";
-        Assert.assertEquals(actualTextOfMainLabelOnWaitingPage, expectedTextOfMainLabelOnWaitingPage, "Failed, can`t find label with 'Please wait while loading...' text");
+        String actualTextOfMainLabelOnWaitingPage = createNewsWithCorrectLinkInSourceField
+                .getMainLabel()
+                .getText();
+        Assert.assertEquals(actualTextOfMainLabelOnWaitingPage, expectedTextOfMainLabelOnWaitingPage,
+                "Сan`t find label with 'Please wait while loading...' text");
 
-        String actualTextOfInformationLabelOnWaitingPage = createNewsWithCorrectLinkInSourceField.getInformationLabel().getText();
-        String expectedTextOfInformationLabelOnWaitingPage = "Your news is loading to the website. Please wait until the page refreshes.";
+        String actualTextOfInformationLabelOnWaitingPage = createNewsWithCorrectLinkInSourceField
+                .getInformationLabel()
+                .getText();
         Assert.assertEquals(actualTextOfInformationLabelOnWaitingPage, expectedTextOfInformationLabelOnWaitingPage);
     }
-
 
     @DataProvider
     public Object[][] inCorrectLinkInSourceField() {
@@ -73,6 +77,38 @@ public class CreateNewsSourceFieldTest extends BasicTest {
                 "The Publish button should not exist if incorrect data is entered.");
     }
 
+    @DataProvider
+    public Object[][] createWithoutSourceField() {
+        return new Object[][]{
+                {"Just title",
+                        "Please provide as many details as you can."}
+        };
+    }
+
+    @Test(dataProvider = "createWithoutSourceField")
+    public void createNewsWithoutLinkInSourceField(String title, String content) {
+        WaitingPagePO createNewsWithInCorrectLinkInSourceField = new EcoNewsPO(webDriver)
+                .getHeaderComponent()
+                .clickEcoNews()
+                .clickCreateNewsBtn()
+                .setTitle(title)
+                .clickTagNews()
+                .setContent(content)
+                .clickPublishButton();
+
+        String actualTextOfMainLabelOnWaitingPage = createNewsWithInCorrectLinkInSourceField
+                .getMainLabel()
+                .getText();
+        Assert.assertEquals(actualTextOfMainLabelOnWaitingPage, expectedTextOfMainLabelOnWaitingPage,
+                "Failed, can`t find label with 'Please wait while loading...' text");
+
+        String actualTextOfInformationLabelOnWaitingPage = createNewsWithInCorrectLinkInSourceField.
+                getInformationLabel().
+                getText();
+        Assert.assertEquals(actualTextOfInformationLabelOnWaitingPage, expectedTextOfInformationLabelOnWaitingPage,
+                "can`t find label with 'Your news is loading to the website." +
+                        " Please wait until the page refreshes.' text");
+    }
 
     @DataProvider
     public Object[][] inCorrectLinkForVerifyWarningLabel() {
@@ -94,25 +130,34 @@ public class CreateNewsSourceFieldTest extends BasicTest {
         Assert.assertEquals(lb.getColorHex(), ExpectedColor);
     }
 
-    @DataProvider
-    public Object[][] verifyNoAutoResizing() {
-        return new Object[][]{
-                {"https://ita-social-projects.github.io/GreenCityClient/#/news/create/GreenCityClient/#/news/create-news-news/GreenCityClient/#/news/create/GreenCityClient/#/news/create-news-news",
-                        "height: 48px;"}
-        };
-    }
 
-    @Test(dataProvider = "verifyNoAutoResizing")
-    public void verifyNoAutoResizingInFieldCorrect(String source, String ExpectedFieldHeight) {
-        CreateNewsPO verifyNoAutoResizing = new EcoNewsPO(webDriver)
-                .getHeaderComponent()
-                .clickEcoNews()
-                .clickCreateNewsBtn()
-                .setSource(source);
 
-        String actualSourceFieldHeight = verifyNoAutoResizing.getSourceFieldHeight();
-        Assert.assertEquals(actualSourceFieldHeight, ExpectedFieldHeight);
-    }
+
+
+
+
+
+
+
+//    @DataProvider
+//    public Object[][] verifyNoAutoResizing() {
+//        return new Object[][]{
+//                {"https://ita-social-projects.github.io/GreenCityClient/#/news/create/GreenCityClient/#/",
+//                        "height: 48px;"}
+//        };
+//    }
+//
+//    @Test(dataProvider = "verifyNoAutoResizing")
+//    public void verifyNoAutoResizingInSourceField(String source, String ExpectedFieldHeight) {
+//        CreateNewsPO verifyNoAutoResizing = new EcoNewsPO(webDriver)
+//                .getHeaderComponent()
+//                .clickEcoNews()
+//                .clickCreateNewsBtn()
+//                .setSource(source);
+//
+//        String actualSourceFieldHeight = verifyNoAutoResizing.getSourceFieldHeight();
+//        Assert.assertEquals(actualSourceFieldHeight, ExpectedFieldHeight);
+//    }
 
 
 }

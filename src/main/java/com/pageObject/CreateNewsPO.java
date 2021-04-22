@@ -5,7 +5,9 @@ import com.elements.FieldElement;
 import com.elements.LabelElement;
 import com.locators.CreateNewsPageLocators;
 import com.locators.TagComponentLocators;
+import com.locators.WaitingPageLocators;
 import com.tools.WaitsSwitcher;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
 public class CreateNewsPO extends BasePage {
@@ -42,6 +44,9 @@ public class CreateNewsPO extends BasePage {
 
     private WaitsSwitcher waitsSwitcher;
     private static final int SECONDS_FOR_WAITING_TAGS = 50;
+
+    private LabelElement mainLabel;
+    private LabelElement informationLabel;
 
 
     public CreateNewsPO(WebDriver driver) {
@@ -377,6 +382,7 @@ public class CreateNewsPO extends BasePage {
         return driver.findElement(CreateNewsPageLocators.SIGN_CREATING_AFTER_INCORRECT_IMAGE_UPLOAD.getPath()).isDisplayed();
     }
     public String getSourceFieldHeight() {
-        return driver.findElement(CreateNewsPageLocators.SOURCE_FIELD.getPath()).getAttribute("style");
+        return driver.findElement(CreateNewsPageLocators.FOR_SOURCE_FIELD.getPath()).getAttribute("style");
     }
+
 }

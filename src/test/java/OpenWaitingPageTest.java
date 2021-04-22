@@ -1,3 +1,4 @@
+import com.pageObject.CreateNewsPO;
 import com.pageObject.EcoNewsPO;
 import com.pageObject.WaitingPagePO;
 import org.testng.Assert;
