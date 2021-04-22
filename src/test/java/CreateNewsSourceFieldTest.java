@@ -97,9 +97,7 @@ public class CreateNewsSourceFieldTest extends BasicTest {
     @DataProvider
     public Object[][] verifyNoAutoResizing() {
         return new Object[][]{
-                {"https://ita-social-projects.github.io/GreenCityClient/#/news/create/GreenCityClient/#/" +
-                        "news/create-news-news/GreenCityClient/#/news/create/GreenCityClient/#/" +
-                        "news/create-news-news",
+                {"https://ita-social-projects.github.io/GreenCityClient/#/news/create/GreenCityClient/#/news/create-news-news/GreenCityClient/#/news/create/GreenCityClient/#/news/create-news-news",
                         "height: 48px;"}
         };
     }
