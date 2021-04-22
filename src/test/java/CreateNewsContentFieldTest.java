@@ -50,9 +50,7 @@ public class CreateNewsContentFieldTest extends BasicTest{
 
     @Test(dataProvider = "isAutoResizeable448px")
     public void isContentFieldAutoResizable(String mainText, int ExpectedHeight) {
-        LabelElement contentField = new EcoNewsPO(webDriver)
-                .clickEcoNews()
-                .clickCreateNewsBtn()
+        LabelElement contentField = new CreateNewsPO(webDriver)
                 .setContent(mainText)
                 .clickOnBlankArea()
                 .getContentField();
