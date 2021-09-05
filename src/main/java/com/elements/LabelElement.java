@@ -24,12 +24,14 @@ public class LabelElement extends BaseElement {
     public Point getLocation(){
         return webElement.getLocation();
     }
+
     public String getColorRGB(){
         return webElement.getCssValue("color");
     }
+
     public String getColorHex(){
         return Color.fromString(getColorRGB()).asHex();
     }
-    public int getHeight(){ return webElement.getSize().getHeight();}
 
+    public int getHeight(){ return webElement.getSize().getHeight();}
 }

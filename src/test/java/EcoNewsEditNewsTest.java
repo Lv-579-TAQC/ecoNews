@@ -71,7 +71,7 @@ public class EcoNewsEditNewsTest extends BasicTest {
                 .getContentLabelOnPreviewEditPage()
                 .getText();
 
-        String expectedTextContentLabelOnPreviewEditPage = "Title field after edit";
+        String expectedTextContentLabelOnPreviewEditPage = " Content field after edit ";
         Assert.assertEquals(actualTextContentLabelOnPreviewEditPage, expectedTextContentLabelOnPreviewEditPage, "Verification failed, actual and expected contents do not match");
     }
 

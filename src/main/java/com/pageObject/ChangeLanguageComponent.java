@@ -2,9 +2,8 @@ package com.pageObject;
 
 import com.elements.ButtonElement;
 import com.locators.CreateNewsPageLocators;
+import com.tools.WaitsSwitcher;
 import org.openqa.selenium.WebDriver;
-
-import java.util.concurrent.TimeUnit;
 
 public class ChangeLanguageComponent {
     private ButtonElement languageDropdown;
@@ -12,13 +11,15 @@ public class ChangeLanguageComponent {
     private ButtonElement enButton;
     private ButtonElement ruButton;
     private WebDriver driver;
+    private WaitsSwitcher waitsSwitcher;
 
     public ChangeLanguageComponent(WebDriver driver) {
         this.driver = driver;
+        waitsSwitcher = new WaitsSwitcher(driver);
     }
 
     public ChangeLanguageComponent clickLanguageDropdown() {
-        //driver.manage().timeouts().implicitlyWait(7000, TimeUnit.SECONDS);
+        waitsSwitcher.setImplicitWaits(5);
         if (languageDropdown == null) {
             languageDropdown = new ButtonElement(this.driver, CreateNewsPageLocators.LANGUAGE_DROPDOWN);
         }
@@ -31,11 +32,7 @@ public class ChangeLanguageComponent {
             uaButton = new ButtonElement(this.driver, CreateNewsPageLocators.UA_BUTTON);
         }
         uaButton.click();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WaitsSwitcher.sleep(8000);
     }
 
     public void clickEnButton() {
@@ -43,11 +40,7 @@ public class ChangeLanguageComponent {
             enButton = new ButtonElement(this.driver, CreateNewsPageLocators.EN_BUTTON);
         }
         enButton.click();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WaitsSwitcher.sleep(8000);
     }
 
     public void clickRuButton() {
@@ -55,11 +48,7 @@ public class ChangeLanguageComponent {
             ruButton = new ButtonElement(this.driver, CreateNewsPageLocators.RU_BUTTON);
         }
         ruButton.click();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WaitsSwitcher.sleep(8000);
     }
 
     public void changeLanguage(String language){

@@ -26,11 +26,12 @@ public class CreateNewsPO extends BasePage {
     private LabelElement sourceWarningLabel;
     private LabelElement contentLabel;
     private LabelElement dateLabel;
-    private LabelElement currentdateLabel;
+    private LabelElement currentDateLabel;
     private LabelElement authorLabel;
-    private LabelElement authornameLabel;
-    private LabelElement contentMassegeLabel;
+    private LabelElement authorNameLabel;
+    private LabelElement contentMessageLabel;
     private LabelElement contentFieldBox;
+    private LabelElement dateAndAuthorArea;
 
     private TagComponent tags;
     private ButtonElement previewButton;
@@ -49,30 +50,6 @@ public class CreateNewsPO extends BasePage {
         waitsSwitcher = new WaitsSwitcher(driver);
     }
 
-    private void clear() {
-
-        titleField = null;
-        sourceField = null;
-        contentField = null;
-
-        titlePageLabel = null;
-        additionalLabel = null;
-        titleNewsLabel = null;
-        newsTagLabel = null;
-
-        sourceLabel = null;
-        contentLabel = null;
-        dateLabel = null;
-        authorLabel = null;
-        authornameLabel= null;
-        contentMassegeLabel = null;
-        contentFieldBox = null;
-
-        tags = null;
-        previewButton = null;
-        cancelButton = null;
-        publishButton = null;
-    }
 
     public CreateNewsPO setLanguage(String language) {
         this.clickChangeLanguage(language);
@@ -89,21 +66,17 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getTitlePageLabel() {
-        clear();
         if (titlePageLabel == null) {
             titlePageLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_PAGE_LABEL);
         }
         return titlePageLabel;
-
     }
 
     public LabelElement getAdditionalLabel() {
-        clear();
         if (additionalLabel == null) {
             additionalLabel = new LabelElement(this.driver, CreateNewsPageLocators.ADDITIONAL_LABEL);
         }
         return additionalLabel;
-
     }
 
     public TagComponent getTags() {
@@ -114,7 +87,6 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getChooseTagsLabel() {
-        clear();
         if (chooseTagsLabel == null) {
             chooseTagsLabel = new LabelElement(this.driver, CreateNewsPageLocators.CHOOSE_TAGS_LABEL);
         }
@@ -122,7 +94,6 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getPictureLabel() {
-        clear();
         if (pictureLabel == null) {
             pictureLabel = new LabelElement(this.driver, CreateNewsPageLocators.PICTURE_LABEL);
         }
@@ -130,7 +101,6 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getChoosePictureLabel() {
-        clear();
         if (choosePictureLabel == null) {
             choosePictureLabel = new LabelElement(this.driver, CreateNewsPageLocators.CHOOSE_PICTURE_LABEL);
         }
@@ -138,7 +108,6 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getSourceLabel() {
-        clear();
         if (sourceLabel == null) {
             sourceLabel = new LabelElement(this.driver, CreateNewsPageLocators.SOURCE_LABEL);
         }
@@ -154,7 +123,6 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getContentLabel() {
-        clear();
         if (contentLabel == null) {
             contentLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_LABEL);
         }
@@ -163,31 +131,27 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getTitleNewsLabel() {
-        clear();
         if (titleNewsLabel == null) {
             titleNewsLabel = new LabelElement(this.driver, CreateNewsPageLocators.TITLE_NEWS_LABEL);
         }
         return titleNewsLabel;
     }
 
-
     public LabelElement getDateLabel() {
-        clear();
         if (dateLabel == null) {
             dateLabel = new LabelElement(this.driver, CreateNewsPageLocators.DATE_LABEL);
         }
         return dateLabel;
     }
+
     public LabelElement getCurrentDateLabel() {
-        clear();
-        if (currentdateLabel == null) {
-            currentdateLabel = new LabelElement(this.driver, CreateNewsPageLocators.CURRENT_DATE_LABEL);
+        if (currentDateLabel == null) {
+            currentDateLabel = new LabelElement(this.driver, CreateNewsPageLocators.CURRENT_DATE_LABEL);
         }
-        return currentdateLabel;
+        return currentDateLabel;
     }
 
     public LabelElement getAuthorLabel() {
-        clear();
         if (authorLabel == null) {
             authorLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_LABEL);
         }
@@ -195,21 +159,26 @@ public class CreateNewsPO extends BasePage {
     }
 
     public LabelElement getAuthorNameLabel() {
-        clear();
-        if (authornameLabel == null) {
-            authornameLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_NAME_LABEL);
+        if (authorNameLabel == null) {
+            authorNameLabel = new LabelElement(this.driver, CreateNewsPageLocators.AUTHOR_NAME_LABEL);
         }
-        return authornameLabel;
+        return authorNameLabel;
     }
-    public LabelElement getContentMassegeLabel() {
-        clear();
-        if (contentMassegeLabel == null) {
-            contentMassegeLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENTFIELD_MASSEGA_LABEL);
+
+    public LabelElement getDateAndAuthorAreaLabel() {
+        if (dateAndAuthorArea == null) {
+            dateAndAuthorArea = new LabelElement(this.driver, CreateNewsPageLocators.DATE_AND_AUTHOR_AREA);
         }
-        return contentMassegeLabel;
+        return dateAndAuthorArea;
+    }
+
+    public LabelElement getContentMassegeLabel() {
+        if (contentMessageLabel == null) {
+            contentMessageLabel = new LabelElement(this.driver, CreateNewsPageLocators.CONTENTFIELD_MASSEGA_LABEL);
+        }
+        return contentMessageLabel;
     }
     public LabelElement getContentField() {
-        clear();
         if (contentFieldBox == null) {
             contentFieldBox  = new LabelElement(this.driver, CreateNewsPageLocators.CONTENT_FIELD);
         }
@@ -217,7 +186,6 @@ public class CreateNewsPO extends BasePage {
     }
 
     public ButtonElement getCancelButton() {
-        clear();
         if (cancelButton == null) {
             cancelButton = new ButtonElement(this.driver, CreateNewsPageLocators.CANCEL_BUTTON);
         }
@@ -225,14 +193,13 @@ public class CreateNewsPO extends BasePage {
 
     }
     public ButtonElement getPublishButton() {
-        clear();
         if (publishButton == null) {
             publishButton = new ButtonElement(this.driver, CreateNewsPageLocators.PUBLISH_BUTTON);
         }
         return publishButton;
     }
+
     public ButtonElement getPreviewButton() {
-        clear();
         if (previewButton == null) {
             previewButton = new ButtonElement(this.driver, CreateNewsPageLocators.PREVIEW_BUTTON);
         }
@@ -346,25 +313,34 @@ public class CreateNewsPO extends BasePage {
     }
 
     public boolean isEventsTagIsActive(){
-        return driver.findElement(TagComponentLocators.EVENTS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.EVENTS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
     public boolean isNewsTagIsActive(){
-        return driver.findElement(TagComponentLocators.NEWS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.NEWS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
     public boolean isEducationTagIsActive(){
-        return driver.findElement(TagComponentLocators.EDUCATION_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.EDUCATION_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
     public boolean isInitiativesTagIsActive(){
-        return driver.findElement(TagComponentLocators.INITIATIVES_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.INITIATIVES_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
 
     }
     public boolean isAdsTagIsActive(){
-        return driver.findElement(TagComponentLocators.ADS_TAGBUTTON.getPath()).getAttribute("class").contains("filters-color");
+        return driver.findElement(TagComponentLocators.ADS_TAG_BUTTON.getPath()).getAttribute("class").contains("filters-color");
     }
     public boolean isSignUnderTagsMakingWarning(){
         return driver.findElement(TagComponentLocators.SIGN_UNDER_TAGS.getPath()).getAttribute("class").contains("warning");
     }
     public boolean isPublishButtonIsActive(){
         return driver.findElement(CreateNewsPageLocators.PUBLISH_BUTTON.getPath()).isEnabled();
+    }
+    public boolean isSignUnderImageMakingWarning() {
+        return driver.findElement(CreateNewsPageLocators.WARNING_UNDER_IMAGE_PLACE.getPath()).isDisplayed();
+    }
+    public boolean isBackGroundOnImagePlaceMakingWarning() {
+        return driver.findElement(CreateNewsPageLocators.RED_WARNING_ON_IMAGE_PLACE.getPath()).getAttribute("class").contains("dropzone warning-background");
+    }
+    public boolean isSignOnImagePleaseAppears(){
+        return driver.findElement(CreateNewsPageLocators.SIGN_CREATING_AFTER_INCORRECT_IMAGE_UPLOAD.getPath()).isDisplayed();
     }
 }

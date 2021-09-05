@@ -29,12 +29,10 @@ public class HeaderComponent extends BasePage{
             ecoNewsButton = new ButtonElement(this.driver, HeaderComponentLocator.ECO_NEWS_BUTTON);
         }
         ecoNewsButton.click();
-
         return new EcoNewsPO(driver);
     }
 
     public ChangeLanguageComponent clickLanguageDropdown() {
-        driver.manage().timeouts().implicitlyWait(7000, TimeUnit.SECONDS);
         if (languageDropdown == null) {
             languageDropdown = new ButtonElement(this.driver, HeaderComponentLocator.CHANGE_LANGUAGE_DROPDOWN);
         }

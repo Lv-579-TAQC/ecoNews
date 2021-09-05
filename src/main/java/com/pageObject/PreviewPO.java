@@ -28,7 +28,6 @@ public class PreviewPO extends BasePage{
             backToEditingButton = new ButtonElement(this.driver, PreviewPageLocators.BACK_TO_EDITING_BUTTON);
         }
         backToEditingButton.click();
-
         return new CreateNewsPO(driver);
     }
 
@@ -83,14 +82,7 @@ public class PreviewPO extends BasePage{
             publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
         }
         publishNewsButton.click();
-        waitsSwitcher.setImplicitWaits(25);
+        waitsSwitcher.setImplicitWaits(35);
         return new EcoNewsPO(driver);
-    }
-
-    public boolean isDisplayed(){
-        if(publishNewsButton == null){
-            publishNewsButton = new ButtonElement(this.driver, PreviewPageLocators.PUBLISH_BUTTON);
-        }
-        return publishNewsButton.isDisplayed();
     }
 }

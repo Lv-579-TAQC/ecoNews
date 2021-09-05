@@ -1,5 +1,3 @@
-import com.pageObject.BasePage;
-import com.pageObject.HeaderComponent;
 import com.pageObject.LogInPO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,8 +5,8 @@ import org.testng.annotations.*;
 
 public class BasicTest {
 
-    final String email = "howiv47374@nenekbet.com";
-    final String password = "Test-User123";
+    private final String EMAIL = "howiv47374@nenekbet.com";
+    private final String PASSWORD = "Test-User123";
     protected static WebDriver webDriver;
 
     @BeforeClass
@@ -29,8 +27,8 @@ public class BasicTest {
         new LogInPO(webDriver)
                 .getHeaderComponent()
                 .clickSignInMenuButton()
-                .setEmail(email)
-                .setPassword(password)
+                .setEmail(EMAIL)
+                .setPassword(PASSWORD)
                 .clickSignInButton();
     }
 
